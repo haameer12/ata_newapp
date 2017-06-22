@@ -1,0 +1,75 @@
+<iframe style="border:none;position:absolute;top:0;left:0;width:100%;height:100%" src="include/vtour/vtour-demo-night.html"></iframe>
+<style>
+#shkb_header_n {
+  background-image: url("img/vtour-demo/night-back.png");
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: 0;
+  height: 32vw;
+  left: 0;
+  position: absolute;
+  width: 19vw;
+  z-index:999;
+}
+#shkb_footer_n {
+  background-image: url("img/vtour-demo/demo-footer.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  bottom: 0;
+  height: 30vw;
+  left: 0;
+  margin: 0 auto;
+  max-width: 800px;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  z-index:999;
+}
+#shkb_footer_n.downloaded_n {
+  background-image: url("img/vtour-demo/demo-footer2.png");
+}
+#shkb_btn1_n{
+	position:absolute;
+	left:0;
+	top:0;
+	height:50%;
+	width:100%;
+	display:block;
+	z-index:999;
+}
+#shkb_btn2_n{
+	position:absolute;
+	left:0;
+	bottom:0;
+	height:50%;
+	width:100%;
+	display:block;
+	z-index:999;
+}
+@media screen and (orientation : landscape){
+	#shkb_header_n {
+	  height: 32vh;
+	  width: 19vh;
+	}
+	#shkb_footer_n {
+	  height: 30vh;
+	  max-width: 800px;
+	  width: 100%;
+	  z-index:999;
+	}
+}
+</style>
+<div id="shkb_footer_n" class="need_download_n" >
+	<a id="shkb_btn1_n" href="include/vtour/vtour-online-ifram.html" data-transition="slide"></a>
+	<a id="shkb_btn2_n" href="#" onclick="download.html" ></a>
+</div>
+<div id="shkb_footer_n" class="downloaded" style="display: none;" >
+	<a id="shkb_btn1_n" href="include/vtour/vtour-online-ifram.html" data-transition="slide"></a>
+	<a id="shkb_btn2_n" href="#" onclick="vtour-locale.html" ></a>
+</div>
+<div id="shkb_header_n" style="" >
+	<a id="shkb_btn1_n" href="include/vtour/vtour-demo-day-ifram.html" data-transition="slide"></a>
+	<a id="shkb_btn2_n" href="include/vtour/vtour-demo-day-ifram.html" data-transition="slide"></a>
+</div>
