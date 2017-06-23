@@ -906,11 +906,11 @@
 									<li class="gallery"><a href="#" onClick="$('.nano').nanoScroller();return false">&nbsp;</a></li>
 									<li class="live_broadcast"><a href="#live_broadcast">&nbsp;</a></li>
 									<li class="video"><a href="#kotob_fatwaiya">&nbsp;</a></li>
-									<li class="radio"><a href="#" onClick="StatusBar.show();">&nbsp;</a></li>
-									<li class="map"><a href="#" onClick="StatusBar.hide();">&nbsp;</a></li>
+									<li class="radio"><a href="#" onClick="StatusBar.show();return false">&nbsp;</a></li>
+									<li class="map"><a href="#" onClick="StatusBar.hide();return false">&nbsp;</a></li>
 								</div>
 								<div class="menu_left">
-									<li class="adab_al_ziyara"><a href="#">&nbsp;</a></li>
+									<li class="adab_al_ziyara" onClick="statusbarTransparent.toggle();return false"><a href="#">&nbsp;</a></li>
 									<li class="Pray_times"><a href="#">&nbsp;</a></li>
 									<li class="neaba_ziyara"><a href="#">&nbsp;</a></li>
 									<li class="vtour"><a href="include/vtour/vtour-demo-day-ifram.html" data-transition="slide">&nbsp;</a></li>
