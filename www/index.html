@@ -248,6 +248,10 @@
 		statusbarTransparent.enable();
 		StatusBar.show();
 		
+		window.addEventListener('statusTap', function() {
+			alert("taped");
+		});
+		
 		
 		//FastClick.attach(document.body);
 		  
