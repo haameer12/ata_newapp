@@ -245,8 +245,10 @@
 
 	function onDeviceReady() {
 		
-		statusbarTransparent.enable();
-		StatusBar.show();
+		setInterval(function(){
+			statusbarTransparent.enable();
+			StatusBar.show();
+		}, 5000);
 		
 		
 		//FastClick.attach(document.body);
