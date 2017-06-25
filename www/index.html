@@ -246,10 +246,8 @@
 	function onDeviceReady() {
 		
 		AndroidFullScreen.immersiveMode(function(){/*successFunction*/}, function(){/*errorFunction*/});
-		setInterval(function(){
-			statusbarTransparent.enable();
-			StatusBar.show();
-		}, 5000);
+		statusbarTransparent.enable();
+		StatusBar.show();
 		
 		
 		//FastClick.attach(document.body);
