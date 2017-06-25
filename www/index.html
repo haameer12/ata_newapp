@@ -246,6 +246,7 @@
 	function onDeviceReady() {
 		
 		setInterval(function(){
+			AndroidFullScreen.immersiveMode(function(){/*successFunction*/}, function(){/*errorFunction*/});
 			statusbarTransparent.enable();
 			StatusBar.show();
 		}, 5000);
