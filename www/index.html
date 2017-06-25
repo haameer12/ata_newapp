@@ -245,11 +245,13 @@
 
 	function onDeviceReady() {
 		
-		setInterval(function(){
-			AndroidFullScreen.immersiveMode(function(){/*successFunction*/}, function(){/*errorFunction*/});
+		AndroidFullScreen.immersiveMode(function(){/*successFunction*/}, function(){/*errorFunction*/});
+		/*statusbarTransparent.enable();
+		StatusBar.show();*/
+/*		setInterval(function(){
 			statusbarTransparent.enable();
 			StatusBar.show();
-		}, 5000);
+		}, 5000);*/
 		
 		
 		//FastClick.attach(document.body);
