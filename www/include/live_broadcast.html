@@ -26,7 +26,7 @@
 
 	<div>
 		<div class="inside_page_title">
-			<a href="#" onclick="window.history.back();return false;">
+			<a href="#" onclick="$.afui.goBack();return false;">
 				<span class="inside_page_back"></span>
 			</a>
 		</div>
@@ -53,3 +53,12 @@
 
 
 </div>
+<script>
+$("#live_broadcast").bind('panelload', function() {
+	//alert("live broadcast start");
+});
+$("#live_broadcast").bind('panelunload', function() {
+	//alert("live broadcast end");
+	$(".live-broadcast-con .video-container iframe").attr("src", $(".live-broadcast-con .video-container iframe").attr("src"));
+});
+</script>

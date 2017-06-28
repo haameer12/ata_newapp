@@ -23,8 +23,8 @@
 	<link rel="stylesheet" href="engine/third-party/nanoScrollerJS/bin/css/nanoscroller.css">
 	<script type="text/javascript" src="engine/third-party/nanoScrollerJS/bin/javascripts/overthrow.min.js"></script>
 	<script type="text/javascript" src="engine/third-party/nanoScrollerJS/bin/javascripts/jquery.nanoscroller.js"></script>
-	<script type="text/javascript" src="engine/third-party/nanoScrollerJS/bin/javascripts/main.js"></script>
-	<script type="text/javascript" src="engine/third-party/nanoScrollerJS/bin/javascripts/ga.js"></script>
+<!--	<script type="text/javascript" src="engine/third-party/nanoScrollerJS/bin/javascripts/main.js"></script>
+	<script type="text/javascript" src="engine/third-party/nanoScrollerJS/bin/javascripts/ga.js"></script>-->
 	
 	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 	
@@ -906,11 +906,11 @@
 						
 							<ul>
 								<div class="menu_right">
-									<li class="news"><a href="#" onClick="$('.nano').nanoScroller({ scroll: 'bottom' });return false">&nbsp;</a></li>
-									<li class="gallery"><a href="#" onClick="$('.nano').nanoScroller();return false">&nbsp;</a></li>
-									<li class="live_broadcast"><a href="#live_broadcast" onClick="StatusBar.styleDefault();">&nbsp;</a></li>
-									<li class="video"><a href="#kotob_fatwaiya">&nbsp;</a></li>
-									<li class="radio"><a href="#" onClick="StatusBar.show();return false">&nbsp;</a></li>
+									<li class="news"><a href="#news_list">&nbsp;</a></li>
+									<li class="gallery"><a href="#photo_gallery">&nbsp;</a></li>
+									<li class="live_broadcast"><a href="#live_broadcast">&nbsp;</a></li>
+									<li class="video"><a href="#video_gallery">&nbsp;</a></li>
+									<li class="radio"><a href="#radio">&nbsp;</a></li>
 									<li class="map"><a href="#" onClick="StatusBar.hide();return false">&nbsp;</a></li>
 								</div>
 								<div class="menu_left">
@@ -1127,9 +1127,37 @@
 			
 			
 			
+			
+			
+			
+			<div class="panel" id="photo_gallery" data-include="include/photo_gallery.html" data-title="معرض الصور" >
+			
+            </div>
+			
+			<div class="panel" id="video_gallery" data-include="include/video_gallery.html" data-title="المكتبة المرئية" >
+			
+            </div>
+			
+			
+			<div class="panel" id="news_list" data-include="include/news_list.html" data-title="قائمة الأخبار" >
+			
+            </div>
+			
+			
 			<div class="panel" id="live_broadcast" data-include="include/live_broadcast.html" data-title="البث المباشر" >
 			
             </div>
+			
+			<div class="panel" id="radio" data-include="include/radio.html" data-title="إذاعة العتبة" >
+			
+            </div>
+
+			
+			<script>
+			$("#main").bind('panelload', function() {
+				//alert("main");
+			});
+			</script>
 
 		
 
