@@ -15,6 +15,12 @@
 	min-height:25vw;
 	background:url("img/seprator.png") no-repeat bottom center;
 	background-size:90%;
+	box-sizing:content-box;
+}
+#app-news-list ul li:last-child{
+	background:none;
+	padding-bottom:0;
+	margin-bottom:0;
 }
 #app-news-list ul li a{
 	display:inline-block;
@@ -30,7 +36,6 @@
 	position:absolute;
 	top:0;
 	right:0;
-	width:30vw;
 	height:25vw;
 	border-radius:2vw;
 }
@@ -48,6 +53,27 @@
 	font-size:3.5vw;
 	padding:0 1.7vw 0 0;
 }
+@media screen and (orientation : landscape){
+	#app-news-list ul li{
+		padding-bottom:3.8vh;
+		margin-bottom: 3vh;
+		min-height:25vh;
+		background-size:45%;
+	}
+	#app-news-list ul li a{
+		padding:0 33vh 0 0;
+		font-size: 3vh;
+		line-height: 6vh;
+	}
+	#app-news-list ul li a img{
+		height:25vh;
+		border-radius:2vh;
+	}
+	#app-news-list ul li a div span i.fa{
+		font-size:3.5vh;
+		padding:0 1.7vh 0 0;
+	}
+}
 </style>
 <div class="inside_page">
 
@@ -60,72 +86,55 @@
 				<span class="inside_page_back"></span>
 			</a>
 		</div>
-		<div class="inside_page_content">
+		<div class="inside_page_content" id="news_list_page">
 
 
 
 
 			
 			
+			<style>
+			#news_list_page .nano {
+				width: 100%;
+				height: 100%;
+			}
+			#news_list_page .nano .nano-content{
+				padding:0 2.7vw;
+			}
+			#news_list_page .nano .nano-pane{
+				background:none !important;
+				width:0.5vw !important;
+				top:0 !important;
+				bottom:0 !important;
+				/*box-shadow: 0 0 40px 1px #fff;*/
+			}
+			#news_list_page .nano .nano-slider{
+				background: #013b5d !important;
+				margin:0 !important;
+				opacity:0.3;
+			}
+			@media screen and (orientation : landscape){
+				#news_list_page .nano .nano-pane{
+					width:0.5vh !important;
+				}
+			}
+			</style>
+			<div class="nano">
+				<div class="overthrow nano-content">		
 			
 			
 
 
-<div id="app-news-list">
-	<ul>
-		<li><a href="#">
-			<img src="http://imamali.net/rpic.php?i=files/news/images/14cdeo4t5.jpg&w=230&h=190" />
-			<span class="news-text">قسم الإعلام في العتبة العلوية المقدسة يشارك بمهرجان السفير الثقافي السابع في رحاب مسجد الكوفة</span>
-			<div>
-				<span>85<i class="fa fa-eye" aria-hidden="true"></i></span>
-				<span>June / 30 / 2017<i class="fa fa-calendar" aria-hidden="true"></i></span>
+					<div id="app-news-list">
+						<ul></ul>
+					</div>
+
+
+
+
+			
+				</div>
 			</div>
-		<div class="clear"></div>
-		</a></li>
-		<li><a href="#">
-			<img src="http://imamali.net/rpic.php?i=files/news/images/14cdeo4t5.jpg&w=230&h=190" />
-			<span class="news-text">قسم الإعلام في العتبة العلوية المقدسة يشارك بمهرجان السفير الثقافي السابع في رحاب مسجد الكوفة</span>
-			<div>
-				<span>85<i class="fa fa-eye" aria-hidden="true"></i></span>
-				<span>June / 30 / 2017<i class="fa fa-calendar" aria-hidden="true"></i></span>
-			</div>
-		<div class="clear"></div>
-		</a></li>
-		<li><a href="#">
-			<img src="http://imamali.net/rpic.php?i=files/news/images/14cdeo4t5.jpg&w=230&h=190" />
-			<span class="news-text">قسم الإعلام في العتبة العلوية المقدسة يشارك بمهرجان السفير الثقافي السابع في رحاب مسجد الكوفة</span>
-			<div>
-				<span>85<i class="fa fa-eye" aria-hidden="true"></i></span>
-				<span>June / 30 / 2017<i class="fa fa-calendar" aria-hidden="true"></i></span>
-			</div>
-		<div class="clear"></div>
-		</a></li>
-		<li><a href="#">
-			<img src="http://imamali.net/rpic.php?i=files/news/images/14cdeo4t5.jpg&w=230&h=190" />
-			<span class="news-text">قسم الإعلام في العتبة العلوية المقدسة يشارك بمهرجان السفير الثقافي السابع في رحاب مسجد الكوفة</span>
-			<div>
-				<span>85<i class="fa fa-eye" aria-hidden="true"></i></span>
-				<span>June / 30 / 2017<i class="fa fa-calendar" aria-hidden="true"></i></span>
-			</div>
-		<div class="clear"></div>
-		</a></li>
-		<li><a href="#">
-			<img src="http://imamali.net/rpic.php?i=files/news/images/14cdeo4t5.jpg&w=230&h=190" />
-			<span class="news-text">قسم الإعلام في العتبة العلوية المقدسة يشارك بمهرجان السفير الثقافي السابع في رحاب مسجد الكوفة</span>
-			<div>
-				<span>85<i class="fa fa-eye" aria-hidden="true"></i></span>
-				<span>June / 30 / 2017<i class="fa fa-calendar" aria-hidden="true"></i></span>
-			</div>
-		<div class="clear"></div>
-		</a></li>
-	</ul>
-</div>
-
-
-
-
-			
-			
 			
 			
 		
@@ -142,6 +151,54 @@
 <script>
 $("#news_list").bind('panelload', function() {
 	//alert("news_list start");
+	
+	
+	
+	
+	$.ajax({
+		type : 'get',
+		url : 'http://imamali.net/app_json/get_news_items.php',
+		async : false,
+		jsonpCallback : 'newsItemCallBack',
+		contentType : "application/json",
+		dataType : 'jsonp',
+		success : function(json){
+			$.each(json, function(index, value){
+				$("#app-news-list ul").append('<li><a href="#"> \
+				<img src="http://imamali.net/rpic.php?i=files/news/images/' +value['pic_name'] +'&w=230&h=190" /> \
+				<span class="news-text">' +value['title'] +'</span> \
+				<div> \
+					<span>' +value['view_num'] +'<i class="fa fa-eye" aria-hidden="true"></i></span> \
+					<span>' +value['date'] +'<i class="fa fa-calendar" aria-hidden="true"></i></span> \
+				</div> \
+			<div class="clear"></div> \
+			</a></li>');
+			});
+			
+			
+			
+			
+			$("#news_list_page .nano").nanoScroller({ alwaysVisible: true });
+			$("#news_list_page .nano").bind("scrollend", function(e){
+				window.alert("current HTMLDivElement", e.currentTarget);
+			});
+			$("#news_list_page .nano").on("update", function(event, values){
+				//window.alert("It also carries a JavaScript object with the current position, the maximum height and the direction (up or down).");
+			});
+			
+			
+			
+			
+		},
+		error: function(e, errorReason){
+			
+		}
+	});
+	
+	
+	
+	
+	
 });
 $("#news_list").bind('panelunload', function() {
 	//alert("news_list end");

@@ -870,32 +870,32 @@
 					
 						
 						<style>
-						.nano {
+						.mian_page_con #main_page_menu .nano {
 							width: 100%;
 							height: 100%;
 						}
-						.nano .nano-content{
+						.mian_page_con #main_page_menu .nano .nano-content{
 							padding: 10px;
 						}
-						.nano .nano-pane{
+						.mian_page_con #main_page_menu .nano .nano-pane{
 							background: none !important;
 							width:0.5vw !important;
 							top:6vw !important;
 							bottom:6vw !important;
 							/*box-shadow: 0 0 40px 1px #fff;*/
 						}
-						.nano .nano-slider{
+						.mian_page_con #main_page_menu .nano .nano-slider{
 							background: #157da3 !important;
 							margin:0 !important;
 						}
 						@media screen and (orientation : landscape){
-							.nano .nano-pane{
+							.mian_page_con #main_page_menu .nano .nano-pane{
 								background: none !important;
 								width:0.5vh !important;
-								top:6vw !important;
-								bottom:6vw !important;
+								top:6vh !important;
+								bottom:6vh !important;
 							}
-							.nano .nano-slider{
+							.mian_page_con #main_page_menu .nano .nano-slider{
 								background: #1a6994 !important;
 								margin:0 !important;
 							}
@@ -928,11 +928,11 @@
 						</div>
 						<script>
 						$(document).ready(function(){
-							$(".nano").nanoScroller({ alwaysVisible: true });
-							$(".nano").bind("scrollend", function(e){
+							$(".mian_page_con #main_page_menu .nano").nanoScroller({ alwaysVisible: true });
+							$(".mian_page_con #main_page_menu .nano").bind("scrollend", function(e){
 								//window.alert("current HTMLDivElement", e.currentTarget);
 							});
-							$(".nano").on("update", function(event, values){
+							$(".mian_page_con #main_page_menu .nano").on("update", function(event, values){
 								//window.alert("It also carries a JavaScript object with the current position, the maximum height and the direction (up or down).");
 							});
 						});
