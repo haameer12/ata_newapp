@@ -82,6 +82,7 @@
 
 	<div>
 		<div class="inside_page_title" style="background-image:url(img/news_title.png);">
+			<span class="inside_page_loading"></span>
 			<a href="#" onclick="$.afui.goBack();return false;">
 				<span class="inside_page_back"></span>
 			</a>
@@ -126,7 +127,7 @@
 
 
 					<div id="app-news-list">
-						<ul></ul>
+						<ul lastNewsIdBySort="" lastNewsId=""></ul>
 					</div>
 
 
@@ -152,7 +153,7 @@
 $("#news_list").bind('panelload', function() {
 	//alert("news_list start");
 	
-	
+if($("#app-news-list ul").attr("lastNewsIdBySort") == ""){
 	
 	
 	$.ajax({
@@ -163,16 +164,21 @@ $("#news_list").bind('panelload', function() {
 		contentType : "application/json",
 		dataType : 'jsonp',
 		success : function(json){
+			$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+			var i = 0;
 			$.each(json, function(index, value){
+				i++;
+				$("#app-news-list ul").attr("lastNewsIdBySort", value['id']);
+				if(i == 1){$("#app-news-list ul").attr("lastNewsId", value['id']);}
 				$("#app-news-list ul").append('<li><a href="#"> \
-				<img src="http://imamali.net/rpic.php?i=files/news/images/' +value['pic_name'] +'&w=230&h=190" /> \
-				<span class="news-text">' +value['title'] +'</span> \
-				<div> \
-					<span>' +value['view_num'] +'<i class="fa fa-eye" aria-hidden="true"></i></span> \
-					<span>' +value['date'] +'<i class="fa fa-calendar" aria-hidden="true"></i></span> \
-				</div> \
-			<div class="clear"></div> \
-			</a></li>');
+					<img src="http://imamali.net/rpic.php?i=files/news/images/' +value['pic_name'] +'&w=230&h=190" /> \
+					<span class="news-text">' +value['title'] +'</span> \
+					<div> \
+						<span>' +value['view_num'] +'<i class="fa fa-eye" aria-hidden="true"></i></span> \
+						<span>' +value['date'] +'<i class="fa fa-calendar" aria-hidden="true"></i></span> \
+					</div> \
+				<div class="clear"></div> \
+				</a></li>');
 			});
 			
 			
@@ -180,7 +186,71 @@ $("#news_list").bind('panelload', function() {
 			
 			$("#news_list_page .nano").nanoScroller({ alwaysVisible: true });
 			$("#news_list_page .nano").bind("scrollend", function(e){
-				window.alert("current HTMLDivElement", e.currentTarget);
+				//window.alert("current HTMLDivElement", e.currentTarget);
+				
+				$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "1");
+				$.ajax({
+					type : 'get',
+					url : 'http://imamali.net/app_json/get_news_items.php?last_item_by_sort='+$("#app-news-list ul").attr("lastNewsIdBySort"),
+					async : false,
+					jsonpCallback : 'newsItemCallBack',
+					contentType : "application/json",
+					dataType : 'jsonp',
+					success : function(json){
+						$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+						$.each(json, function(index, value){
+							$("#app-news-list ul").append('<li><a href="#"> \
+								<img src="http://imamali.net/rpic.php?i=files/news/images/' +value['pic_name'] +'&w=230&h=190" /> \
+								<span class="news-text">' +value['title'] +'</span> \
+								<div> \
+									<span>' +value['view_num'] +'<i class="fa fa-eye" aria-hidden="true"></i></span> \
+									<span>' +value['date'] +'<i class="fa fa-calendar" aria-hidden="true"></i></span> \
+								</div> \
+							<div class="clear"></div> \
+							</a></li>');
+							$("#app-news-list ul").attr("lastNewsIdBySort", value['id']);
+						});
+						$("#news_list_page .nano").nanoScroller();
+					},
+					error: function(e, errorReason){
+						$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+					}
+				});
+
+			});
+			$("#news_list_page .nano").bind("scrolltop", function(e){
+				//window.alert("current HTMLDivElement", e.currentTarget);
+				
+				
+				$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "1");
+				$.ajax({
+					type : 'get',
+					url : 'http://imamali.net/app_json/get_news_items.php?last_item='+$("#app-news-list ul").attr("lastNewsId"),
+					async : false,
+					jsonpCallback : 'newsItemCallBack',
+					contentType : "application/json",
+					dataType : 'jsonp',
+					success : function(json){
+						$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+						$.each(json, function(index, value){
+							$("#app-news-list ul").prepend('<li><a href="#"> \
+								<img src="http://imamali.net/rpic.php?i=files/news/images/' +value['pic_name'] +'&w=230&h=190" /> \
+								<span class="news-text">' +value['title'] +'</span> \
+								<div> \
+									<span>' +value['view_num'] +'<i class="fa fa-eye" aria-hidden="true"></i></span> \
+									<span>' +value['date'] +'<i class="fa fa-calendar" aria-hidden="true"></i></span> \
+								</div> \
+							<div class="clear"></div> \
+							</a></li>');
+							$("#app-news-list ul").attr("lastNewsId", value['id']);
+						});
+						$("#news_list_page .nano").nanoScroller();
+					},
+					error: function(e, errorReason){
+						$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+					}
+				});
+				
 			});
 			$("#news_list_page .nano").on("update", function(event, values){
 				//window.alert("It also carries a JavaScript object with the current position, the maximum height and the direction (up or down).");
@@ -191,12 +261,45 @@ $("#news_list").bind('panelload', function() {
 			
 		},
 		error: function(e, errorReason){
-			
+			$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
 		}
 	});
 	
 	
+}else{
 	
+	$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "1");
+	$.ajax({
+		type : 'get',
+		url : 'http://imamali.net/app_json/get_news_items.php?last_item='+$("#app-news-list ul").attr("lastNewsId"),
+		async : false,
+		jsonpCallback : 'newsItemCallBack',
+		contentType : "application/json",
+		dataType : 'jsonp',
+		success : function(json){
+			$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+			$.each(json, function(index, value){
+				$("#app-news-list ul").prepend('<li><a href="#"> \
+					<img src="http://imamali.net/rpic.php?i=files/news/images/' +value['pic_name'] +'&w=230&h=190" /> \
+					<span class="news-text">' +value['title'] +'</span> \
+					<div> \
+						<span>' +value['view_num'] +'<i class="fa fa-eye" aria-hidden="true"></i></span> \
+						<span>' +value['date'] +'<i class="fa fa-calendar" aria-hidden="true"></i></span> \
+					</div> \
+				<div class="clear"></div> \
+				</a></li>');
+				$("#app-news-list ul").attr("lastNewsId", value['id']);
+			});
+			$("#news_list_page .nano").nanoScroller();
+		},
+		error: function(e, errorReason){
+			$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+		}
+	});
+	
+	
+}
+
 	
 	
 });
