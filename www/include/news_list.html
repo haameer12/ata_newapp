@@ -162,7 +162,7 @@ setTimeout(function(){
 			type : 'get',
 			url : 'http://imamali.net/app_json/get_news_items.php',
 			async : false,
-			jsonpCallback : 'newsItemCallBack',
+			jsonpCallback : 'newsItemsCallBack',
 			contentType : "application/json",
 			dataType : 'jsonp',
 			success : function(json){
@@ -172,7 +172,7 @@ setTimeout(function(){
 					i++;
 					$("#app-news-list ul").attr("lastNewsIdBySort", value['id']);
 					if(i == 1){$("#app-news-list ul").attr("lastNewsId", value['id']);}
-					$("#app-news-list ul").append('<li><a href="#news_item_content"> \
+					$("#app-news-list ul").append('<li class="newsListItem"><a newsId="' +value['id'] +'" href="#"> \
 						<img src="http://imamali.net/rpic.php?i=files/news/images/' +value['pic_name'] +'&w=230&h=190" /> \
 						<span class="news-text">' +value['title'] +'</span> \
 						<div> \
@@ -186,6 +186,77 @@ setTimeout(function(){
 				
 				
 				
+				
+				
+				
+				
+				
+
+
+				
+				
+				
+				
+				var getEsdarRequestObj = "";
+				$("#news_list_page #app-news-list .newsListItem a").bind("tap",function(){
+					alert("hi");//we are here---------------------------
+					if(getEsdarRequestObj != ""){
+						getEsdarRequestObj.abort();
+					}
+					var this_element = $(this);
+					$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "1");
+					getEsdarRequestObj = $.ajax({
+						type : 'get',
+						url : 'http://imamali.net/app_json/get_news_single_item.php?news_id='+this_element.attr("newsId"),
+						async : false,
+						jsonpCallback : 'newsSingleItemCallBack',
+						contentType : "application/json",
+						dataType : 'jsonp',
+						success : function(json){
+							/*$("#esdarat-inside-content #esdarat-item-win-title").text(esdarTypeTools[TapedElement.parent().attr("esdarName")].itemTitle);
+							$("#esdarat-inside-content #esdarat-item-win-head-bg").attr("style", "background-image:url(" +esdarTypeTools[TapedElement.parent().attr("esdarName")].itemHeadBg +")");
+							$("#esdarat-inside-content #esdarat-item-win-des").text(esdarTypeTools[TapedElement.parent().attr("esdarName")].itemDes);
+							$("#esdarat-inside-content #esdar-text").html(json['text']);
+							$("#esdarat-inside-content #esdar-text").prepend("<div id='esdar_links' style='padding:10px 0'></div>");
+							$("#esdarat-inside-content #esdar-text").prepend("<div style='text-align:center;padding:8px 0 0 0'><img id='esdar_cover' src='' /></div>");
+							$("#esdarat-inside-content #esdar-text img#esdar_cover").attr("src",  this_element.children("img").attr("src"));
+							$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');*/
+							
+							window.alert(json);
+							
+							$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+							$.afui.loadContent("#esdarat-inside-content",false,false,"up");
+							
+							getEsdarRequestObj = "";
+							
+						},
+						error: function(e, errorReason){
+							//console.log(e.message);
+							if(errorReason != "abort"){
+								notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+							}
+							$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+							
+							getEsdarRequestObj = "";
+						}
+					});
+				
+					return false;
+				});
+				
+				
+				
+								
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				$("#news_list_page .nano").nanoScroller({ alwaysVisible: true });
 				$("#news_list_page .nano").bind("scrollend", function(e){
 					//window.alert("current HTMLDivElement", e.currentTarget);
@@ -195,7 +266,7 @@ setTimeout(function(){
 						type : 'get',
 						url : 'http://imamali.net/app_json/get_news_items.php?last_item_by_sort='+$("#app-news-list ul").attr("lastNewsIdBySort"),
 						async : false,
-						jsonpCallback : 'newsItemCallBack',
+						jsonpCallback : 'newsItemsCallBack',
 						contentType : "application/json",
 						dataType : 'jsonp',
 						success : function(json){
@@ -229,7 +300,7 @@ setTimeout(function(){
 						type : 'get',
 						url : 'http://imamali.net/app_json/get_news_items.php?last_item='+$("#app-news-list ul").attr("lastNewsId"),
 						async : false,
-						jsonpCallback : 'newsItemCallBack',
+						jsonpCallback : 'newsItemsCallBack',
 						contentType : "application/json",
 						dataType : 'jsonp',
 						success : function(json){
@@ -275,7 +346,7 @@ setTimeout(function(){
 			type : 'get',
 			url : 'http://imamali.net/app_json/get_news_items.php?last_item='+$("#app-news-list ul").attr("lastNewsId"),
 			async : false,
-			jsonpCallback : 'newsItemCallBack',
+			jsonpCallback : 'newsItemsCallBack',
 			contentType : "application/json",
 			dataType : 'jsonp',
 			success : function(json){
