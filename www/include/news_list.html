@@ -189,6 +189,7 @@ setTimeout(function(){
 					if(i == 1){$("#app-news-list ul").attr("lastNewsId", value['id']);}
 					$("#app-news-list ul").append('<li class="newsListItem"><a newsId="' +value['id'] +'" href="#"> \
 						<img src="http://imamali.net/rpic.php?i=files/news/images/' +value['pic_name'] +'&w=230&h=190" /> \
+						<div class="news-img-loading ' +value['id'] +'"><img src="img/small-pic.jpg" /></div> \
 						<span class="news-text">' +value['title'] +'</span> \
 						<div> \
 							<span>' +value['view_num'] +'<i class="fa fa-eye" aria-hidden="true"></i></span> \
@@ -196,6 +197,15 @@ setTimeout(function(){
 						</div> \
 					<div class="clear"></div> \
 					</a></li>');
+					
+					$("div.news-img-loading."+value['id']).siblings("img").on("load", function(){
+						$(this).css({
+							opacity : "1",
+							filter  : "opacity(100%)",
+						});
+						$(this).siblings("div.news-img-loading").remove();
+					});
+					
 				});
 				
 				
@@ -297,7 +307,7 @@ setTimeout(function(){
 										filter  : "opacity(100%)",
 									});
 									$(this).siblings("div.news-img-loading").remove();
-								})
+								});
 								
 							});
 							
@@ -391,6 +401,7 @@ setTimeout(function(){
 							$.each(json, function(index, value){
 								$("#app-news-list ul").prepend('<li class="newsListItem"><a newsId="' +value['id'] +'" href="#"> \
 									<img src="http://imamali.net/rpic.php?i=files/news/images/' +value['pic_name'] +'&w=230&h=190" /> \
+									<div class="news-img-loading ' +value['id'] +'"><img src="img/small-pic.jpg" /></div> \
 									<span class="news-text">' +value['title'] +'</span> \
 									<div> \
 										<span>' +value['view_num'] +'<i class="fa fa-eye" aria-hidden="true"></i></span> \
@@ -399,6 +410,15 @@ setTimeout(function(){
 								<div class="clear"></div> \
 								</a></li>');
 								$("#app-news-list ul").attr("lastNewsId", value['id']);
+								
+								$("div.news-img-loading."+value['id']).siblings("img").on("load", function(){
+									$(this).css({
+										opacity : "1",
+										filter  : "opacity(100%)",
+									});
+									$(this).siblings("div.news-img-loading").remove();
+								});
+								
 							});
 							
 							
@@ -506,6 +526,7 @@ setTimeout(function(){
 				$.each(json, function(index, value){
 					$("#app-news-list ul").prepend('<li class="newsListItem"><a newsId="' +value['id'] +'" href="#"> \
 						<img src="http://imamali.net/rpic.php?i=files/news/images/' +value['pic_name'] +'&w=230&h=190" /> \
+						<div class="news-img-loading ' +value['id'] +'"><img src="img/small-pic.jpg" /></div> \
 						<span class="news-text">' +value['title'] +'</span> \
 						<div> \
 							<span>' +value['view_num'] +'<i class="fa fa-eye" aria-hidden="true"></i></span> \
@@ -514,6 +535,15 @@ setTimeout(function(){
 					<div class="clear"></div> \
 					</a></li>');
 					$("#app-news-list ul").attr("lastNewsId", value['id']);
+					
+					$("div.news-img-loading."+value['id']).siblings("img").on("load", function(){
+						$(this).css({
+							opacity : "1",
+							filter  : "opacity(100%)",
+						});
+						$(this).siblings("div.news-img-loading").remove();
+					});
+					
 				});
 				
 				
