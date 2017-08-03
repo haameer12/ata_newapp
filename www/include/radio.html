@@ -40,7 +40,7 @@
 
 
 			<div class="hm_radio_bg2 retina">
-				<div class="hm_radio_bg playing retina"></div>
+				<div class="hm_radio_bg playing retina"  isPlayed="0"></div>
 			</div>
 		
 		
@@ -66,70 +66,56 @@ $("#radio").bind('panelload', function() {
 	
 	
 	
-	
-	setTimeout(function(){
-		file = "sound.mp3";
-		file = "http://37.236.145.99/radio.mp3";
-		file = "http://109.205.117.206/radio.mp3";
-		/*
-		if ( device.platform == 'Android' ){//Android,iOS,win7=WinCE,win8=Win32NT
-			file = "/android_asset/www/" + file;
-		}
-		*/
-		audio = new Media(file, function(){ // success callback
-			console.log("playing");
-		}, function(error){ // error callback
-			console.log("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
-			if(error.code==0)
-				alert("Media server is not responding!");
-			//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
-		});
-		audio.play({ playAudioWhenScreenIsLocked : true });
-		//audio.seekTo(0);
-	}, 50);
-	
-	
-	
-	
-	
-	
-
-	function isHighDensity(){
-		return ((window.matchMedia && (window.matchMedia('only screen and (min-resolution: 124dpi), only screen and (min-resolution: 1.3dppx), only screen and (min-resolution: 48.8dpcm)').matches || window.matchMedia('only screen and (-webkit-min-device-pixel-ratio: 1.3), only screen and (-o-min-device-pixel-ratio: 2.6/2), only screen and (min--moz-device-pixel-ratio: 1.3), only screen and (min-device-pixel-ratio: 1.3)').matches)) || (window.devicePixelRatio && window.devicePixelRatio > 1.3));
+	if($(".hm_radio_bg").attr("isPlayed") == "0"){
+		setTimeout(function(){
+			file = "sound.mp3";
+			file = "http://37.236.145.99/radio.mp3";
+			file = "http://109.205.117.206/radio.mp3";
+			/*
+			if ( device.platform == 'Android' ){//Android,iOS,win7=WinCE,win8=Win32NT
+				file = "/android_asset/www/" + file;
+			}
+			*/
+			audio = new Media(
+				file,
+				function(){ // success callback
+					console.log("playing");
+					$(".hm_radio_bg").attr("isPlayed", "1");
+				},
+				function(error){ // error callback
+					console.log("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
+					if(error.code==0)
+						alert("Media server is not responding!");
+					//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
+				}
+			);
+			audio.play({ playAudioWhenScreenIsLocked : true });
+			//audio.seekTo(0);
+		}, 50);
 	}
-	function isRetina(){
-		return ((window.matchMedia && (window.matchMedia('only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx), only screen and (min-resolution: 75.6dpcm)').matches || window.matchMedia('only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min--moz-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2)').matches)) || (window.devicePixelRatio && window.devicePixelRatio >= 2)) && /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
-	}
+	
 	function play_my_radio(){
 		console.log("audio.play()");
+		$(".hm_radio_bg").attr("isPlayed", "1");
 		audio.play({ playAudioWhenScreenIsLocked : true });
 	}
+	
 	function stop_my_radio(){
-		audio.pause();
 		console.log("audio.pause()");
+		$(".hm_radio_bg").attr("isPlayed", "0");
+		audio.pause();
 	}
+	
 	$(document).ready(function(){
 		$(".hm_radio_bg").click(function(){
 			$(this).toggleClass("playing");
-			if($(this).hasClass("playing"))
-			{
+			if($(this).hasClass("playing")){
 				play_my_radio();
-
 				$(this).css('background-image','url("img/radio_bg_stop.png")');
-
-			}
-			else
-			{
+			}else{
 				stop_my_radio();
-
 				$(this).css('background-image','url("img/radio_bg.png")');
-
 			}
-		});
-		$(".go_back_stop").click(function(){
-			stop_my_radio();
-			//window.location.href = 'index.html';
-			goto_home();
 		});
 	});
 
