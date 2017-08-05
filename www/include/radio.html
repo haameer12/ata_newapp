@@ -40,7 +40,7 @@
 
 
 			<div class="hm_radio_bg2 retina">
-				<div class="hm_radio_bg retina"  isFirstLoad="0"></div>
+				<div class="hm_radio_bg retina"></div>
 			</div>
 		
 		
@@ -60,59 +60,52 @@
 
 </div>
 <script>
-	if($(".hm_radio_bg").attr("isFirstLoad") == "0" ){
-		window.alert("first start");
-		setTimeout(function(){
-			file = "sound.mp3";
-			file = "http://37.236.145.99/radio.mp3";
-			file = "http://109.205.117.206/radio.mp3";
-			/*
-			if ( device.platform == 'Android' ){//Android,iOS,win7=WinCE,win8=Win32NT
-				file = "/android_asset/www/" + file;
-			}
-			*/
-			audio = new Media(
-				file,
-				function(){ // success callback
-					console.log("playing");
-				},
-				function(error){ // error callback
-					console.log("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
-					if(error.code==0)
-						alert("لا يمكن تشغيل الإذاعة حالاً، هناك مشكلة");
-					//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
-				}
-			);
-			//audio.play({ playAudioWhenScreenIsLocked : true });
-			//audio.seekTo(0);
-		}, 1);
+	file = "sound.mp3";
+	file = "http://37.236.145.99/radio.mp3";
+	file = "http://109.205.117.206/radio.mp3";
+	/*
+	if ( device.platform == 'Android' ){//Android,iOS,win7=WinCE,win8=Win32NT
+		file = "/android_asset/www/" + file;
 	}
+	*/
+	audio = new Media(
+		file,
+		function(){ // success callback
+			//console.log("playing");
+		},
+		function(error){ // error callback
+			//console.log("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
+			if(error.code==0)
+				alert("لا يمكن تشغيل الإذاعة حالاً، هناك مشكلة");
+			//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
+		}
+	);
+	//audio.play({ playAudioWhenScreenIsLocked : true });
+	//audio.seekTo(0);
+
 	
 	function play_my_radio(){
-		window.alert( $(".hm_radio_bg").attr("isFirstLoad") );
-		console.log("audio.play()");
-		$(".hm_radio_bg").attr("isFirstLoad", "1");
+		//console.log("audio.play()");
 		audio.play({ playAudioWhenScreenIsLocked : true });
 	}
 	
 	function stop_my_radio(){
-		window.alert( $(".hm_radio_bg").attr("isFirstLoad") );
-		console.log("audio.pause()");
+		//console.log("audio.pause()");
 		//audio.pause();
 		audio.stop();
 	}
 	
-	$(document).ready(function(){
-		$(".hm_radio_bg").click(function(){
-			$(this).toggleClass("playing");
-			if($(this).hasClass("playing")){
-				play_my_radio();
-				$(this).css('background-image','url("img/radio_bg_stop.png")');
-			}else{
-				stop_my_radio();
-				$(this).css('background-image','url("img/radio_bg.png")');
-			}
-		});
+	$(".hm_radio_bg").on("tap", function(){
+		//$(this).toggleClass("playing");
+		if($(this).hasClass("playing")){
+			(this).removeClass("playing");
+			play_my_radio();
+			$(this).css('background-image','url("img/radio_bg_stop.png")');
+		}else{
+			(this).addClass("playing");
+			stop_my_radio();
+			$(this).css('background-image','url("img/radio_bg.png")');
+		}
 	});
 	
 	
@@ -125,7 +118,6 @@
 	
 $("#radio").bind('panelload', function() {
 	//alert("radio start");
-
 });
 	
 	
