@@ -92,12 +92,14 @@ $("#radio").bind('panelload', function() {
 	}
 	
 	function play_my_radio(){
+		window.alert( $(".hm_radio_bg").attr("isFirstLoad") );
 		console.log("audio.play()");
 		$(".hm_radio_bg").attr("isFirstLoad", "1");
 		audio.play({ playAudioWhenScreenIsLocked : true });
 	}
 	
 	function stop_my_radio(){
+		window.alert( $(".hm_radio_bg").attr("isFirstLoad") );
 		console.log("audio.pause()");
 		//audio.pause();
 		audio.stop();
