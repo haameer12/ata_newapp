@@ -40,7 +40,7 @@
 
 
 			<div class="hm_radio_bg2 retina">
-				<div class="hm_radio_bg retina"  isPlayed="0"></div>
+				<div class="hm_radio_bg retina"  isFirstLoad="0"></div>
 			</div>
 		
 		
@@ -64,37 +64,36 @@ $("#radio").bind('panelload', function() {
 	//alert("radio start");
 	
 	
-	
-	setTimeout(function(){
-		file = "sound.mp3";
-		file = "http://37.236.145.99/radio.mp3";
-		file = "http://109.205.117.206/radio.mp3";
-		/*
-		if ( device.platform == 'Android' ){//Android,iOS,win7=WinCE,win8=Win32NT
-			file = "/android_asset/www/" + file;
-		}
-		*/
-		audio = new Media(
-			file,
-			function(){ // success callback
-				console.log("playing");
-				//$(".hm_radio_bg").attr("isPlayed", "1");
-			},
-			function(error){ // error callback
-				console.log("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
-				if(error.code==0)
-					alert("لا يمكن تشغيل الإذاعة حالاً، هناك مشكلة");
-				//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
+	if($(".hm_radio_bg").attr("isFirstLoad") == "0" ){
+		setTimeout(function(){
+			file = "sound.mp3";
+			file = "http://37.236.145.99/radio.mp3";
+			file = "http://109.205.117.206/radio.mp3";
+			/*
+			if ( device.platform == 'Android' ){//Android,iOS,win7=WinCE,win8=Win32NT
+				file = "/android_asset/www/" + file;
 			}
-		);
-		//audio.play({ playAudioWhenScreenIsLocked : true });
-		//audio.seekTo(0);
-	}, 1);
-
-	
+			*/
+			audio = new Media(
+				file,
+				function(){ // success callback
+					console.log("playing");
+				},
+				function(error){ // error callback
+					console.log("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
+					if(error.code==0)
+						alert("لا يمكن تشغيل الإذاعة حالاً، هناك مشكلة");
+					//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
+				}
+			);
+			//audio.play({ playAudioWhenScreenIsLocked : true });
+			//audio.seekTo(0);
+		}, 1);
+	}
 	
 	function play_my_radio(){
 		console.log("audio.play()");
+		$(".hm_radio_bg").attr("isFirstLoad", "1");
 		audio.play({ playAudioWhenScreenIsLocked : true });
 	}
 	
