@@ -60,6 +60,9 @@
 
 </div>
 <script>
+$(document).ready(function(){
+
+	
 	setTimeout(function(){
 		file = "sound.mp3";
 		file = "http://37.236.145.99/radio.mp3";
@@ -96,21 +99,6 @@
 		audio.stop();
 	}
 	
-	
-	
-
-
-
-	
-	
-	
-	
-	
-	
-	
-$("#radio").bind('panelload', function() {
-	//alert("radio start");
-	
 	$(".hm_radio_bg").unbind();
 	$(".hm_radio_bg").bind("tap",function(){
 		//$(this).toggleClass("playing");
@@ -126,6 +114,19 @@ $("#radio").bind('panelload', function() {
 		}
 	});
 	
+	
+});
+
+
+	
+	
+	
+	
+	
+	
+	
+$("#radio").bind('panelload', function() {
+	//alert("radio start");
 });
 	
 	
