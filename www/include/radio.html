@@ -100,17 +100,17 @@ $(document).ready(function(){
 	}
 	
 	$(".hm_radio_bg").unbind();
-	$(".hm_radio_bg").bind("tap",function(){
+	$(".hm_radio_bg").bind("tap", function(){
 		//$(this).toggleClass("playing");
 		window.alert("hi");
 		if($(this).hasClass("playing")){
-			(this).removeClass("playing");
-			stop_my_radio();
-			$(this).css('background-image','url("img/radio_bg_stop.png")');
-		}else{
-			(this).addClass("playing");
-			play_my_radio();
+			$(this).removeClass("playing");
+			//stop_my_radio();
 			$(this).css('background-image','url("img/radio_bg.png")');
+		}else{
+			$(this).addClass("playing");
+			//play_my_radio();
+			$(this).css('background-image','url("img/radio_bg_stop.png")');
 		}
 	});
 	
