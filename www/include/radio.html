@@ -97,13 +97,14 @@
 	
 	$(".hm_radio_bg").bind("tap",function(){
 		//$(this).toggleClass("playing");
+		window.alert("hi");
 		if($(this).hasClass("playing")){
 			(this).removeClass("playing");
-			play_my_radio();
+			stop_my_radio();
 			$(this).css('background-image','url("img/radio_bg_stop.png")');
 		}else{
 			(this).addClass("playing");
-			stop_my_radio();
+			play_my_radio();
 			$(this).css('background-image','url("img/radio_bg.png")');
 		}
 	});
