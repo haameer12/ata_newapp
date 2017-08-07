@@ -105,11 +105,11 @@ $(document).ready(function(){
 		window.alert("hi");
 		if($(this).hasClass("playing")){
 			$(this).removeClass("playing");
-			//stop_my_radio();
+			stop_my_radio();
 			$(this).css('background-image','url("img/radio_bg.png")');
 		}else{
 			$(this).addClass("playing");
-			//play_my_radio();
+			play_my_radio();
 			$(this).css('background-image','url("img/radio_bg_stop.png")');
 		}
 	});
