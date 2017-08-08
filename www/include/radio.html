@@ -92,12 +92,14 @@ $("#radio").bind('panelload', function() {
 	
 	function play_my_radio(){
 		//console.log("audio.play()");
-		audio.play({ playAudioWhenScreenIsLocked : true });
+		//audio.play({ playAudioWhenScreenIsLocked : true });
+		window.alert("play");
 	}
 	
 	function stop_my_radio(){
 		//console.log("audio.pause()");
-		audio.pause();
+		//audio.pause();
+		window.alert("stop");
 	}
 	
 	$(".hm_radio_bg").unbind();
