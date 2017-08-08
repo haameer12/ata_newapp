@@ -97,14 +97,12 @@ $("#radio").bind('panelload', function() {
 	
 	function stop_my_radio(){
 		//console.log("audio.pause()");
-		//audio.pause();
 		audio.pause();
 	}
 	
 	$(".hm_radio_bg").unbind();
 	$(".hm_radio_bg").bind("tap", function(){
 		//$(this).toggleClass("playing");
-		window.alert("hi");
 		if($(this).hasClass("playing")){
 			$(this).removeClass("playing");
 			stop_my_radio();
