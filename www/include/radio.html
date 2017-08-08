@@ -60,8 +60,10 @@
 
 </div>
 <script>
-$(document).ready(function(){
-
+$("#radio").bind('panelload', function() {
+	//alert("radio start");
+	
+	
 	
 	setTimeout(function(){
 		file = "sound.mp3";
@@ -96,7 +98,7 @@ $(document).ready(function(){
 	function stop_my_radio(){
 		//console.log("audio.pause()");
 		//audio.pause();
-		audio.stop();
+		audio.pause();
 	}
 	
 	$(".hm_radio_bg").unbind();
@@ -115,18 +117,8 @@ $(document).ready(function(){
 	});
 	
 	
-});
-
-
 	
 	
-	
-	
-	
-	
-	
-$("#radio").bind('panelload', function() {
-	//alert("radio start");
 });
 	
 	
