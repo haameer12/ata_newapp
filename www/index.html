@@ -164,42 +164,7 @@
 		
 		//FastClick.attach(document.body);
 		  
-		setTimeout(function(){
-			//file = "sound.mp3";
-			//file = "http://37.236.145.99/radio.mp3";
-			file = "http://109.205.117.206/radio.mp3";
-			/*
-			if ( device.platform == 'Android' ){//Android,iOS,win7=WinCE,win8=Win32NT
-				file = "/android_asset/www/" + file;
-			}
-			*/
-			audio = new Media(
-				file,
-				function(){ // success callback
-					//console.log("playing");
-				},
-				function(error){ // error callback
-					//console.log("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
-					if(error.code==0)
-						alert("لا يمكن تشغيل الإذاعة حالاً، هناك مشكلة");
-					//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
-				}
-			);
-			//audio.play({ playAudioWhenScreenIsLocked : true });
-			//audio.seekTo(0);
-		}, 50);
 
-		function play_my_radio(){
-			//console.log("audio.play()");
-			audio.play({ playAudioWhenScreenIsLocked : true });
-			window.alert("play");
-		}
-
-		function stop_my_radio(){
-			//console.log("audio.pause()");
-			audio.pause();
-			window.alert("stop");
-		}
 		
 		
 		
