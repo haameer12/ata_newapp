@@ -64,65 +64,71 @@ $("#radio").bind('panelload', function() {
 	//alert("radio start");
 
 	
-	
+	if($("#radio").attr("isFirst") == "0"){
 
-	setTimeout(function(){
-		file = "/android_asset/www/sound.mp3";
-		//file = "http://37.236.145.99/radio.mp3";
-		//file = "http://109.205.117.206/radio.mp3";
-		/*
-		if ( device.platform == 'Android' ){//Android,iOS,win7=WinCE,win8=Win32NT
-			file = "/android_asset/www/" + file;
-		}
-		*/
-		radioObject = new Media(
-			file,
-			function(){ // success callback
-				//console.log("playing");
-			},
-			function(error){ // error callback
-				//console.log("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
-				if(error.code==0)
-					alert("لا يمكن تشغيل الإذاعة حالاً، هناك مشكلة");
-				//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
+		setTimeout(function(){
+			file = "/android_asset/www/sound.mp3";
+			//file = "http://37.236.145.99/radio.mp3";
+			//file = "http://109.205.117.206/radio.mp3";
+			/*
+			if ( device.platform == 'Android' ){//Android,iOS,win7=WinCE,win8=Win32NT
+				file = "/android_asset/www/" + file;
 			}
-		);
-		//audio.play({ playAudioWhenScreenIsLocked : true });
-		//audio.seekTo(0);
-	}, 50);
+			*/
+			radioObject = new Media(
+				file,
+				function(){ // success callback
+					//console.log("playing");
+				},
+				function(error){ // error callback
+					//console.log("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
+					if(error.code==0)
+						alert("لا يمكن تشغيل الإذاعة حالاً، هناك مشكلة");
+					//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
+				}
+			);
+			//audio.play({ playAudioWhenScreenIsLocked : true });
+			//audio.seekTo(0);
+		}, 50);
 
-	function play_my_radio(){
-		//console.log("audio.play()");
-		window.alert("play");
-		radioObject.play({ playAudioWhenScreenIsLocked : true });
-	}
-
-	function stop_my_radio(){
-		//console.log("audio.pause()");
-		window.alert("stop");
-		radioObject.pause();
-	}
-
-
-
-	
-	
-	
-	$(".hm_radio_bg").unbind();
-	$(".hm_radio_bg").bind("tap", function(){
-		//$(this).toggleClass("playing");
-		if($(this).hasClass("playing")){
-			stop_my_radio();
-			$(this).css('background-image','url("img/radio_bg.png")');
-			$(this).removeClass("playing");
-		}else{
-			play_my_radio();
-			$(this).css('background-image','url("img/radio_bg_stop.png")');
-			$(this).addClass("playing");
+		function play_my_radio(){
+			//console.log("audio.play()");
+			window.alert("play");
+			radioObject.play({ playAudioWhenScreenIsLocked : true });
 		}
-	});
+
+		function stop_my_radio(){
+			//console.log("audio.pause()");
+			window.alert("stop");
+			radioObject.pause();
+		}
+
+
+
+
+
+
+		$(".hm_radio_bg").unbind();
+		$(".hm_radio_bg").bind("tap", function(){
+			//$(this).toggleClass("playing");
+			if($(this).hasClass("playing")){
+				stop_my_radio();
+				$(this).css('background-image','url("img/radio_bg.png")');
+				$(this).removeClass("playing");
+			}else{
+				play_my_radio();
+				$(this).css('background-image','url("img/radio_bg_stop.png")');
+				$(this).addClass("playing");
+			}
+		});
+		
+		$("#radio").attr("isFirst", "1");
+
+	}else{
+		
+		window.alert("not first");
 	
-	
+	}
 	
 	
 });
