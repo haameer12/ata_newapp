@@ -82,8 +82,10 @@ $("#radio").bind('panelload', function() {
 				},
 				function(error){ // error callback
 					//console.log("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
-					if(error.code==0)
-						alert("لا يمكن تشغيل الإذاعة حالاً، هناك مشكلة");
+					if(error.code==0){
+						//alert("لا يمكن تشغيل الإذاعة حالاً، هناك مشكلة");
+						window.alert("code: "    + error.code    + " | " + "message: " + error.message);
+					}
 					//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
 				}
 			);
