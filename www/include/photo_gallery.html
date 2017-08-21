@@ -1,5 +1,55 @@
 <style>
+#app-photo-gallery-cat-list{
+	
+}
+#app-photo-gallery-cat-list ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+	font-size:0;
+}
+#app-photo-gallery-cat-list ul li{
+	direction:rtl;
+	width:100%;
+	display: inline-block;
+	margin:0;
+	padding:1vw 0 0 0;
+}
+#app-photo-gallery-cat-list ul li:last-child{
 
+}
+#app-photo-gallery-cat-list ul li a{
+	display:block;
+	position:relative;
+}
+#app-photo-gallery-cat-list ul li a img{
+	width:100%;
+}
+#app-photo-gallery-cat-list ul li a div{
+	position:absolute;
+	bottom:0;
+	left:0;
+	right:0;
+    height:10vw;
+    background-color:rgba(0, 0, 0, 0.5) !important;
+    overflow:hidden;
+    color:white;
+    text-align:center;
+    line-height:10.8vw;
+    font-size:3.4vw;
+	font-family:'Droid Arabic Kufi';
+}
+@media screen and (orientation : landscape){
+	#app-photo-gallery-cat-list ul li{
+		width:50%;
+		padding:1vh 1vh 0 0;
+	}
+	#app-photo-gallery-cat-list ul li a div{
+		height:10vh;
+		line-height:10.8vh;
+		font-size:3.4vh;
+	}
+}
 </style>
 <div class="inside_page">
 
@@ -12,12 +62,108 @@
 				<span class="inside_page_back"></span>
 			</a>
 		</div>
-		<div class="inside_page_content">
+		<div class="inside_page_content" id="photo-gallery-cat-list_page">
 
 
 
 
-			شيسبشسيبشيسبشسي
+			
+			
+			<style>
+			#photo-gallery-cat-list_page .nano {
+				width: 100%;
+				height: 100%;
+			}
+			#photo-gallery-cat-list_page .nano .nano-content{
+				padding:0 2.7vw;
+			}
+			#photo-gallery-cat-list_page .nano .nano-pane{
+				background:none !important;
+				width:0.5vw !important;
+				top:0 !important;
+				bottom:0 !important;
+				/*box-shadow: 0 0 40px 1px #fff;*/
+			}
+			#photo-gallery-cat-list_page .nano .nano-slider{
+				background: #013b5d !important;
+				margin:0 !important;
+				opacity:0.3;
+			}
+			@media screen and (orientation : landscape){
+				#photo-gallery-cat-list_page .nano .nano-pane{
+					width:0.5vh !important;
+				}
+			}
+			</style>
+			<div class="nano">
+				<div class="overthrow nano-content">		
+			
+			
+
+
+					<div id="app-photo-gallery-cat-list">
+						<ul>
+						
+						
+		
+						
+						
+							<li><a href="#">
+								<img src="img/gallery/01.jpg" />
+								<div>الضريح المقدس</div>
+							</a></li>
+							<li><a href="#">
+								<img src="img/gallery/02.jpg" />
+								<div>الحرم المطهر</div>
+							</a></li>
+							<li><a href="#">
+								<img src="img/gallery/03.jpg" />
+								<div>المرقد بين الحاضر والماضي</div>
+							</a></li>
+							<li><a href="#">
+								<img src="img/gallery/04.jpg" />
+								<div>القبة الشريفة</div>
+							</a></li>
+							<li><a href="#">
+								<img src="img/gallery/05.jpg" />
+								<div>معالم عمرانية</div>
+							</a></li>
+							<li><a href="#">
+								<img src="img/gallery/06.jpg" />
+								<div>النقوش الزجاجية</div>
+							</a></li>
+							<li><a href="#">
+								<img src="img/gallery/07.jpg" />
+								<div>الزغارف والنقوش</div>
+							</a></li>
+							<li><a href="#">
+								<img src="img/gallery/08.jpg" />
+								<div>صور جوية</div>
+							</a></li>
+							<li><a href="#">
+								<img src="img/gallery/09.jpg" />
+								<div>صور قديمة</div>
+							</a></li>
+							<li><a href="#">
+								<img src="img/gallery/10.jpg" />
+								<div>صور اسود وابيض</div>
+							</a></li>
+							
+							
+
+							
+	
+						</ul>
+					</div>
+
+
+
+
+			
+				</div>
+			</div>
+			
+			
 		
 		
 		
@@ -32,6 +178,7 @@
 <script>
 $("#photo_gallery").bind('panelload', function() {
 	//alert("photo gallery start");
+	$("#photo-gallery-cat-list_page .nano").nanoScroller({ alwaysVisible: true });
 });
 $("#photo_gallery").bind('panelunload', function() {
 	//alert("photo gallery end");
