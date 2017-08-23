@@ -1,0 +1,169 @@
+<style>
+#photo_gallery_pic_list_page{
+	
+}
+#photo_gallery_pic_list_page ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+	font-size:0;
+}
+#photo_gallery_pic_list_page ul li{
+	direction:rtl;
+	width:100%;
+	display: inline-block;
+	margin:0;
+	padding:0 0 1vw 0;
+}
+#photo_gallery_pic_list_page ul li:last-child{
+	padding:0;
+}
+#photo_gallery_pic_list_page ul li a{
+	display:block;
+	position:relative;
+}
+#photo_gallery_pic_list_page ul li a div.news-img-loading{
+	background:url("img/loading2.gif") no-repeat center center;
+	background-size:11vw;
+	position:absolute;
+	top:0;
+	right:0;
+	width:100%;
+}
+#photo_gallery_pic_list_page ul li a div.news-img-loading img{	
+	filter: opacity(60%);
+	width:100%;
+}
+#photo_gallery_pic_list_page ul li a img{
+	width:100%;
+}
+@media screen and (orientation : landscape){
+	#photo_gallery_pic_list_page ul li{
+		width:50%;
+		padding:1vh 1vh 0 0;
+	}
+	#photo_gallery_pic_list_page ul li:last-child{
+		padding:0;
+		padding:1vh 1vh 0 0;
+	}
+}
+</style>
+<div class="inside_page">
+
+
+
+
+	<div>
+		<div class="inside_page_title" style="background-image:url(img/pictures_title.png);">
+			<span class="inside_page_loading"></span>
+			<a href="#" onclick="$.afui.goBack();return false;">
+				<span class="inside_page_back"></span>
+			</a>
+		</div>
+		<div class="inside_page_content" id="photo_gallery_pic_list_page">
+
+
+
+			<style>
+			#photo_gallery_pic_list_page .nano {
+				width: 100%;
+				height: 100%;
+			}
+			#photo_gallery_pic_list_page .nano .nano-content{
+				padding:0 2.7vw;
+			}
+			#photo_gallery_pic_list_page .nano .nano-pane{
+				background:none !important;
+				width:0.5vw !important;
+				top:0 !important;
+				bottom:0 !important;
+				/*box-shadow: 0 0 40px 1px #fff;*/
+			}
+			#photo_gallery_pic_list_page .nano .nano-slider{
+				background: #013b5d !important;
+				margin:0 !important;
+				opacity:0.3;
+			}
+			@media screen and (orientation : landscape){
+				#photo_gallery_pic_list_page .nano .nano-pane{
+					width:0.5vh !important;
+				}
+			}
+			</style>
+			<div class="nano">
+				<div class="overthrow nano-content">		
+			
+			
+
+
+					<ul>
+						
+						
+						
+		
+						
+						
+							<li><a href="#">
+								<img src="img/gallery/01.jpg" style="display: none;" /><!--تظهر هاي الصورة-->
+								<img src="img/gallery/small-pic.jpg" /><!--تخفي هاي الصورة-->
+								<div class="news-img-loading"><img src="img/gallery/small-pic.jpg" /></div><!--تخفي هذا الدف بالتدريج-->
+							</a></li>
+							<li><a href="#">
+								<img src="img/gallery/01.jpg" style="display: none;" /><!--تظهر هاي الصورة-->
+								<img src="img/gallery/small-pic.jpg" /><!--تخفي هاي الصورة-->
+								<div class="news-img-loading"><img src="img/gallery/small-pic.jpg" /></div><!--تخفي هذا الدف بالتدريج-->
+							</a></li>
+							<li><a href="#">
+								<img src="img/gallery/01.jpg" style="display: none;" /><!--تظهر هاي الصورة-->
+								<img src="img/gallery/small-pic.jpg" /><!--تخفي هاي الصورة-->
+								<div class="news-img-loading"><img src="img/gallery/small-pic.jpg" /></div><!--تخفي هذا الدف بالتدريج-->
+							</a></li>
+							<li><a href="#">
+								<img src="img/gallery/01.jpg" style="display: none;" /><!--تظهر هاي الصورة-->
+								<img src="img/gallery/small-pic.jpg" /><!--تخفي هاي الصورة-->
+								<div class="news-img-loading"><img src="img/gallery/small-pic.jpg" /></div><!--تخفي هذا الدف بالتدريج-->
+							</a></li>
+							<li><a href="#">
+								<img src="img/gallery/01.jpg" style="display: none;" /><!--تظهر هاي الصورة-->
+								<img src="img/gallery/small-pic.jpg" /><!--تخفي هاي الصورة-->
+								<div class="news-img-loading"><img src="img/gallery/small-pic.jpg" /></div><!--تخفي هذا الدف بالتدريج-->
+							</a></li>
+							
+							
+							
+							<script>
+								$("#photo_gallery_pic_list_page ul li a").click(function(){
+									$(this).children("img").hide();
+									$(this).children("img").first().show();
+									$(this).children(".news-img-loading").children("img").show();
+									$(this).children(".news-img-loading").fadeOut();
+								});
+							</script>
+							
+							
+					</ul>
+
+
+			
+				</div>
+			</div>
+		
+		
+		
+			
+		</div>
+	</div>
+
+
+
+
+</div>
+<script>
+$("#photo_gallery_pic_list").bind('panelload', function() {
+	//alert("photo_gallery_pic_list start");
+	$("#photo_gallery_pic_list_page .nano").nanoScroller({ alwaysVisible: true });
+});
+$("#photo_gallery_pic_list").bind('panelunload', function() {
+	//alert("photo_gallery_pic_list end");
+});
+</script>
