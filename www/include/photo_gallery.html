@@ -61,6 +61,7 @@
 
 	<div>
 		<div class="inside_page_title" style="background-image:url(img/pictures_title.png);">
+			<span class="inside_page_loading"></span>
 			<a href="#" onclick="$.afui.goBack();return false;">
 				<span class="inside_page_back"></span>
 			</a>
@@ -107,55 +108,47 @@
 					<div id="app-photo-gallery-cat-list">
 						<ul>
 						
-						
-		
-						
-						
-							<li><a href="#photo_gallery_pic_list">
+							<li><a href="#" galleryId="4026">
 								<img src="img/gallery/01.jpg" />
 								<div>الضريح المقدس</div>
 							</a></li>
-							<li><a href="#photo_gallery_pic_list">
+							<li><a href="#" galleryId="1374">
 								<img src="img/gallery/02.jpg" />
 								<div>الحرم المطهر</div>
 							</a></li>
-							<li><a href="#photo_gallery_pic_list">
+							<li><a href="#" galleryId="1375">
 								<img src="img/gallery/03.jpg" />
 								<div>المرقد بين الحاضر والماضي</div>
 							</a></li>
-							<li><a href="#photo_gallery_pic_list">
+							<li><a href="#" galleryId="4410">
 								<img src="img/gallery/04.jpg" />
 								<div>القبة الشريفة</div>
 							</a></li>
-							<li><a href="#photo_gallery_pic_list">
+							<li><a href="#" galleryId="1376">
 								<img src="img/gallery/05.jpg" />
 								<div>معالم عمرانية</div>
 							</a></li>
-							<li><a href="#photo_gallery_pic_list">
+							<li><a href="#" galleryId="5687">
 								<img src="img/gallery/06.jpg" />
 								<div>النقوش الزجاجية</div>
 							</a></li>
-							<li><a href="#photo_gallery_pic_list">
+							<li><a href="#" galleryId="2267">
 								<img src="img/gallery/07.jpg" />
 								<div>الزغارف والنقوش</div>
 							</a></li>
-							<li><a href="#photo_gallery_pic_list">
+							<li><a href="#" galleryId="1377">
 								<img src="img/gallery/08.jpg" />
 								<div>صور جوية</div>
 							</a></li>
-							<li><a href="#photo_gallery_pic_list">
+							<li><a href="#" galleryId="1378">
 								<img src="img/gallery/09.jpg" />
 								<div>صور قديمة</div>
 							</a></li>
-							<li><a href="#photo_gallery_pic_list">
+							<li><a href="#" galleryId="5689">
 								<img src="img/gallery/10.jpg" />
 								<div>صور اسود وابيض</div>
 							</a></li>
 							
-							
-
-							
-	
 						</ul>
 					</div>
 
@@ -181,6 +174,82 @@
 <script>
 $("#photo_gallery_main").bind('panelload', function() {
 	//alert("photo gallery start");
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	$("#app-photo-gallery-cat-list ul li a").unbind("tap");
+	var getEsdarRequestObj = "";
+	$("#app-photo-gallery-cat-list ul li a").bind("tap",function(){
+		if(getEsdarRequestObj != ""){
+			getEsdarRequestObj.abort();
+		}
+		var this_element = $(this);
+		$("#photo-gallery-cat-list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "1");
+		getEsdarRequestObj = $.ajax({
+			type : 'get',
+			url : 'http://imamali.net/app_json/get_gallery_items.php?gallery_id='+this_element.attr("galleryId"),
+			async : false,
+			jsonpCallback : 'galleryItemsCallBack',
+			contentType : "application/json",
+			dataType : 'jsonp',
+			success : function(json){
+				
+				$("#photo-gallery-cat-list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+				$("#app-photo-gallery-pic-list ul").html("");
+				var i = 0;
+				$.each(json, function(index, value){
+					i++;
+					//$("#app-photo-gallery-pic-list ul").attr("lastNewsIdBySort", value['id']);
+					//if(i == 1){$("#app-photo-gallery-pic-list ul").attr("lastNewsId", value['id']);}
+					$("#app-photo-gallery-pic-list ul").append('<li><a href="#"> \
+						<img src="http://imamali.net/rpic.php?i=files/images/' +value['file_name'] +'&w=800&h=533" style="display: none;" /> \
+						<div class="gallery_img_tools">adf</div> \
+						<img src="img/gallery/small-pic.jpg" /> \
+						<div class="gallery-img-loading ' +value['id'] +'"><img src="img/gallery/small-pic.jpg" /></div> \
+					</a></li>');
+					
+					$("div.gallery-img-loading."+value['id']).siblings("img").first().on("load", function(){
+						$(this).siblings("img").hide();
+						$(this).show();
+						$(this).siblings(".gallery-img-loading").fadeOut();
+					});
+					
+				});
+				$.afui.loadContent("#photo_gallery_pic_list",false,false,"up");
+				getEsdarRequestObj = "";
+
+			},
+			error: function(e, errorReason){
+				//console.log(e.message);
+				if(errorReason != "abort"){
+					notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+				}
+				$("#photo-gallery-cat-list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+
+				getEsdarRequestObj = "";
+			}
+		});
+
+		return false;
+	});
+							
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	$("#photo-gallery-cat-list_page .nano").nanoScroller({ alwaysVisible: true });
 });
 $("#photo_gallery_main").bind('panelunload', function() {

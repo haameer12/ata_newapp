@@ -22,6 +22,22 @@
 	display:block;
 	position:relative;
 }
+#app-photo-gallery-pic-list ul li a img{
+	width:100%;
+}
+#app-photo-gallery-pic-list ul li a div.gallery_img_tools{
+	background:rgba(0,0,0,0.65);
+	position:absolute;
+	top:0;
+	bottom:0;
+	right:0;
+	left:0;
+	opacity:0;
+	transition:opacity 970ms;
+}
+#app-photo-gallery-pic-list ul li a div.gallery_img_tools.pressed{
+	opacity:1;
+}
 #app-photo-gallery-pic-list ul li a div.gallery-img-loading{
 	background:url("img/loading2.gif") no-repeat center center;
 	background-size:11vw;
@@ -32,9 +48,6 @@
 }
 #app-photo-gallery-pic-list ul li a div.gallery-img-loading img{
 	filter: opacity(60%);
-	width:100%;
-}
-#app-photo-gallery-pic-list ul li a img{
 	width:100%;
 }
 @media screen and (orientation : landscape){
@@ -119,10 +132,10 @@ $("#photo_gallery_pic_list").bind('panelload', function() {
 	//alert("photo_gallery_pic_list start");
 
 	
+	$("#photo_gallery_pic_list_page .nano").nanoScroller({ alwaysVisible: true });
+	$("#photo_gallery_pic_list_page .nano").nanoScroller({ scroll: 'top' });
 	
-	
-	
-	
+	return false;
 	
 	
 	
@@ -146,9 +159,9 @@ setTimeout(function(){
 		$("#photo_gallery_pic_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "1");
 		$.ajax({
 			type : 'get',
-			url : 'http://imamali.net/app_json/get_news_items.php',
+			url : 'http://imamali.net/app_json/get_gallery_items.php?gallery_id='+$("#app-news-list ul").attr("lastNewsIdBySort"),
 			async : false,
-			jsonpCallback : 'newsItemsCallBack',
+			jsonpCallback : 'galleryItemsCallBack',
 			contentType : "application/json",
 			dataType : 'jsonp',
 			success : function(json){
@@ -160,6 +173,7 @@ setTimeout(function(){
 					if(i == 1){$("#app-photo-gallery-pic-list ul").attr("lastNewsId", value['id']);}
 					$("#app-photo-gallery-pic-list ul").append('<li><a href="#"> \
 						<img src="http://imamali.net/rpic.php?i=files/news/images/' +value['pic_name'] +'&w=800&h=533" style="display: none;" /> \
+						<div class="gallery_img_tools">adf</div> \
 						<img src="img/gallery/small-pic.jpg" /> \
 						<div class="gallery-img-loading ' +value['id'] +'"><img src="img/gallery/small-pic.jpg" /></div> \
 					</a></li>');
@@ -167,7 +181,7 @@ setTimeout(function(){
 					$("div.gallery-img-loading."+value['id']).siblings("img").first().on("load", function(){
 						$(this).siblings("img").hide();
 						$(this).show();
-						$(this).siblings(".gallery-img-loading").fadeOut();;
+						$(this).siblings(".gallery-img-loading").fadeOut();
 					});
 					
 				});
