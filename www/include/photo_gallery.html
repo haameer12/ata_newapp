@@ -191,6 +191,13 @@ $("#photo_gallery_main").bind('panelload', function() {
 			getEsdarRequestObj.abort();
 		}
 		var this_element = $(this);
+		
+		if(this_element.attr("galleryId") == $("#app-photo-gallery-pic-list ul").attr("knowOpenedGallery") ){
+			$.afui.loadContent("#photo_gallery_pic_list",false,false,"up");
+			return false;
+		}
+		
+		
 		$("#photo-gallery-cat-list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "1");
 		getEsdarRequestObj = $.ajax({
 			type : 'get',
@@ -203,14 +210,16 @@ $("#photo_gallery_main").bind('panelload', function() {
 				
 				$("#photo-gallery-cat-list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
 				$("#app-photo-gallery-pic-list ul").html("");
+				$("#app-photo-gallery-pic-list ul").attr("knowOpenedGallery", this_element.attr("galleryId"));
+				
 				var i = 0;
 				$.each(json, function(index, value){
 					i++;
-					//$("#app-photo-gallery-pic-list ul").attr("lastNewsIdBySort", value['id']);
-					//if(i == 1){$("#app-photo-gallery-pic-list ul").attr("lastNewsId", value['id']);}
+					$("#app-photo-gallery-pic-list ul").attr("lastGalleryIdBySort", value['id']);
+					if(i == 1){$("#app-photo-gallery-pic-list ul").attr("lastGalleryId", value['id']);}
 					$("#app-photo-gallery-pic-list ul").append('<li><a href="#"> \
-						<img src="http://imamali.net/rpic.php?i=files/images/' +value['file_name'] +'&w=800&h=533" style="display: none;" /> \
-						<div class="gallery_img_tools">adf</div> \
+						<img src="http://imamali.net/rpic.php?i=files/images/' +value['file_name'] +'&w=500&h=333" style="display: none;" /> \
+						<div class="gallery_img_tools">---------</div> \
 						<img src="img/gallery/small-pic.jpg" /> \
 						<div class="gallery-img-loading ' +value['id'] +'"><img src="img/gallery/small-pic.jpg" /></div> \
 					</a></li>');
@@ -224,6 +233,10 @@ $("#photo_gallery_main").bind('panelload', function() {
 				});
 				$.afui.loadContent("#photo_gallery_pic_list",false,false,"up");
 				getEsdarRequestObj = "";
+				
+				
+				
+
 
 			},
 			error: function(e, errorReason){
