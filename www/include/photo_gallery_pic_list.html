@@ -156,7 +156,7 @@ $("#photo_gallery_pic_list").bind('panelload', function() {
 			success : function(json){
 				$("#photo_gallery_pic_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
 				$.each(json, function(index, value){
-					$("#app-photo-gallery-pic-list ul").append('<li><a href="#" onclick="window.plugins.socialsharing.share(\'Message and link\', null, null, \'http://www.x-services.nl\');return false"> \
+					$("#app-photo-gallery-pic-list ul").append('<li><a href="#" onclick=\'window.plugins.socialsharing.share("Message and link", null, null, "http://www.x-services.nl");return false\'> \
 						<img src="http://imamali.net/rpic.php?i=files/images/' +value['file_name'] +'&w=500&h=333" style="display: none;" /> \
 						<div class="gallery_img_tools">---------</div> \
 						<img src="img/gallery/small-pic.jpg" /> \
