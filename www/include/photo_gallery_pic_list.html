@@ -18,14 +18,14 @@
 #app-photo-gallery-pic-list ul li:last-child{
 	padding:0;
 }
-#app-photo-gallery-pic-list ul li a{
+#app-photo-gallery-pic-list ul li span{
 	display:block;
 	position:relative;
 }
-#app-photo-gallery-pic-list ul li a img{
+#app-photo-gallery-pic-list ul li span img{
 	width:100%;
 }
-#app-photo-gallery-pic-list ul li a div.gallery_img_tools{
+#app-photo-gallery-pic-list ul li span div.gallery_img_tools{
 	background:rgba(0,0,0,0.65);
 	position:absolute;
 	top:0;
@@ -35,10 +35,23 @@
 	opacity:0;
 	transition:opacity 970ms;
 }
-#app-photo-gallery-pic-list ul li a div.gallery_img_tools.pressed{
+#app-photo-gallery-pic-list ul li span div.gallery_img_tools.pressed{
 	opacity:1;
 }
-#app-photo-gallery-pic-list ul li a div.gallery-img-loading{
+#app-photo-gallery-pic-list ul li span div.gallery_img_tools .middle_holder{
+	display:inline-block;
+	height:100%;
+	width:0;
+	vertical-align:middle;
+}
+#app-photo-gallery-pic-list ul li span div.gallery_img_tools a{
+	display:inline-block;
+	font-size:9vw;
+	color:#FFFFFF;
+	opacity:0.7;
+	margin:0 5vw;
+}
+#app-photo-gallery-pic-list ul li span div.gallery-img-loading{
 	background:url("img/loading2.gif") no-repeat center center;
 	background-size:11vw;
 	position:absolute;
@@ -46,7 +59,7 @@
 	right:0;
 	width:100%;
 }
-#app-photo-gallery-pic-list ul li a div.gallery-img-loading img{
+#app-photo-gallery-pic-list ul li span div.gallery-img-loading img{
 	filter: opacity(60%);
 	width:100%;
 }
@@ -74,7 +87,7 @@
 			</a>
 		</div>
 		<div class="inside_page_content" id="photo_gallery_pic_list_page">
-		<button onclick="window.plugins.socialsharing.share('Message and link', null, null, 'http://www.x-services.nl')">message and link</button>
+		
 
 
 
@@ -157,12 +170,16 @@ $("#photo_gallery_pic_list").bind('panelload', function() {
 			success : function(json){
 				$("#photo_gallery_pic_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
 				$.each(json, function(index, value){
-					$("#app-photo-gallery-pic-list ul").append('<li><a href="#" onclick=\'window.plugins.socialsharing.share("Message and link", null, null, "http://www.x-services.nl");return false\'> \
+					$("#app-photo-gallery-pic-list ul").append('<li><span> \
 						<img src="http://imamali.net/rpic.php?i=files/images/' +value['file_name'] +'&w=500&h=333" style="display: none;" /> \
-						<div class="gallery_img_tools">---------</div> \
+						<div class="gallery_img_tools"> \
+							<span class="middle_holder"></span> \
+							<a href="https://www.google.nl/images/srpr/logo4w.png" download><i class="fa fa-download" aria-hidden="true"></i></a> \
+							<a href="#" onclick="window.plugins.socialsharing.share(null, null, \'https://www.google.nl/images/srpr/logo4w.png\', null);return false;"><i class="fa fa-share-alt" aria-hidden="true"></i></a> \
+						</div> \
 						<img src="img/gallery/small-pic.jpg" /> \
 						<div class="gallery-img-loading ' +value['id'] +'"><img src="img/gallery/small-pic.jpg" /></div> \
-					</a></li>');
+					</span></li>');
 					
 					$("#app-photo-gallery-pic-list ul").attr("lastGalleryIdBySort", value['id']);
 

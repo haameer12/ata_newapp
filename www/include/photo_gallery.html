@@ -217,12 +217,16 @@ $("#photo_gallery_main").bind('panelload', function() {
 					i++;
 					$("#app-photo-gallery-pic-list ul").attr("lastGalleryIdBySort", value['id']);
 					if(i == 1){$("#app-photo-gallery-pic-list ul").attr("lastGalleryId", value['id']);}
-					$("#app-photo-gallery-pic-list ul").append('<li><a href="#"> \
+					$("#app-photo-gallery-pic-list ul").append('<li><span> \
 						<img src="http://imamali.net/rpic.php?i=files/images/' +value['file_name'] +'&w=500&h=333" style="display: none;" /> \
-						<div class="gallery_img_tools">---------</div> \
+						<div class="gallery_img_tools"> \
+							<span class="middle_holder"></span> \
+							<a href="https://www.google.nl/images/srpr/logo4w.png" download><i class="fa fa-download" aria-hidden="true"></i></a> \
+							<a href="#" onclick="window.plugins.socialsharing.share(null, null, \'https://www.google.nl/images/srpr/logo4w.png\', null);return false;"><i class="fa fa-share-alt" aria-hidden="true"></i></a> \
+						</div> \
 						<img src="img/gallery/small-pic.jpg" /> \
 						<div class="gallery-img-loading ' +value['id'] +'"><img src="img/gallery/small-pic.jpg" /></div> \
-					</a></li>');
+					</span></li>');
 					
 					$("div.gallery-img-loading."+value['id']).siblings("img").first().on("load", function(){
 						$(this).siblings("img").hide();
