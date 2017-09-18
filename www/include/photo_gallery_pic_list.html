@@ -92,23 +92,33 @@
 		
 		
 <script>
-function encodeImageUri(imageUri){
-     var c=document.createElement('canvas');
-     var ctx=c.getContext("2d");
-     var img=new Image();
-     img.onload = function(){
-       c.width=this.width;
-       c.height=this.height;
-       ctx.drawImage(img, 0,0);
-     };
-     img.src=imageUri;
-     var dataURL = c.toDataURL("image/jpeg");
-     return dataURL;
+function getDataUri(url, callback) {
+    var image = new Image();
+
+    image.onload = function () {
+        var canvas = document.createElement('canvas');
+        canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
+        canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
+
+        canvas.getContext('2d').drawImage(this, 0, 0);
+
+        // Get raw image data
+        callback(canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, ''));
+
+        // ... or get as Data URI
+        callback(canvas.toDataURL('image/png'));
+    };
+
+    image.src = url;
 }
+
+// Usage
+getDataUri('http://imamali.net/rpic.php?i=files/news/images/14cdiu8fz.jpg&w=50&h=50', function(dataUri) {
+    window.alert(dataUri);
+	$("#imageeeeee").attr("src", dataUri );
+});
 	
-	
-window.alert(encodeImageUri("http://imamali.net/rpic.php?i=files/news/images/14cdiu8fz.jpg&w=50&h=50"));
-$("#imageeeeee").attr("src", encodeImageUri("http://imamali.net/rpic.php?i=files/news/images/14cdiu8fz.jpg&w=50&h=50") );
+
 </script>
 <img id="imageeeeee" src="">
 		
