@@ -92,9 +92,10 @@
 		
 		
 <script>
-function getDataUri(url, callback) {
+	
+	
+/*function getDataUri(url, callback) {
     var image = new Image();
-
     image.onload = function () {
         var canvas = document.createElement('canvas');
         canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
@@ -108,7 +109,6 @@ function getDataUri(url, callback) {
         // ... or get as Data URI
         callback(canvas.toDataURL('image/png'));
     };
-
     image.src = url;
 }
 
@@ -116,90 +116,32 @@ function getDataUri(url, callback) {
 getDataUri('http://imamali.net/rpic.php?i=files/news/images/14cdiu8fz.jpg&w=50&h=50', function(dataUri) {
     window.alert(dataUri);
 	$("#imageeeeee").attr("src", dataUri );
-});
+});*/
 	
+	
+	
+function getDataUri(url) {
+    var image = new Image();
+    image.onload = function(){
+        var canvas = document.createElement('canvas');
+        canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
+        canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
+
+        canvas.getContext('2d').drawImage(this, 0, 0);
+
+        // ... or get as Data URI
+        return canvas.toDataURL('image/png');
+    };
+    image.src = url;
+}
+
+// Usage
+    window.alert(getDataUri('http://imamali.net/rpic.php?i=files/news/images/14cdiu8fz.jpg&w=50&h=50') );
+	$("#imageeeeee").attr("src", getDataUri('http://imamali.net/rpic.php?i=files/news/images/14cdiu8fz.jpg&w=50&h=50') );
 
 </script>
 <img id="imageeeeee" src="">
 		
-		
-		
-		
-		
-		
-		
-		
-<script>
-
-// Converts image to canvas; returns new canvas element
-function convertImageToCanvas(image) {
-	var canvas = document.createElement("canvas");
-	canvas.width = image.width;
-	canvas.height = image.height;
-	canvas.getContext("2d").drawImage(image, 0, 0);
-
-	return canvas;
-}
-	
-// Converts canvas to an image
-function convertCanvasToImage(canvas) {
-	var image = new Image();
-	image.src = canvas.toDataURL("image/jpeg");
-	$("#pngHolder").html(canvas.toDataURL("image/jpeg"));
-	return image;
-}
-	
-	
-	
-	
-wo = window.onload;
-window.onload = function() {
-	wo && wo.call(null);
-
-	// Get the image
-	var sampleImage = document.getElementById("ringoImage"),
-		canvas = convertImageToCanvas(sampleImage);
-
-	// Actions
-	document.getElementById("canvasHolder").appendChild(canvas);
-	document.getElementById("pngHolder").appendChild(convertCanvasToImage(canvas));
-
-	
-};
-
-</script>
-
-
-<h2>Original Image</h2>
-<p>
-	<img src="http://imamali.net/rpic.php?i=files/news/images/14cdiu8fz.jpg&w=50&h=50" id="ringoImage" />
-</p>
-
-<h2>Canvas Image</h2>
-<p id="canvasHolder">
-
-</p>
-
-<h2>Canvas -&gt; PNG Image</h2>
-<p id="pngHolder">
-
-</p>
-		
-		
-		
-		
-<button onclick="window.plugins.socialsharing.share('Message only')">message only</button>
-<button onclick="window.plugins.socialsharing.share('Message and subject', 'The subject')">message and subject</button>
-<button onclick="window.plugins.socialsharing.share(null, null, null, 'http://www.x-services.nl')">link only</button>
-<button onclick="window.plugins.socialsharing.share('Message and link', null, null, 'http://www.x-services.nl')">message and link</button>
-<button onclick="window.plugins.socialsharing.share(null, null, 'https://www.google.nl/images/srpr/logo4w.png', null)">image only</button>
-// Beware: passing a base64 file as 'data:' is not supported on Android 2.x: https://code.google.com/p/android/issues/detail?id=7901#c43
-// Hint: when sharing a base64 encoded file on Android you can set the filename by passing it as the subject (second param)
-<button onclick="window.plugins.socialsharing.share(null, 'Android filename', 'data:image/png;base64,R0lGODlhDAAMALMBAP8AAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAUKAAEALAAAAAAMAAwAQAQZMMhJK7iY4p3nlZ8XgmNlnibXdVqolmhcRQA7', null)">base64 image only</button>
-// Hint: you can share multiple files by using an array as thirds param: ['file 1','file 2', ..], but beware of this Android Kitkat Facebook issue: [#164]
-<button onclick="window.plugins.socialsharing.share('Message and image', null, 'https://www.google.nl/images/srpr/logo4w.png', null)">message and image</button>
-<button onclick="window.plugins.socialsharing.share('Message, image and link', null, 'https://www.google.nl/images/srpr/logo4w.png', 'http://www.x-services.nl')">message, image and link</button>
-<button onclick="window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', 'https://www.google.nl/images/srpr/logo4w.png', 'http://www.x-services.nl')">message, subject, image and link</button>
 
 
 			<style>
