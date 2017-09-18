@@ -91,6 +91,35 @@
 		
 		
 		
+<script>
+function encodeImageUri(imageUri){
+    var deferred = $q.defer();
+
+    var c = document.createElement('canvas');
+    var ctx = c.getContext('2d');
+    var img = new Image();
+
+    img.onload = function(){
+        c.width = this.width;
+        c.height = this.height;
+        ctx.drawImage(img, 0,0);
+    };
+    img.src = imageUri;
+
+    return getBase64Image(img);
+
+}
+window.alert(encodeImageUri("http://imamali.net/rpic.php?i=files/news/images/14cdiu8fz.jpg&w=50&h=50"));
+$("#imageeeeee").attr("src", encodeImageUri("http://imamali.net/rpic.php?i=files/news/images/14cdiu8fz.jpg&w=50&h=50") );
+</script>
+<img id="imageeeeee" src="">
+		
+		
+		
+		
+		
+		
+		
 		
 <script>
 
