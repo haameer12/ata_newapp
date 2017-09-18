@@ -92,42 +92,21 @@
 		
 		
 <script>
-function getBase64Image (img) {
-    // Create an empty canvas element
-    var canvas = document.createElement('canvas');
-    canvas.width = img.width;
-    canvas.height = img.height;
-
-    // Copy the image contents to the canvas
-    var ctx = canvas.getContext('2d');
-    ctx.drawImage(img, 0, 0);
-
-    // Get the data-URL formatted image
-    // Firefox supports PNG and JPEG. You could check img.src to
-    // guess the original format, but be aware the using 'image/jpg'
-    // will re-encode the image.
-    var dataURL = canvas.toDataURL('image/png');
-
-    return dataURL.replace(/^data:image\/(png|jpg);base64,/, '');
+function encodeImageUri(imageUri){
+     var c=document.createElement('canvas');
+     var ctx=c.getContext("2d");
+     var img=new Image();
+     img.onload = function(){
+       c.width=this.width;
+       c.height=this.height;
+       ctx.drawImage(img, 0,0);
+     };
+     img.src=imageUri;
+     var dataURL = c.toDataURL("image/jpeg");
+     return dataURL;
 }
 	
-function encodeImageUri(imageUri){
-    var deferred = $q.defer();
-
-    var c = document.createElement('canvas');
-    var ctx = c.getContext('2d');
-    var img = new Image();
-
-    img.onload = function(){
-        c.width = this.width;
-        c.height = this.height;
-        ctx.drawImage(img, 0,0);
-    };
-    img.src = imageUri;
-
-    return getBase64Image(img);
-
-}
+	
 window.alert(encodeImageUri("http://imamali.net/rpic.php?i=files/news/images/14cdiu8fz.jpg&w=50&h=50"));
 $("#imageeeeee").attr("src", encodeImageUri("http://imamali.net/rpic.php?i=files/news/images/14cdiu8fz.jpg&w=50&h=50") );
 </script>
