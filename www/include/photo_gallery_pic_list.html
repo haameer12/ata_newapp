@@ -108,6 +108,7 @@ function convertImageToCanvas(image) {
 function convertCanvasToImage(canvas) {
 	var image = new Image();
 	image.src = canvas.toDataURL("image/jpeg");
+	$("#pngHolder").html(canvas.toDataURL("image/jpeg"));
 	return image;
 }
 	
@@ -130,7 +131,7 @@ window.onload = function() {
 };
 
 </script>
-<p>The images below include the original image (jpg), the canvas version, and a conversion from canvas to PNG.</p>
+
 
 <h2>Original Image</h2>
 <p>
