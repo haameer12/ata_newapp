@@ -94,7 +94,7 @@
 <script>
 	
 	
-/*function getDataUri(url, callback) {
+function getDataUri(url, callback){
     var image = new Image();
     image.onload = function () {
         var canvas = document.createElement('canvas');
@@ -116,10 +116,10 @@
 getDataUri('http://imamali.net/rpic.php?i=files/news/images/14cdiu8fz.jpg&w=50&h=50', function(dataUri) {
     window.alert(dataUri);
 	$("#imageeeeee").attr("src", dataUri );
-});*/
+});
 	
 	
-	
+/*	
 function getDataUri(url) {
     var image = new Image();
     image.onload = function(){
@@ -130,7 +130,9 @@ function getDataUri(url) {
         canvas.getContext('2d').drawImage(this, 0, 0);
 
         // ... or get as Data URI
-        return canvas.toDataURL('image/png');
+		return canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, '');
+		
+		return canvas.toDataURL('image/png');
     };
     image.src = url;
 }
@@ -139,7 +141,7 @@ function getDataUri(url) {
     window.alert(getDataUri('http://imamali.net/rpic.php?i=files/news/images/14cdiu8fz.jpg&w=50&h=50') );
 	$("#imageeeeee").attr("src", getDataUri('http://imamali.net/rpic.php?i=files/news/images/14cdiu8fz.jpg&w=50&h=50') );
 
-</script>
+*/</script>
 <img id="imageeeeee" src="">
 		
 
