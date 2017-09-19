@@ -196,10 +196,8 @@ $("#photo_gallery_pic_list").bind('panelload', function() {
 				$("#photo_gallery_pic_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
 				$.each(json, function(index, value){
 					
-					
-					getDataUri('http://imamali.net/rpic.php?i=files/news/images/14cdiu8fz.jpg&w=50&h=50', function(dataUri){
-						dataUri
-						socialSharingCode = "window.plugins.socialsharing.share('العتبة العلوية المقدسة', 'العتبة العلوية المقدسة', 'http://imamali.net/files/images/" +value['file_name'] +"', 'http://imamali.net/?id=" +this_element.attr('galleryId') +"&sid=" +value['id'] +"');return false;";
+					getDataUri('http://imamali.net/rpic.php?i=files/images/' +value['file_name'] +'&w=50&h=50', function(dataUri){
+						socialSharingCode = "window.plugins.socialsharing.share('العتبة العلوية المقدسة', 'العتبة العلوية المقدسة', " +dataUri +", 'http://imamali.net/?id=" +this_element.attr('galleryId') +"&sid=" +value['id'] +"');return false;";
 					});
 					
 					$("#app-photo-gallery-pic-list ul").append('<li><span> \
