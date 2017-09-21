@@ -179,7 +179,7 @@ $("#photo_gallery_pic_list").bind('panelload', function() {
 		var galleryItemFileName = $(this).parent().parent().parent().attr("fileName");
 		var galleryItemID = $(this).parent().parent().parent().attr("itemID");
 		var galleryParentID = $(this).parent().parent().parent().parent().attr("knowOpenedGallery");
-		getDataUri('http://imamali.net/rpic.php?i=files/images/' +fileName +'&w=500&h=333', function(dataUri){
+		getDataUri('http://imamali.net/rpic.php?i=files/images/' +galleryItemFileName +'&w=500&h=333', function(dataUri){
 			//socialSharingCode = "window.plugins.socialsharing.share('العتبة العلوية المقدسة', 'العتبة العلوية المقدسة', " +dataUri +", 'http://imamali.net/?id=" +this_element.attr('galleryId') +"&sid=" +"55" +"');return false;";
 			//window.alert("Ok");
 			//$("#imageeeeee").attr("src", dataUri);
