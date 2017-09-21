@@ -180,7 +180,28 @@ $("#photo_gallery_pic_list").bind('panelload', function() {
 		getDataUri('http://imamali.net/rpic.php?i=files/images/' +fileName +'&w=500&h=333', function(dataUri){
 			//socialSharingCode = "window.plugins.socialsharing.share('العتبة العلوية المقدسة', 'العتبة العلوية المقدسة', " +dataUri +", 'http://imamali.net/?id=" +this_element.attr('galleryId') +"&sid=" +"55" +"');return false;";
 			//window.alert("Ok");
-			$("#imageeeeee").attr("src", dataUri);
+			//$("#imageeeeee").attr("src", dataUri);
+			
+
+
+			window.plugins.socialsharing.shareWithOptions({//options
+				message: 'العتبة العلوية المقدسة', // not supported on some apps (Facebook, Instagram)
+				subject: 'العتبة العلوية المقدسههه', // fi. for email
+				files: [dataUri], // an array of filenames either locally or remotely
+				url: 'https://www.website.com/foo/#bar?a=b',
+				chooserTitle: 'Pick an app' // Android only, you can override the default share sheet title
+			}, 
+			function(result){//onSuccess
+				console.log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
+				console.log("Shared to app: " + result.app); // On Android result.app is currently empty. On iOS it's empty when sharing is cancelled (result.completed=false)
+			},
+			function(msg){//onError
+				console.log("Sharing failed with message: " + msg);
+			});
+			
+			
+			
+			
 		});
 	});
 	
