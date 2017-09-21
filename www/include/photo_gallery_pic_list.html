@@ -177,9 +177,9 @@ $("#photo_gallery_pic_list").bind('panelload', function() {
 	
 	$(".photoGallerySocialSharing").bind("tap",function(){
 		var fileName = $(this).parent().parent().parent().attr("fileName");
-		getDataUri('http://imamali.net/rpic.php?i=files/images/' +fileName +'&w=400&h=266', function(dataUri){
+		getDataUri('http://imamali.net/rpic.php?i=files/images/' +fileName +'&w=500&h=333', function(dataUri){
 			//socialSharingCode = "window.plugins.socialsharing.share('العتبة العلوية المقدسة', 'العتبة العلوية المقدسة', " +dataUri +", 'http://imamali.net/?id=" +this_element.attr('galleryId') +"&sid=" +"55" +"');return false;";
-			window.alert("Ok");
+			//window.alert("Ok");
 			$("#imageeeeee").attr("src", dataUri);
 		});
 	});
