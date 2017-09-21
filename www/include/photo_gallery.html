@@ -219,7 +219,7 @@ $("#photo_gallery_main").bind('panelload', function() {
 					$("#app-photo-gallery-pic-list ul").attr("lastGalleryIdBySort", value['id']);
 					if(i == 1){$("#app-photo-gallery-pic-list ul").attr("lastGalleryId", value['id']);}
 										
-					$("#app-photo-gallery-pic-list ul").append('<li fileName="' +value['file_name'] +'"><span> \
+					$("#app-photo-gallery-pic-list ul").append('<li fileName="' +value['file_name'] +'" itemID="' +value['id'] +'"><span> \
 						<img src="http://imamali.net/rpic.php?i=files/images/' +value['file_name'] +'&w=500&h=333" style="display: none;" /> \
 						<div class="gallery_img_tools"> \
 							<span class="middle_holder"></span> \
