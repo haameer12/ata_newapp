@@ -230,7 +230,7 @@ $("#photo_gallery_main").bind('panelload', function() {
 						<div class="gallery_img_tools"> \
 							<span class="middle_holder"></span> \
 							<a href="#" download><i class="fa fa-download" aria-hidden="true"></i></a> \
-							<a href="#" id="photoGallerySocialSharing"><i class="fa fa-share-alt" aria-hidden="true"></i></a> \
+							<a href="#" class="photoGallerySocialSharing"><i class="fa fa-share-alt" aria-hidden="true"></i></a> \
 						</div> \
 						<img src="img/gallery/small-pic.jpg" /> \
 						<div class="gallery-img-loading ' +value['id'] +'"><img src="img/gallery/small-pic.jpg" /></div> \
@@ -277,7 +277,7 @@ $("#photo_gallery_main").bind('panelload', function() {
 	
 	$("#photo-gallery-cat-list_page .nano").nanoScroller({ alwaysVisible: true });
 	
-	$("#photoGallerySocialSharing").click(function(){
+	$(".photoGallerySocialSharing").bind("tap",function(){
 		window.alert("tit");
 		return false;
 	});
