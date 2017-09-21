@@ -172,6 +172,7 @@
 
 </div>
 <script>
+var socialSharingCode = "";
 $("#photo_gallery_main").bind('panelload', function() {
 	//alert("photo gallery start");
 	
@@ -212,7 +213,6 @@ $("#photo_gallery_main").bind('panelload', function() {
 				$("#app-photo-gallery-pic-list ul").html("");
 				$("#app-photo-gallery-pic-list ul").attr("knowOpenedGallery", this_element.attr("galleryId"));
 				
-				var socialSharingCode = "";
 				var i = 0;
 				$.each(json, function(index, value){
 					i++;
