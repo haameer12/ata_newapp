@@ -172,24 +172,6 @@
 
 </div>
 <script>
-var socialSharingCode = "";
-function getDataUri(url, callback) {
-    var image = new Image();
-    image.onload = function () {
-        var canvas = document.createElement('canvas');
-        canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
-        canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
-
-        canvas.getContext('2d').drawImage(this, 0, 0);
-
-        // Get raw image data
-        //callback(canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, ''));
-
-        // ... or get as Data URI
-        callback(canvas.toDataURL('image/png'));
-    };
-    image.src = url;
-}
 $("#photo_gallery_main").bind('panelload', function() {
 	//alert("photo gallery start");
 	
@@ -230,6 +212,7 @@ $("#photo_gallery_main").bind('panelload', function() {
 				$("#app-photo-gallery-pic-list ul").html("");
 				$("#app-photo-gallery-pic-list ul").attr("knowOpenedGallery", this_element.attr("galleryId"));
 				
+				var socialSharingCode = "";
 				var i = 0;
 				$.each(json, function(index, value){
 					i++;
@@ -240,14 +223,14 @@ $("#photo_gallery_main").bind('panelload', function() {
 						socialSharingCode = "window.plugins.socialsharing.share('العتبة العلوية المقدسة', 'العتبة العلوية المقدسة', " +dataUri +", 'http://imamali.net/?id=" +this_element.attr('galleryId') +"&sid=" +value['id'] +"');return false;";
 					});
 					
-					window.alert("yeah : " +socialSharingCode);
+					
 
-					$("#app-photo-gallery-pic-list ul").append('<li><span> \
+					$("#app-photo-gallery-pic-list ul").append('<li fileName="' +value['file_name'] +'"><span> \
 						<img src="http://imamali.net/rpic.php?i=files/images/' +value['file_name'] +'&w=500&h=333" style="display: none;" /> \
 						<div class="gallery_img_tools"> \
 							<span class="middle_holder"></span> \
 							<a href="#" download><i class="fa fa-download" aria-hidden="true"></i></a> \
-							<a href="#" onclick="' +socialSharingCode +'"><i class="fa fa-share-alt" aria-hidden="true"></i></a> \
+							<a href="#" id="photoGallerySocialSharing"><i class="fa fa-share-alt" aria-hidden="true"></i></a> \
 						</div> \
 						<img src="img/gallery/small-pic.jpg" /> \
 						<div class="gallery-img-loading ' +value['id'] +'"><img src="img/gallery/small-pic.jpg" /></div> \
@@ -293,6 +276,11 @@ $("#photo_gallery_main").bind('panelload', function() {
 	
 	
 	$("#photo-gallery-cat-list_page .nano").nanoScroller({ alwaysVisible: true });
+	
+	$("#photoGallerySocialSharing").click(function(){
+		window.alert("tit");
+		return false;
+	});
 });
 $("#photo_gallery_main").bind('panelunload', function() {
 	//alert("photo gallery end");
