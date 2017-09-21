@@ -174,24 +174,19 @@ $("#photo_gallery_pic_list").bind('panelload', function() {
 	
 	
 	
-	
+	$(".photoGallerySocialSharing").unbind("tap");
 	$(".photoGallerySocialSharing").bind("tap",function(){
 		var galleryItemFileName = $(this).parent().parent().parent().attr("fileName");
 		var galleryItemID = $(this).parent().parent().parent().attr("itemID");
 		var galleryParentID = $(this).parent().parent().parent().parent().attr("knowOpenedGallery");
 		getDataUri('http://imamali.net/rpic.php?i=files/images/' +galleryItemFileName +'&w=500&h=333', function(dataUri){
-			//socialSharingCode = "window.plugins.socialsharing.share('العتبة العلوية المقدسة', 'العتبة العلوية المقدسة', " +dataUri +", 'http://imamali.net/?id=" +this_element.attr('galleryId') +"&sid=" +"55" +"');return false;";
-			//window.alert("Ok");
-			//$("#imageeeeee").attr("src", dataUri);
 			
-
-
 			window.plugins.socialsharing.shareWithOptions({//options
 				message: 'العتبة العلوية المقدسة / تحميل الصورة بحجمها الكامل من خلال الرابط ادناه ', // not supported on some apps (Facebook, Instagram)
 				subject: 'العتبة العلوية المقدسة / تحميل الصورة بحجمها الكامل من خلال الرابط ادناه ', // fi. for email
 				files: [dataUri], // an array of filenames either locally or remotely
 				url: 'http://imamali.net/?id=' +galleryParentID +'&sid=' +galleryItemID,
-				chooserTitle: 'العتبة العلوية المقدسة / تحميل الصورة بحجمها الكامل من خلال الرابط ادناه ' // Android only, you can override the default share sheet title
+				//chooserTitle: ' ' // Android only, you can override the default share sheet title
 			}, 
 			function(result){//onSuccess
 				console.log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
@@ -200,9 +195,6 @@ $("#photo_gallery_pic_list").bind('panelload', function() {
 			function(msg){//onError
 				console.log("Sharing failed with message: " + msg);
 			});
-			
-			
-			
 			
 		});
 	});
@@ -227,16 +219,14 @@ $("#photo_gallery_pic_list").bind('panelload', function() {
 				$("#photo_gallery_pic_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
 				$.each(json, function(index, value){
 					
-					getDataUri('http://imamali.net/rpic.php?i=files/images/' +value['file_name'] +'&w=50&h=50', function(dataUri){
-						socialSharingCode = "window.plugins.socialsharing.share('العتبة العلوية المقدسة', 'العتبة العلوية المقدسة', " +dataUri +", 'http://imamali.net/?id=" +this_element.attr('galleryId') +"&sid=" +value['id'] +"');return false;";
-					});
 					
-					$("#app-photo-gallery-pic-list ul").append('<li><span> \
+					
+					$("#app-photo-gallery-pic-list ul").append('<li fileName="' +value['file_name'] +'" itemID="' +value['id'] +'"><span> \
 						<img src="http://imamali.net/rpic.php?i=files/images/' +value['file_name'] +'&w=500&h=333" style="display: none;" /> \
 						<div class="gallery_img_tools"> \
 							<span class="middle_holder"></span> \
 							<a href="#" download><i class="fa fa-download" aria-hidden="true"></i></a> \
-							<a href="#" onclick="' +socialSharingCode +'"><i class="fa fa-share-alt" aria-hidden="true"></i></a> \
+							<a href="#" class="photoGallerySocialSharing"><i class="fa fa-share-alt" aria-hidden="true"></i></a> \
 						</div> \
 						<img src="img/gallery/small-pic.jpg" /> \
 						<div class="gallery-img-loading ' +value['id'] +'"><img src="img/gallery/small-pic.jpg" /></div> \
@@ -253,7 +243,31 @@ $("#photo_gallery_pic_list").bind('panelload', function() {
 				});
 
 				$("#photo_gallery_pic_list_page .nano").nanoScroller();
+				
+				$(".photoGallerySocialSharing").unbind("tap");
+				$(".photoGallerySocialSharing").bind("tap",function(){
+					var galleryItemFileName = $(this).parent().parent().parent().attr("fileName");
+					var galleryItemID = $(this).parent().parent().parent().attr("itemID");
+					var galleryParentID = $(this).parent().parent().parent().parent().attr("knowOpenedGallery");
+					getDataUri('http://imamali.net/rpic.php?i=files/images/' +galleryItemFileName +'&w=500&h=333', function(dataUri){
 
+						window.plugins.socialsharing.shareWithOptions({//options
+							message: 'العتبة العلوية المقدسة / تحميل الصورة بحجمها الكامل من خلال الرابط ادناه ', // not supported on some apps (Facebook, Instagram)
+							subject: 'العتبة العلوية المقدسة / تحميل الصورة بحجمها الكامل من خلال الرابط ادناه ', // fi. for email
+							files: [dataUri], // an array of filenames either locally or remotely
+							url: 'http://imamali.net/?id=' +galleryParentID +'&sid=' +galleryItemID,
+							//chooserTitle: ' ' // Android only, you can override the default share sheet title
+						}, 
+						function(result){//onSuccess
+							console.log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
+							console.log("Shared to app: " + result.app); // On Android result.app is currently empty. On iOS it's empty when sharing is cancelled (result.completed=false)
+						},
+						function(msg){//onError
+							console.log("Sharing failed with message: " + msg);
+						});
+
+					});
+				});
 
 
 
