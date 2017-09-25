@@ -95,7 +95,7 @@
 	//----------------------
 		
 	//First step check parameters mismatch and checking network connection if available call    download function
-	function DownloadFile(URL, Folder_Name, File_Name){
+	function DownloadFile(URL, Folder_Name, File_Name, LoadingElementID){
 		//Parameters mismatch check
 		if (URL == null && Folder_Name == null && File_Name == null) {
 			return;
@@ -106,11 +106,14 @@
 			if (networkState == Connection.NONE) {
 				return;
 			} else {
-				download(URL, Folder_Name, File_Name); //If available download function call
+				download(URL, Folder_Name, File_Name, LoadingElementID); //If available download function call
 			}
 		}
 	}
-	function download(URL, Folder_Name, File_Name){
+	function download(URL, Folder_Name, File_Name, LoadingElementID){
+		
+		$("#"+LoadingElementID).fadeIn();
+		
 		//step to request a file system 
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fileSystemSuccess, fileSystemFail);
 
@@ -125,36 +128,42 @@
 
 			fp = fp + "/" + Folder_Name + "/" + File_Name + "." + ext; // fullpath and name of the file which we want to give
 			// download function call
-			filetransfer(download_link, fp);
+			filetransfer(download_link, fp, LoadingElementID);
 		}
 
 		function onDirectorySuccess(parent){
 			// Directory created successfuly
+			$("#"+LoadingElementID).fadeOut();
 		}
 
 		function onDirectoryFail(error){
 			//Error while creating directory
 			//alert("Unable to create new directory: " + error.code);
 			notify('فشل في إنشاء مجلد "Download"', 'error', 4000, 'bottom', 'Up', 'Down');
+			$("#"+LoadingElementID).fadeOut();
 		}
 
 		function fileSystemFail(evt){
 			//Unable to access file system
-			alert(evt.target.error.code);
+			//alert(evt.target.error.code);
+			notify('لم تتم عملية التحميل بنجاح', 'error', 4000, 'bottom', 'Up', 'Down');
+			$("#"+LoadingElementID).fadeOut();
 		}
 	}
-	function filetransfer(download_link, fp){
+	function filetransfer(download_link, fp, LoadingElementID){
 		var fileTransfer = new FileTransfer();
 		// File download function with URL and local path
 		fileTransfer.download(download_link, fp,
 			function (entry){
 				//alert("download complete: " + entry.fullPath);
 				notify('تم تحميل الملف الى مجلد "Download" بنجاح', 'success', 4000, 'bottom', 'Up', 'Down');
+				$("#"+LoadingElementID).fadeOut();
 			},
 			function (error){
 				//Download abort errors or download failed errors
 				//alert("download error source " + error.source);
 				notify('لم تتم عملية التحميل بنجاح', 'error', 4000, 'bottom', 'Up', 'Down');
+				$("#"+LoadingElementID).fadeOut();
 				//alert("download error target " + error.target);
 				//alert("upload error code" + error.code);
 			}
