@@ -107,7 +107,6 @@
 			}
 		}
 	}
-
 	function download(URL, Folder_Name, File_Name){
 		//step to request a file system 
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fileSystemSuccess, fileSystemFail);
@@ -132,7 +131,8 @@
 
 		function onDirectoryFail(error){
 			//Error while creating directory
-			alert("Unable to create new directory: " + error.code);
+			//alert("Unable to create new directory: " + error.code);
+			notify('لا يمكن انشاء مجلد جديد', 'error', 4000, 'bottom', 'Up', 'Down');
 		}
 
 		function fileSystemFail(evt){
@@ -140,17 +140,18 @@
 			alert(evt.target.error.code);
 		}
 	}
-	
 	function filetransfer(download_link, fp){
 		var fileTransfer = new FileTransfer();
 		// File download function with URL and local path
 		fileTransfer.download(download_link, fp,
 			function (entry){
-				alert("download complete: " + entry.fullPath);
+				//alert("download complete: " + entry.fullPath);
+				notify('تم تحميل الملف الى مجلد "Download" بنجاح', 'success', 4000, 'bottom', 'Up', 'Down');
 			},
 			function (error){
 				//Download abort errors or download failed errors
-				alert("download error source " + error.source);
+				//alert("download error source " + error.source);
+				notify('لم تتم عملية التحميل بنجاح', 'error', 4000, 'bottom', 'Up', 'Down');
 				//alert("download error target " + error.target);
 				//alert("upload error code" + error.code);
 			}
