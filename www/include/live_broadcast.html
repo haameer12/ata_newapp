@@ -18,6 +18,18 @@
     width: 100%;
     height: 100%;
 }
+	
+.live-broadcast-con .live-change-button{
+	display:block;
+	background:#2aa3d0;
+	font-size:4.2vw;
+	font-family:'Droid Arabic Kufi';
+	text-decoration:none;
+	color:#dcf4ff;
+	margin:1.5vw 0 0 0;
+	padding:1.5vw;
+	border-radius:1vw;
+}
 </style>
 <div class="inside_page">
 
@@ -39,8 +51,22 @@
 				<div class="video-container">
 					<iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
 				</div>
-				<!--<div class="hmd-video-title atabe-alavi"><div class="right"></div><div class="center">العتبة العلوية المقدسة</div><div class="left"></div></div>
-				<div class="hmd-video-title atabe-kazemiye"><div class="right"></div><div class="center">العتبة الكاظمية المقدسة</div><div class="left"></div></div>-->
+				<br />
+				<a href="#" class="live-change-button" id="QubaLiveButton">القبة المطهرة</a>
+				<a href="#" class="live-change-button" id="fadaiaLiveButton">فضائية العتبة العلوية المقدسة</a>
+				
+				<script>
+					$("#QubaLiveButton").bind("tap", function(){
+						$(".live-broadcast-con .video-container iframe").attr("src", "http://imamali.net/design/live/ewan-live.php");
+						return false;
+					});
+					
+					$("#fadaiaLiveButton").bind("tap", function(){
+						$(".live-broadcast-con .video-container iframe").attr("src", "http://imamali.net/design/live/fadaia-live.php");
+						return false;
+					});
+				</script>
+				
 			</div>
 		
 		
