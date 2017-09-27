@@ -30,6 +30,14 @@
 	padding:1.5vw;
 	border-radius:1vw;
 }
+@media screen and (orientation : landscape){
+	.live-broadcast-con .live-change-button{
+		font-size:4.2vh;
+		margin:1.5vh 0 0 0;
+		padding:1.5vh;
+		border-radius:1vh;
+	}
+}
 </style>
 <div class="inside_page">
 
@@ -42,31 +50,70 @@
 				<span class="inside_page_back"></span>
 			</a>
 		</div>
-		<div class="inside_page_content">
+		<div class="inside_page_content" id="live_broadcast_content_page">
+
+
+
+			<style>
+			#live_broadcast_content_page .nano {
+				width: 100%;
+				height: 100%;
+			}
+			#live_broadcast_content_page .nano .nano-content{
+				padding:0 2.7vw;
+			}
+			#live_broadcast_content_page .nano .nano-pane{
+				background:none !important;
+				width:0.5vw !important;
+				top:0 !important;
+				bottom:0 !important;
+				/*box-shadow: 0 0 40px 1px #fff;*/
+			}
+			#live_broadcast_content_page .nano .nano-slider{
+				background: #013b5d !important;
+				margin:0 !important;
+				opacity:0.3;
+			}
+			@media screen and (orientation : landscape){
+				#live_broadcast_content_page .nano .nano-pane{
+					width:0.5vh !important;
+				}
+			}
+			</style>
+			<div class="nano">
+				<div class="overthrow nano-content">	
 
 
 
 
-			<div class="live-broadcast-con">
-				<div class="video-container">
-					<iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
-				</div>
-				<br />
-				<a href="#" class="live-change-button" id="QubaLiveButton">القبة المطهرة</a>
-				<a href="#" class="live-change-button" id="fadaiaLiveButton">فضائية العتبة العلوية المقدسة</a>
-				
-				<script>
-					$("#QubaLiveButton").bind("tap", function(){
-						$(".live-broadcast-con .video-container iframe").attr("src", "http://imamali.net/design/live/ewan-live.php");
-						return false;
-					});
+
+					<div class="live-broadcast-con">
+						<div class="video-container">
+							<iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+						</div>
+						<br />
+						<a href="#" class="live-change-button" id="QubaLiveButton">القبة المطهرة</a>
+						<a href="#" class="live-change-button" id="fadaiaLiveButton">فضائية العتبة العلوية المقدسة</a>
+
+						<script>
+							$("#QubaLiveButton").bind("tap", function(){
+								$(".live-broadcast-con .video-container iframe").attr("src", "http://imamali.net/design/live/ewan-live.php");
+								return false;
+							});
+
+							$("#fadaiaLiveButton").bind("tap", function(){
+								$(".live-broadcast-con .video-container iframe").attr("src", "http://imamali.net/design/live/fadaia-live.php");
+								return false;
+							});
+						</script>
+
+					</div>
 					
-					$("#fadaiaLiveButton").bind("tap", function(){
-						$(".live-broadcast-con .video-container iframe").attr("src", "http://imamali.net/design/live/fadaia-live.php");
-						return false;
-					});
-				</script>
-				
+					
+					
+					
+					
+				</div>
 			</div>
 		
 		
@@ -83,6 +130,7 @@
 $("#live_broadcast").bind('panelload', function() {
 	//alert("live broadcast start");
 	$(".live-broadcast-con .video-container iframe").attr("src", "http://imamali.net/design/live/ewan-live.php");
+	$("#live_broadcast_content_page .nano").nanoScroller({ alwaysVisible: true, scroll: 'top' });
 });
 $("#live_broadcast").bind('panelunload', function() {
 	//alert("live broadcast end");
