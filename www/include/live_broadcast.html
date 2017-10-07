@@ -92,12 +92,18 @@
 							<iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
 						</div>
 						<br />
-						<a href="#" class="live-change-button" id="QubaLiveButton">القبة المطهرة</a>
+						<a href="#" class="live-change-button" id="ewanLiveButton">ايوان الذهب</a>
+						<a href="#" class="live-change-button" id="sahanLiveButton">الصحن المطهر</a>
 						<a href="#" class="live-change-button" id="fadaiaLiveButton">فضائية العتبة العلوية المقدسة</a>
 
 						<script>
-							$("#QubaLiveButton").bind("tap", function(){
+							$("#ewanLiveButton").bind("tap", function(){
 								$(".live-broadcast-con .video-container iframe").attr("src", "http://imamali.net/design/live/ewan-live.php");
+								return false;
+							});
+							
+							$("#sahanLiveButton").bind("tap", function(){
+								$(".live-broadcast-con .video-container iframe").attr("src", "http://imamali.net/design/live/sahan-live.php");
 								return false;
 							});
 
