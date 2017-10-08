@@ -1,0 +1,111 @@
+<style>
+#neaba_ziyara_page .reg_title{
+	margin-bottom:6vw;
+	margin-right:2.7vw;
+	width:15vh;
+	float:right;
+}
+#neaba_ziyara_page input{
+	display:block;
+	height:12vw;
+	width:100%;
+	border:1px solid #69cee3;
+	border-radius:1vw;
+	background-color:#e5f4fa;
+	margin-bottom:6vw;
+	font-family:'Droid Arabic Kufi', 'Tahoma' !important;
+	padding:0 3vw;
+	box-sizing:border-box;
+	color:#2581c4;
+	font-size:3.5vw;
+	direction:rtl;
+	overflow:hidden;
+}
+#neaba_ziyara_page .neaba_ziyara_submit{
+	display:block;
+	background:#2aa3d0;
+	font-size:4vw;
+	font-family:'Droid Arabic Kufi';
+	text-decoration:none;
+	color:#dcf4ff;
+	margin:1.5vw 0 0 0;
+	padding:1.5vw;
+	border-radius:1vw;
+}
+@media screen and (orientation : landscape){
+	#neaba_ziyara_page .reg_title{
+		margin-bottom:2.5vw;
+		width:15vw;
+	}
+	#neaba_ziyara_page input{
+		height:12vh;
+		border:1px solid #69cee3;
+		border-radius:1vh;
+		margin-bottom:3.2vh;
+		padding:0 3vh;
+		font-size:3.5vh;
+		width:49%;
+		margin-left:1%;
+		float:right;
+	}
+	#neaba_ziyara_page input:nth-child(2){
+		margin-left:0;
+		margin-right:1%;
+	}
+	#neaba_ziyara_page input:nth-child(4){
+		margin-left:0;
+		margin-right:1%;
+	}
+	#neaba_ziyara_page .neaba_ziyara_submit{
+		font-size:4vh;
+		margin:1.5vh 0 0 0;
+		padding:1.5vh;
+		border-radius:1vh;
+		float:right;
+	}
+}
+</style>
+<div class="inside_page">
+
+
+
+
+	<div>
+		<div class="inside_page_title" style="background-image:url(img/ziarat_title.png);">
+			<span class="inside_page_loading"></span>
+			<a href="#" onclick="$.afui.goBack();return false;">
+				<span class="inside_page_back"></span>
+			</a>
+		</div>
+		<div class="inside_page_content" id="neaba_ziyara_page">
+
+
+			
+
+			<img class="reg_title" src="img/ziarat_title2.png">
+			<div style="clear:both;margin:0 2.7vw;">
+				<input placeholder="الاسم" name="name">
+				<input placeholder="الدولة" name="country">
+				<input placeholder="المدينة" name="city">
+				<input placeholder="بالنيابة عن ..." name="for_who">
+				<a style="width:100%;box-sizing:border-box;" href="#" class="neaba_ziyara_submit">إرسال الطلب</a>
+			</div>
+
+
+		
+			
+		</div>
+	</div>
+
+
+
+
+</div>
+<script>
+$("#neaba_ziyara").bind('panelload', function() {
+	//alert("neaba_ziyara start");
+});
+$("#neaba_ziyara").bind('panelunload', function() {
+	//alert("neaba_ziyara end");
+});
+</script>
