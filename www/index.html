@@ -250,7 +250,6 @@
 	
 	
 	/*----------------------------------------------------------------------------------------*/
-	var does_we_have_intenet = true;
 
 
 	function init(){           
@@ -264,11 +263,6 @@
 			statusbarTransparent.enable();
 			StatusBar.show();
 		}, 1);
-		
-		var networkState = navigator.connection.type;
-		if (networkState == Connection.NONE) {
-			does_we_have_intenet = false;
-		}
 		
 		FastClick.attach(document.body);
 		
