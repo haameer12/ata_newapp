@@ -84,10 +84,10 @@
 
 			<img class="reg_title" src="img/ziarat_title2.png">
 			<div style="clear:both;margin:0 2.7vw;">
-				<input placeholder="الاسم" name="name">
-				<input placeholder="الدولة" name="country">
-				<input placeholder="المدينة" name="city">
-				<input placeholder="بالنيابة عن ..." name="for_who">
+				<input placeholder="الاسم" id="zeara_name">
+				<input placeholder="الدولة" id="zeara_country">
+				<input placeholder="المدينة" id="zeara_city">
+				<input placeholder="بالنيابة عن ..." id="zeara_for_who">
 				<a style="width:100%;box-sizing:border-box;" href="#" class="neaba_ziyara_submit">إرسال الطلب</a>
 			</div>
 
@@ -104,6 +104,56 @@
 <script>
 $("#neaba_ziyara").bind('panelload', function() {
 	//alert("neaba_ziyara start");
+	
+	$("#neaba_ziyara_page a.neaba_ziyara_submit").unbind("tap");
+	var setZearaObj = "";
+	$("#neaba_ziyara_page a.neaba_ziyara_submit").bind("tap",function(){
+
+		if($("#neaba_ziyara_page #zeara_name").val() != ""){
+			if(setZearaObj != ""){
+				setZearaObj.abort();
+			}
+			$("#neaba_ziyara_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "1");
+			setZearaObj = $.ajax({
+				type : 'get',
+				url : 'http://imamali.net/app_json/set_zeara.php?name=' +$("#neaba_ziyara_page #zeara_name").val() +'&country=' +$("#neaba_ziyara_page #zeara_country").val() +'&city=' +$("#neaba_ziyara_page #zeara_city").val() +'&for_who=' +$("#neaba_ziyara_page #zeara_for_who").val() +'&udid=' +window.plugins.uniqueDeviceID.get(uniqueDeviceIDsuccess_index, uniqueDeviceIDfail_index) +'&app_lang=ar',
+				async : false,
+				jsonpCallback : 'setZearaCallBack',
+				contentType : "application/json",
+				dataType : 'jsonp',
+				success : function(json){
+					$("#neaba_ziyara_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+					if(json['set_status'] == "0"){
+						notify('لا بد من مليء حقل الأسم على الأقل', 'error', 4000, 'bottom', 'Up', 'Down');
+					}else if(json['set_status'] == "1"){
+						$("#neaba_ziyara_page #zeara_name").val("");
+						$("#neaba_ziyara_page #zeara_country").val("");
+						$("#neaba_ziyara_page #zeara_city").val("");
+						$("#neaba_ziyara_page #zeara_for_who").val("");
+						$("#neaba_ziyara_page #zeara_udid").val("");
+						$("#neaba_ziyara_page #zeara_app_lang").val("");
+						notify('تم التسجيل بنجاح وسنوافيكم بالجواب ان شاء الله', 'success', 4000, 'bottom', 'Up', 'Down');
+					}else if(json['set_status'] == "2"){
+						notify('لم تتم عملية التسجيل بنجاح، هناك مشكلة', 'error', 4000, 'bottom', 'Up', 'Down');
+					}
+					setZearaObj = "";
+				},
+				error: function(e, errorReason){
+					//console.log(e.message);
+					if(errorReason != "abort"){
+						notify('لم تتم عملية التسجيل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+					}
+					$("#neaba_ziyara_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+					setZearaObj = "";
+				}
+			});
+			return false;
+		}else{
+			notify('لا بد من مليء حقل الأسم على الأقل', 'error', 4000, 'bottom', 'Up', 'Down');
+		}
+
+	});
+
 });
 $("#neaba_ziyara").bind('panelunload', function() {
 	//alert("neaba_ziyara end");
