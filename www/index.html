@@ -26,6 +26,8 @@
 <!--	<script type="text/javascript" src="engine/third-party/nanoScrollerJS/bin/javascripts/main.js"></script>
 	<script type="text/javascript" src="engine/third-party/nanoScrollerJS/bin/javascripts/ga.js"></script>-->
 	
+	<script type="text/javascript" charset="utf-8" src="engine/js/notification.js"></script>
+	
 	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 	
     <script type="text/javascript" charset="utf-8" src="engine/src/af.shim.js"></script>
@@ -273,6 +275,8 @@
 		if(window.localStorage.getItem('uuid') == null){
 			window.plugins.uniqueDeviceID.get(function(uuid){ window.localStorage.setItem('uuid', uuid) }, function(uuid){ /*alert("uniqueDeviceIDfail" + uuid)*/ });
 		}else{}
+		
+		register_notification_home();
 			
 	}
 	
