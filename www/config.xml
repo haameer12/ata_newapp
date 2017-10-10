@@ -82,8 +82,8 @@
 	<!-- <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />-->
 	<plugin spec="https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" source="git" />
 	<!--<plugin spec="https://github.com/phonegap-build/PushPlugin.git" source="git" />-->
-	<!--<plugin spec="https://github.com/phonegap/phonegap-plugin-push.git" source="git" />-->
-		<plugin spec="https://github.com/phonegap-build/PushPlugin.git" source="git" />
+	<plugin spec="https://github.com/phonegap/phonegap-plugin-push.git" source="git" />
+	
 	
 	
 	
