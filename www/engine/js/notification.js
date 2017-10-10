@@ -1,4 +1,3 @@
-
 function register_notification_home() {
 	var networkState = navigator.connection.type;
 	if (networkState == Connection.NONE) {
@@ -44,8 +43,8 @@ function register_notification_home() {
 			navigator.notification.alert(
 				data.message,			// message
 				notif_alertDismissed,	// callback
-				'اعلان',				// title
-				'نعم'					// buttonName
+				'اطلاعیه',				// title
+				'تائید'					// buttonName
 			);
 		});
 
@@ -91,8 +90,8 @@ function register_notification() {
 			navigator.notification.alert(
 				data.message,			// message
 				notif_alertDismissed,	// callback
-				'اعلان',				// title
-				'نعم'					// buttonName
+				'اطلاعیه',				// title
+				'تائید'					// buttonName
 			);
 		});
 
@@ -106,13 +105,3 @@ function register_notification() {
 
 
 function notif_alertDismissed(){};
-
-
-
-
-
-
-
-
-
-
