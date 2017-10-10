@@ -116,7 +116,7 @@ $("#neaba_ziyara").bind('panelload', function() {
 			$("#neaba_ziyara_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "1");
 			setZearaObj = $.ajax({
 				type : 'get',
-				url : 'http://imamali.net/app_json/set_zeara.php?name=' +$("#neaba_ziyara_page #zeara_name").val() +'&country=' +$("#neaba_ziyara_page #zeara_country").val() +'&city=' +$("#neaba_ziyara_page #zeara_city").val() +'&for_who=' +$("#neaba_ziyara_page #zeara_for_who").val() +'&udid=' +window.plugins.uniqueDeviceID.get(uniqueDeviceIDsuccess_index, uniqueDeviceIDfail_index) +'&app_lang=ar',
+				url : 'http://imamali.net/app_json/set_zeara.php?name=' +$("#neaba_ziyara_page #zeara_name").val() +'&country=' +$("#neaba_ziyara_page #zeara_country").val() +'&city=' +$("#neaba_ziyara_page #zeara_city").val() +'&for_who=' +$("#neaba_ziyara_page #zeara_for_who").val() +'&udid=' +window.localStorage.getItem('uuid') +'&app_lang=ar',
 				async : false,
 				jsonpCallback : 'setZearaCallBack',
 				contentType : "application/json",

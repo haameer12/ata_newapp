@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="engine/build/icons.css" />
 
     <link rel="stylesheet" type="text/css" href="engine/build/af.ui.css" />
-
+	
 	<link rel="stylesheet" type="text/css" href="engine/third-party/animate.css" />
 	<link rel="stylesheet" href="engine/third-party/font-awesome/css/font-awesome.min.css" />
     <script type="text/javascript" charset="utf-8" src="engine/third-party/jquery.min.js"></script>
@@ -248,14 +248,14 @@
 	
 	
 	/*----------------------------------------------------------------------------------------*/
-
+	var does_we_have_intenet = true;
 
 
 	function init(){           
 		document.addEventListener("deviceready", onDeviceReady, false);
 	}
 
-	function onDeviceReady() {
+	function onDeviceReady(){
 		
 		AndroidFullScreen.immersiveMode(function(){/*successFunction*/}, function(){/*errorFunction*/});
 		setInterval(function(){
@@ -263,14 +263,16 @@
 			StatusBar.show();
 		}, 1);
 		
+		var networkState = navigator.connection.type;
+		if (networkState == Connection.NONE) {
+			does_we_have_intenet = false;
+		}
 		
-		//FastClick.attach(document.body);
-		  
-
+		FastClick.attach(document.body);
 		
-		
-		
-		
+		if(window.localStorage.getItem('uuid') == null){
+			window.plugins.uniqueDeviceID.get(function(uuid){ window.localStorage.setItem('uuid', uuid) }, function(uuid){ /*alert("uniqueDeviceIDfail" + uuid)*/ });
+		}else{}
 			
 	}
 	
