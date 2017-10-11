@@ -27,7 +27,7 @@ function register_notification_home() {
 					success : function(text)
 					{
 						//last_articles_version = text;
-						console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification registration text : ' + text);
+						//console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification registration text : ' + text);
 						window.localStorage.setItem('register_for_notifs','yes');
 					}
 			});
@@ -40,12 +40,34 @@ function register_notification_home() {
 			// data.sound,
 			// data.image,
 			// data.additionalData
-			navigator.notification.alert(
-				data.message,			// message
-				notif_alertDismissed,	// callback
-				'اطلاعیه',				// title
-				'تائید'					// buttonName
-			);
+			
+			
+			
+			window.alert(data.additionalData);
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 		});
 
 		push.on('error', function(e) {
@@ -65,7 +87,7 @@ function register_notification() {
 	{
 		var push = PushNotification.init({
 			android: {
-				senderID: "804625540618"
+				senderID: "1069136326484"
 			},
 			ios: {
 				alert: "true",
@@ -104,4 +126,4 @@ function register_notification() {
 }
 
 
-function notif_alertDismissed(){};
+//function notif_alertDismissed(){};
