@@ -204,12 +204,12 @@
 			dataType : 'jsonp',
 			success : function(json){
 
-				$("#news_item_content #app-news-content .news-pic-tools img").attr("src", "http://imamali.net/rpic.php?i=files/news/images/" +json['pic_name'] +"&w=430&h=300");
-				$("#news_item_content #app-news-content .news-pic-tools .news-tools span span").text(json['date']);
-				$("#news_item_content #app-news-content .news-pic-tools .news-tools span:first span").text(json['view_num']);
-				$("#news_item_content #app-news-content h3.news-title").text(json['title']);
-				$("#news_item_content #app-news-content div.news-text").html(json['text']);
-				$("#news_item_content #app-news-content div.news-text img").each(function(){
+				$("#news_item_content_for_noty #app-news-content .news-pic-tools img").attr("src", "http://imamali.net/rpic.php?i=files/news/images/" +json['pic_name'] +"&w=430&h=300");
+				$("#news_item_content_for_noty #app-news-content .news-pic-tools .news-tools span span").text(json['date']);
+				$("#news_item_content_for_noty #app-news-content .news-pic-tools .news-tools span:first span").text(json['view_num']);
+				$("#news_item_content_for_noty #app-news-content h3.news-title").text(json['title']);
+				$("#news_item_content_for_noty #app-news-content div.news-text").html(json['text']);
+				$("#news_item_content_for_noty #app-news-content div.news-text img").each(function(){
 					if($(this).attr("src").indexOf("http://imamali") > -1 ){
 
 					}else{
@@ -217,7 +217,7 @@
 					}
 				});
 				//$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
-				$.afui.loadContent("#news_item_content",false,false,"up");
+				$.afui.loadContent("#news_item_content_for_noty",false,false,"up");
 
 
 			},
@@ -1238,6 +1238,10 @@
 			<div class="panel" id="news_item_content" data-include="include/news_item_content.html" data-title="مشاهدة الخبر" >
 				
 			</div>
+			<div class="panel" id="news_item_content_for_noty" data-include="include/news_item_content_for_noty.html" data-title="مشاهدة الخبر من الاشعار" >
+				
+			</div>
+			
 			
 			<div class="panel" id="live_broadcast" data-include="include/live_broadcast.html" data-title="البث المباشر" >
 			
