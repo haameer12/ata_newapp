@@ -43,7 +43,7 @@ function register_notification_home() {
 			
 			
 			
-			window.alert("" +data.additionalData.name +" - " +data.additionalData.sound);
+			window.alert("name : " +data.additionalData.name +" - sound : " +data.additionalData.sounda);
 			
 			
 			
