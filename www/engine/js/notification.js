@@ -61,20 +61,19 @@ function register_notification_home() {
 			
 			//هنا نعالج الإشعار القادم و نحلله
 			noty_button_function = "";
-			if(data.additionalData.noty_type > 0){
-				if(data.additionalData.noty_type == 111 && data.additionalData.site > 0 && data.additionalData.sec_id > 0){
-					noty_button_function = "get_sec_type_text(" +data.additionalData.site +", " +data.additionalData.sec_id +", '" +data.additionalData.page_title +"');";
-				}else if(data.additionalData.noty_type == 2 && data.additionalData.site > 0 && data.additionalData.item_id > 0){
-					noty_button_function = "get_taqrir(" +data.additionalData.site +", " +data.additionalData.item_id +", '" +data.additionalData.page_title +"');";
-				}else if(data.additionalData.noty_type == 3 && data.additionalData.hyperlink != '' && data.additionalData.hyperlink_target != ''){
-					noty_button_function = "openUrl('" +data.additionalData.hyperlink +"', '" +data.additionalData.hyperlink_target +"');";
-				}
+			if(data.additionalData.noty_type == 1){//zeara
+				noty_button_function = "";
+			}else if(data.additionalData.noty_type == 2 && data.additionalData.item_id > 0){//news
+				noty_button_function = "get_news_item(" +data.additionalData.item_id +");";
+			}else if(data.additionalData.noty_type == 3 && data.additionalData.hyperlink != '' && data.additionalData.hyperlink_target != ''){//open url
+				noty_button_function = "openUrl('" +data.additionalData.hyperlink +"', '" +data.additionalData.hyperlink_target +"');";
 			}
+
 			
 			
 			
 			
-			var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +data.title +"</h4>" +data.message +((noty_button_function != '')? " <a class='open_content_link' href='#' onclick=\"" +noty_button_function +"return false;\">" +((data.additionalData.button_text != "")? data.additionalData.button_text : "متابعة...") +"</a>" : "") +"</div>";
+			var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +data.title +"</h4><span>" +data.message +"</span>" +((noty_button_function != '')? " <a class='open_content_link' href='#' onclick=\"" +noty_button_function +"return false;\">" +((data.additionalData.button_text != "")? data.additionalData.button_text : "متابعة...") +"</a>" : "") +"</div>";
 			notify(text_a, 'information', 20000, 'top', 'Left', 'Right');
 			
 			

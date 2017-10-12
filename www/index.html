@@ -194,6 +194,47 @@
 		
 	//----------------------
 	
+	function get_news_item(newsItemId){
+		$.ajax({
+			type : 'get',
+			url : 'http://imamali.net/app_json/get_news_single_item.php?news_id='+newsItemId,
+			async : false,
+			jsonpCallback : 'newsSingleItemCallBack',
+			contentType : "application/json",
+			dataType : 'jsonp',
+			success : function(json){
+
+				$("#news_item_content #app-news-content .news-pic-tools img").attr("src", "http://imamali.net/rpic.php?i=files/news/images/" +json['pic_name'] +"&w=430&h=300");
+				$("#news_item_content #app-news-content .news-pic-tools .news-tools span span").text(json['date']);
+				$("#news_item_content #app-news-content .news-pic-tools .news-tools span:first span").text(json['view_num']);
+				$("#news_item_content #app-news-content h3.news-title").text(json['title']);
+				$("#news_item_content #app-news-content div.news-text").html(json['text']);
+				$("#news_item_content #app-news-content div.news-text img").each(function(){
+					if($(this).attr("src").indexOf("http://imamali") > -1 ){
+
+					}else{
+						$(this).attr("src", "http://imamali.net/" +$(this).attr("src"));
+					}
+				});
+				//$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+				$.afui.loadContent("#news_item_content",false,false,"up");
+
+
+			},
+			error: function(e, errorReason){
+				//console.log(e.message);
+				if(errorReason != "abort"){
+					notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+				}
+				//$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+
+			}
+		});
+		
+	}
+		
+	//----------------------
+	
 	//show notification
 	function notify(text, type, duration, pos, animateIn, animateOut){
 /*		var n = noty({
