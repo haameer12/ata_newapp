@@ -630,7 +630,7 @@
 	.noty_message{
 		font-family:'Droid Arabic Kufi', 'Tahoma' !important;
 		padding:4vw 4.8vw 4vw 4.8vw !important;
-		font-size:4.3vw !important;
+		font-size:4.vw !important;
 		line-height:5vw !important;
 		font-weight:normal !important;
 	}
@@ -640,7 +640,7 @@
 		text-align:justify !important;
 		line-height:8vw !important;
 		margin:0 6.2vw 0 1vw !important;
-		font-size:4.3vw !important;
+		font-size:4vw !important;
 		overflow:hidden !important;
 		min-height:10vw !important;
 	}
@@ -651,7 +651,7 @@
 		display:block;
 		background:#2b7ea2;
 		margin:4vw 0 2vw 0;
-		padding:2vw 1vw;
+		padding:1.3vw 0.7vw;
 		text-decoration:none;
 		text-align:center;
 		border-radius:1vw;
@@ -659,18 +659,49 @@
 		font-family:'Droid Arabic Kufi', 'Tahoma' !important;
 	}
 	.noty_message .noty-icon{
-		font-size:11vw !important;
-		padding:4vw 0 0 0 !important;
+		font-size:9vw !important;
+		width:9.5vw !important;
+		padding:3vw 0 0 0 !important;
 	}
 	.noty_message .noty-close{
 		position:absolute;
-		bottom:10px !important;
-		right:5.8vw !important;
-		width:42px !important;
+		bottom:3vw !important;
+		right:6.4vw !important;
+		width:9.5vw !important;
 		text-align:left !important;
-		font-size:7vw !important;
+		font-size:6vw !important;
 		padding:6vw 0 6vw 0 !important;
 		color:#333 !important;
+	}
+	@media screen and (orientation : landscape){
+		.noty_message{
+			padding:4vh 4.8vh 4vh 4.8vh !important;
+			font-size:4.vh !important;
+			line-height:5vh !important;
+		}
+		.noty_message .noty-text{
+			line-height:8vh !important;
+			margin:0 6.2vh 0 1vh !important;
+			font-size:4vh !important;
+			min-height:10vh !important;
+		}
+		.noty_message .noty-text a.open_content_link{
+			margin:4vh 0 2vh 0;
+			padding:1.3vh 0.7vh;
+			border-radius:1vh;
+		}
+		.noty_message .noty-icon{
+			font-size:9vh !important;
+			width:9.5vh !important;
+			padding:3vh 0 0 0 !important;
+		}
+		.noty_message .noty-close{
+			bottom:3vh !important;
+			right:6.4vh !important;
+			width:9.5vh !important;
+			font-size:6vh !important;
+			padding:6vh 0 6vh 0 !important;
+		}
 	}
 	</style>
 </head>
