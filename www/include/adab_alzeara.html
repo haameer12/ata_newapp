@@ -7,20 +7,24 @@
 	display:block;
 	background:rgba(255,255,255,0.2);
 	border:0.2vw solid #b3d5dc;
-	font-size:3.4vw;
+	font-size:3.5vw;
 	font-family:'Droid Arabic Kufi';
 	text-decoration:none;
-	color:#508798;
-	margin:3vw 0 0 0;
-	padding:2vw;
+	color:#3b3b3b;
+	margin:0 0 2.5vw 0;
+	padding:3.8vw;
 	border-radius:1vw;
+	direction:rtl;
+}
+.adab_alzeara-con .adab_alzeara-button:last-child{
+	margin:0;
 }
 @media screen and (orientation : landscape){
 	.adab_alzeara-con .adab_alzeara-button{
 		border:0.2vh solid #abced5;
-		font-size:3.4vh;
-		margin:2.2vh 0 0 0;
-		padding:2vh;
+		font-size:3.5vh;
+		margin:0 0 2.5vh 0;
+		padding:3.8vh;
 		border-radius:1vh;
 	}
 }
@@ -75,16 +79,16 @@
 
 
 					<div class="adab_alzeara-con">
-						<a href="#" class="adab_alzeara-button">من آداب زيارة المعصومين (عليهم السلام)</a>
-						<a href="#" class="adab_alzeara-button">زيارة الجامعة الكبيرة</a>
-						<a href="#" class="adab_alzeara-button">زيارة أمين الله</a>
-						<a href="#" class="adab_alzeara-button">دعاء الإفتتاح</a>
-						<a href="#" class="adab_alzeara-button">دعاء التوسل</a>
-						<a href="#" class="adab_alzeara-button">دعاء الصباح</a>
-						<a href="#" class="adab_alzeara-button">دعاء العهد</a>
-						<a href="#" class="adab_alzeara-button">دعاء الندبة</a>
-						<a href="#" class="adab_alzeara-button">دعاء كميل</a>
-						<a href="#" class="adab_alzeara-button">حديث الكساء</a>
+						<a href="include/adab_alzeara/adab_alzeara.html" class="adab_alzeara-button">من آداب زيارة المعصومين (عليهم السلام)</a>
+						<a href="include/adab_alzeara/aljamea.html" class="adab_alzeara-button">زيارة الجامعة الكبيرة</a>
+						<a href="include/adab_alzeara/amin_allah.html" class="adab_alzeara-button">زيارة أمين الله</a>
+						<a href="include/adab_alzeara/aleftitah.html" class="adab_alzeara-button">دعاء الإفتتاح</a>
+						<a href="include/adab_alzeara/altawasol.html" class="adab_alzeara-button">دعاء التوسل</a>
+						<a href="include/adab_alzeara/alsabah.html" class="adab_alzeara-button">دعاء الصباح</a>
+						<a href="include/adab_alzeara/alahad.html" class="adab_alzeara-button">دعاء العهد</a>
+						<a href="include/adab_alzeara/alnodba.html" class="adab_alzeara-button">دعاء الندبة</a>
+						<a href="include/adab_alzeara/komail.html" class="adab_alzeara-button">دعاء كميل بن زياد</a>
+						<a href="include/adab_alzeara/hadith_alkisa.html" class="adab_alzeara-button">حديث الكساء</a>
 					</div>
 					
 					
@@ -107,6 +111,7 @@
 <script>
 $("#adab_alzeara").bind('panelload', function() {
 	//alert("adab_alzeara start");
+	$("#adab_alzeara_content_page .nano").nanoScroller({ alwaysVisible: true });
 });
 $("#adab_alzeara").bind('panelunload', function() {
 	//alert("adab_alzeara end");
