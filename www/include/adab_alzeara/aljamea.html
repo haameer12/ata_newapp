@@ -325,7 +325,7 @@ $("#4170422590").bind('panelload', function() {
 	
 	
 	
-	/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 /////START DOWNLOAD//////////////////////////////////////////////////////////////////////
 			init_audio();
@@ -349,13 +349,13 @@ $("#4170422590").bind('panelload', function() {
 			
 			
 			if(window.localStorage.getItem('downloaded_files') == null){
-				window.localStorage.setItem('downloaded_files',JSON.stringify(["786","110"]));	
+				window.localStorage.setItem('downloaded_files',JSON.stringify(["786","110"]));
 			}
 			
 			
 			if(window.localStorage.getItem('download_address') == null){
 				
-				window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, 
+				window.requestFileSystem(LocalFileSystem.TEMPORARY, 0,
 					function(fs) {
 						window.localStorage.setItem('download_address',fs.root.toURL());
 					}, function(e) {
@@ -373,7 +373,6 @@ $("#4170422590").bind('panelload', function() {
 			
 			
 
-		}
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 /////START DOWNLOAD//////////////////////////////////////////////////////////////////////
@@ -754,7 +753,7 @@ $("#4170422590").bind('panelload', function() {
 			}
 
 
-			function stopAudio() {
+			function stopAudio(){
 				if (audio) {
 					audio.stop();
 					audio.release();
