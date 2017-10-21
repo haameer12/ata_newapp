@@ -57,7 +57,8 @@
     <!--<plugin spec="https://github.com/apache/cordova-plugin-device-orientation.git" source="git" />-->
 	<plugin spec="https://github.com/apache/cordova-plugin-dialogs.git" source="git" />
 	<plugin spec="https://github.com/apache/cordova-plugin-file.git" source="git" />
-    <plugin spec="https://github.com/apache/cordova-plugin-file-transfer.git#706b1aa" source="git" />
+    <!--<plugin spec="https://github.com/apache/cordova-plugin-file-transfer.git" source="git" />-->
+    <plugin name="cordova-plugin-file-transfer" source="npm" />
     <!--<plugin spec="https://github.com/fastrde/cordova-plugin-fastrde-downloader.git" source="git" />-->
 	<plugin spec="https://github.com/apache/cordova-plugin-geolocation.git" source="git" />
 	<!--<plugin spec="https://github.com/apache/cordova-plugin-globalization.git" source="git" />-->
