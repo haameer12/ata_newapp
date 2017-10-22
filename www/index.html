@@ -108,7 +108,74 @@
 			if (networkState == Connection.NONE) {
 				return;
 			} else {
-				download(URL, Folder_Name, File_Name, LoadingElementID); //If available download function call
+				//download(URL, Folder_Name, File_Name, LoadingElementID); //If available download function call
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+
+				
+				
+				
+				
+window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
+    console.log('file system open: ' + fs.name);
+    fs.root.getFile(File_Name, { create: true, exclusive: false }, function (fileEntry) {
+        console.log('fileEntry is file? ' + fileEntry.isFile.toString());
+        var oReq = new XMLHttpRequest();
+        // Make sure you add the domain name to the Content-Security-Policy <meta> element.
+        oReq.open("GET", URL, true);
+        // Define how you want the XHR data to come back
+        oReq.responseType = "blob";
+        oReq.onload = function (oEvent) {
+            var blob = oReq.response; // Note: not oReq.responseText
+            if (blob) {
+                // Create a URL based on the blob, and set an <img> tag's src to it.
+                var url = window.URL.createObjectURL(blob);
+                document.getElementById('bot-img').src = url;window.alert(url);
+                // Or read the data with a FileReader
+                var reader = new FileReader();
+                reader.addEventListener("loadend", function() {
+                   // reader.result contains the contents of blob as text
+                });
+                reader.readAsText(blob);
+            } else console.error('we didnt get an XHR response!');
+        };
+        oReq.send(null);
+    }, function (err) { console.error('error getting file! ' + err); });
+}, function (err) { console.error('error getting persistent fs! ' + err); });
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 			}
 		}
 	}
