@@ -130,9 +130,9 @@
 				
 $("#"+LoadingElementID).fadeIn();
 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
-    console.log('file system open: ' + fs.name);
+    window.alert('file system open: ' + fs.name);
     fs.root.getFile('bot.png', { create: true, exclusive: false }, function (fileEntry) {
-        console.log('fileEntry is file? ' + fileEntry.isFile.toString());
+        window.alert('fileEntry is file? ' + fileEntry.isFile.toString());
         var oReq = new XMLHttpRequest();
         // Make sure you add the domain name to the Content-Security-Policy <meta> element.
         oReq.open("GET", "http://cordova.apache.org/static/img/cordova_bot.png", true);
@@ -151,11 +151,11 @@ window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
                    // reader.result contains the contents of blob as text
                 });
                 reader.readAsText(blob);
-            } else console.error('we didnt get an XHR response!');
+            } else window.alert('we didnt get an XHR response!');
         };
         oReq.send(null);
-    }, function (err) { console.error('error getting file! ' + err); });
-}, function (err) { console.error('error getting persistent fs! ' + err); });
+    }, function (err) { window.alert('error getting file! ' + err); });
+}, function (err) { window.alert('error getting persistent fs! ' + err); });
 				
 				
 				
