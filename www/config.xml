@@ -18,7 +18,7 @@
     <preference name="permissions"                value="none"/>
 
     <!-- Customize your app and platform with the preference element. -->
-	<preference name='phonegap-version'			  value='cli-6.5.0' />
+	<preference name='phonegap-version'			  value='cli-6.4.0' />
     <preference name="orientation"                value="default" />        <!-- portrait all: default means both landscape and portrait are enabled -->
     <preference name="target-device"              value="universal" />      <!-- all: possible values handset, tablet, or universal -->
     <!--<preference name="fullscreen"                 value="true" />-->           <!-- all: hides the status bar at the top of the screen -->
@@ -57,8 +57,7 @@
     <!--<plugin spec="https://github.com/apache/cordova-plugin-device-orientation.git" source="git" />-->
 	<plugin spec="https://github.com/apache/cordova-plugin-dialogs.git" source="git" />
 	<plugin spec="https://github.com/apache/cordova-plugin-file.git" source="git" />
-    <!--<plugin spec="https://github.com/apache/cordova-plugin-file-transfer.git" source="git" />-->
-    <plugin name="cordova-plugin-file-transfer" spec="~1.6.2" source="npm" />
+    <plugin spec="https://github.com/apache/cordova-plugin-file-transfer.git" source="git" />
     <!--<plugin spec="https://github.com/fastrde/cordova-plugin-fastrde-downloader.git" source="git" />-->
 	<plugin spec="https://github.com/apache/cordova-plugin-geolocation.git" source="git" />
 	<!--<plugin spec="https://github.com/apache/cordova-plugin-globalization.git" source="git" />-->
