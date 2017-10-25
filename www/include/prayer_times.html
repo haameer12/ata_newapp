@@ -141,9 +141,9 @@
 			
 			
 			<div class="prayer_cats">
-				<a href="#" class="active">النجف الأشرف</a>
-				<a href="#">كربلاء المقدسة</a>
-				<a href="#">الكاظمية المقدسة</a>
+				<a href="#" id="prayerTimeNajafButton" class="active">النجف الأشرف</a>
+				<a href="#" id="prayerTimeKarbalaButton">كربلاء المقدسة</a>
+				<a href="#" id="prayerTimeKadimeaButton">الكاظمية المقدسة</a>
 			</div>
 			
 			
@@ -151,7 +151,7 @@
 			<style>
 			#prayer_times_content_page .nano {
 				width: 100%;
-				height: 100%;
+				height: 97%;/*100%*/
 			}
 			#prayer_times_content_page .nano .nano-content{
 				padding:0 2.7vw;
@@ -185,17 +185,17 @@
 						
 						
 						<div class="prayer_times_next_time">
-							<div></div>
-							<div>الغروب</div>
-							<div>17:22</div>
+							<div class="p_t_n_t_logo"></div>
+							<div class="p_t_n_t_name">الغروب</div>
+							<div class="p_t_n_t_time">17:22</div>
 						</div>
 						<div class="prayer_times_itmes">
-							<div class="prayer_times_itme fajr">صلاة الفجر <span>4:25</span></div>
-							<div class="prayer_times_itme shoroq">الشروق <span>4:25</span></div>
-							<div class="prayer_times_itme dohr">صلاة الظهر <span>4:25</span></div>
-							<div class="prayer_times_itme shoroq">الغروب <span>4:25</span></div>
-							<div class="prayer_times_itme maghrib">صلاة المغرب <span>4:25</span></div>
-							<div class="prayer_times_itme midnight">وقت منتصف الليل <span>4:25</span></div>
+							<div class="prayer_times_itme fajr">صلاة الفجر <span>--:--</span></div>
+							<div class="prayer_times_itme shoroq">الشروق <span>--:--</span></div>
+							<div class="prayer_times_itme dohr">صلاة الظهر <span>--:--</span></div>
+							<div class="prayer_times_itme shoroq">الغروب <span>--:--</span></div>
+							<div class="prayer_times_itme maghrib">صلاة المغرب <span>--:--</span></div>
+							<div class="prayer_times_itme midnight">وقت منتصف الليل <span>--:--</span></div>
 						</div>
 						
 						
@@ -219,95 +219,111 @@
 
 </div>
 <script>
+Date.prototype.getTimezone = function(showDST) {
+	var jan = new Date(this.getFullYear(), 0, 1);
+	var jul = new Date(this.getFullYear(), 6, 1);
+
+	var utcOffset = new Date().getTimezoneOffset() / 60 * -1;
+	var dstOffset = (jan.getTimezoneOffset() - jul.getTimezoneOffset()) / 60;
+
+	//var utc = "UTC" + utcOffset.getSign() + (utcOffset * 100).preFixed(1000);
+	//var dst = "DST" + dstOffset.getSign() + (dstOffset * 100).preFixed(1000);
+	var utc = utcOffset.getSign() + ((utcOffset * 100).preFixed(1000)/100);
+	var dst = dstOffset.getSign() + (dstOffset * 100).preFixed(1000);
+
+	if (showDST) {
+		return utc + " (" + dst + ")";
+	}
+
+	return utc;
+}
+Number.prototype.preFixed = function (preCeiling) {
+	var num = parseInt(this, 10);
+	if (preCeiling && num < preCeiling) {
+		num = Math.abs(num);
+		var numLength		 = num.toString().length;
+		var preCeilingLength = preCeiling.toString().length;
+		var preOffset		 = preCeilingLength - numLength;
+		for (var i = 0; i < preOffset; i++) {
+			num = "0" + num;
+		}
+	}
+	return num;
+}
+Number.prototype.getSign = function () {
+	var num	 = parseInt(this, 10);
+	var sign = "+";
+	if (num < 0) {
+		sign = "-";
+	}
+	return sign;
+}
+
+var timezoon = new Date().getTimezone();
+
+function set_salat_time(x,y){
+	var list = ['Fajr', 'Sunrise', 'Dhuhr', 'sunset', 'Maghrib', 'Midnight'];
+	var listName = ['صلاة الفجر', 'الشروق', 'صلاة الظهر', 'الغروب', 'صلاة المغرب', 'وقت منتصف الليل'];
+	var listLogo = ['sobh.png', 'ghorob.png', 'zohr.png', 'ghorob.png', 'maghreb.png', 'midnight.png'];
+	prayTimes.setMethod('Tehran');
+	var times;
+
+	var now			= new Date().getTime();
+	var today		= new Date(now);
+
+	times = prayTimes.getTimes(today, [x, y], timezoon);
+	var jump = false;
+	for(var i in list){
+		var h = parseInt(times[list[i].toLowerCase()].substr(0,2));
+		var m = parseInt(times[list[i].toLowerCase()].substr(3,2));
+		
+		if(!jump && (today.getHours() < h  || (today.getHours() == h && today.getMinutes() <= m)) ){
+			jump = true;
+			$('.prayer_times_next_time div.p_t_n_t_name').eq(0).html(listName[i]);
+			$('.prayer_times_next_time div.p_t_n_t_time').html(times[list[i].toLowerCase()]);
+			$('.prayer_times_next_time div.p_t_n_t_logo').css("background-image", "url(img/" +listLogo[i] +")");
+			//$('.smm_next_time > div').attr('class','retina '+listClass[i]);
+		} else if(!jump && i==5){
+			var today = new Date(now+(24*60*60*1000));
+			times = prayTimes.getTimes(today, [x, y], timezoon);
+			$('.prayer_times_next_time div.p_t_n_t_name').eq(0).html(listName[0]);
+			$('.prayer_times_next_time div.p_t_n_t_time').html(times[list[0].toLowerCase()]);
+			$('.prayer_times_next_time div.p_t_n_t_logo').css("background-image", "url(img/" +listLogo[0] +")");
+		}
+
+		$('.prayer_times_itmes div.prayer_times_itme').eq(i).find('span').html(times[list[i].toLowerCase()]);
+	}
+}
+
+
+set_salat_time(31.995,44.314);
+$("#prayerTimeNajafButton").unbind("tap");
+$("#prayerTimeNajafButton").bind("tap",function(){
+	$('div.prayer_cats a').removeClass('active');
+	$(this).addClass('active');
+	set_salat_time(31.995,44.314);
+});
+$("#prayerTimeKarbalaButton").unbind("tap");
+$("#prayerTimeKarbalaButton").bind("tap",function(){
+	$('div.prayer_cats a').removeClass('active');
+	$(this).addClass('active');
+	set_salat_time(32.6068,44.0104);
+});
+$("#prayerTimeKadimeaButton").unbind("tap");
+$("#prayerTimeKadimeaButton").bind("tap",function(){
+	$('div.prayer_cats a').removeClass('active');
+	$(this).addClass('active');
+	set_salat_time(33.3611,44.3142);
+});
+</script>
+
+
+
+
+<script>
 $("#prayer_times").bind('panelload', function() {
 	//alert("start");
 	$("#prayer_times_content_page .nano").nanoScroller({ alwaysVisible: true });
-	
-	
-	
-	
-	
-	
-	Date.prototype.getTimezone = function(showDST) {
-		var jan = new Date(this.getFullYear(), 0, 1);
-		var jul = new Date(this.getFullYear(), 6, 1);
-
-		var utcOffset = new Date().getTimezoneOffset() / 60 * -1;
-		var dstOffset = (jan.getTimezoneOffset() - jul.getTimezoneOffset()) / 60;
-
-		//var utc = "UTC" + utcOffset.getSign() + (utcOffset * 100).preFixed(1000);
-		//var dst = "DST" + dstOffset.getSign() + (dstOffset * 100).preFixed(1000);
-		var utc = utcOffset.getSign() + ((utcOffset * 100).preFixed(1000)/100);
-		var dst = dstOffset.getSign() + (dstOffset * 100).preFixed(1000);
-
-		if (showDST) {
-			return utc + " (" + dst + ")";
-		}
-
-		return utc;
-	}
-	Number.prototype.preFixed = function (preCeiling) {
-		var num = parseInt(this, 10);
-		if (preCeiling && num < preCeiling) {
-			num = Math.abs(num);
-			var numLength		 = num.toString().length;
-			var preCeilingLength = preCeiling.toString().length;
-			var preOffset		 = preCeilingLength - numLength;
-			for (var i = 0; i < preOffset; i++) {
-				num = "0" + num;
-			}
-		}
-		return num;
-	}
-	Number.prototype.getSign = function () {
-		var num	 = parseInt(this, 10);
-		var sign = "+";
-		if (num < 0) {
-			sign = "-";
-		}
-		return sign;
-	}
-
-	var timezoon = new Date().getTimezone();
-
-	function set_salat_time(x,y){
-		console.log('77777777');
-		var list = ['Fajr', 'Sunrise', 'Dhuhr', 'sunset', 'Maghrib', 'Midnight'];
-		var listName = ['صلاة الفجر', 'الشروق', 'صلاة الظهر', 'الفروب', 'صلاة المغرب', 'وقت منتصف اللیل'];
-		var listClass = ['smm_sobh', 'smm_sunrise', 'smm_zohr', 'smm_ghorob', 'smm_maghreb', 'smm_midnight'];
-		prayTimes.setMethod('Tehran');
-		var times;
-
-		var now			= new Date().getTime();
-		var today		= new Date(now);
-
-			times = prayTimes.getTimes(today, [x, y], timezoon);
-			var jump = false;
-			for(var i in list)	{
-				var h = parseInt(times[list[i].toLowerCase()].substr(0,2));
-				var m = parseInt(times[list[i].toLowerCase()].substr(3,2));
-				if(!jump && (today.getHours() < h  || (today.getHours() == h && today.getMinutes() <= m)) ){
-					jump = true;
-					$('.smm_next_time > span').eq(0).html(listName[i]);
-					$('.smm_next_time span:last-child').html(times[list[i].toLowerCase()]);
-					$('.smm_next_time > div').attr('class','retina '+listClass[i]);
-				} else if(!jump && i==5){
-					var today		= new Date(now+(24*60*60*1000));
-					times = prayTimes.getTimes(today, [x, y], timezoon);
-					$('.smm_next_time > span').eq(0).html(listName[0]);
-					$('.smm_next_time span:last-child').html(times[list[0].toLowerCase()]);
-					$('.smm_next_time > div').attr('class','retina '+listClass[0])
-				}
-				$('.smm_salat_content ul li').eq(i).find('span:last-child').html(times[list[i].toLowerCase()]);
-			}
-	}
-	
-	
-	
-	
-	
-	
-	
 });
 $("#prayer_times").bind('panelunload', function() {
 	//alert("end");
