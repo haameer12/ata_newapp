@@ -1,29 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>بسم الله الرحمن الرحیم</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<!--<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/font.css">-->
 
+<link rel="stylesheet" href="maps/js/leaflet.css" />
+<link rel="stylesheet" href="maps/js/leaflet-search.css" />
+<link rel="stylesheet" href="maps/js/leaflet-routing-machine.css" />
+<link rel="stylesheet" href="maps/js/style.css" />
 
+<script src="maps/jquery-3.0.0.min.js"></script>
 
+<script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
 
-
-<link rel="stylesheet" href="include/maps/js/leaflet.css" />
-<link rel="stylesheet" href="include/maps/js/leaflet-search.css" />
-<link rel="stylesheet" href="include/maps/js/leaflet-routing-machine.css" />
-<link rel="stylesheet" href="include/maps/js/style.css" />
-
+<!--<script src="js/fastclick.js"></script>-->
 <script>
-
+	var my_location_gps;
+	function getParameterByName(name) {
+		name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+		var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+			results = regex.exec(location.search);
+		return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+    $( document ).ready(function() {
+        console.log( "document loaded" );
+		
+    });
+	function init() {		
+		console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start init()');
+		document.addEventListener("deviceready", onDeviceReady, false);
+		radius = 0;
+		my_location_marker = L.marker([36.2879,59.6157], {icon: user_location_icon,zIndexOffset: 999}).addTo(map);
+		my_location_circle = L.circle([36.2879,59.6157], radius).addTo(map);
+		
+		//onDeviceReady();
+	}
+	
+	function onDeviceReady() {
+		console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start onDeviceReady()');
+		//FastClick.attach(document.getElementById('button'));
+		/**/
+		(function(){
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start getCurrentPosition()');
+			navigator.geolocation.getCurrentPosition(onSuccess, onError);
+			//console.log("11");
+			setTimeout(arguments.callee, 10000);
+		})();
+		
+		/*if ( device.platform == 'Android' ){//Android,iOS,win7=WinCE,win8=Win32NT
+			document.addEventListener("backbutton", go_back_map, false);
+		}
+		register_notification();*/
+	}
+	function onSuccess(position) {
+		console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start onSuccess()');
+		//alert("longitude : " + position.coords.longitude);
+		//alert("latitude  : " + position.coords.latitude );
+		
+		//user_location_icon	= new icon_style_user_location({iconUrl: 'maps/map-icon/user_location.png',iconRetinaUrl: 'maps/map-icon/user_location@2x.png',});
+		radius = (position.coords.accuracy / 2) * 1;
+		//my_location_marker = L.marker([position.coords.latitude,position.coords.longitude], {icon: user_location_icon}).addTo(map).bindPopup("شما در شعاع " + radius + " متری این نقطه هستید");//.openPopup();
+		//my_location_circle = L.circle([position.coords.latitude,position.coords.longitude], radius).addTo(map);
+		my_location_marker.setLatLng([position.coords.latitude,position.coords.longitude]);
+		my_location_marker.bindPopup("بعدك عن هذه النقطة لا يتجاوز " + radius + " متراً");
+		my_location_circle.setLatLng([position.coords.latitude,position.coords.longitude]);
+		my_location_circle.setRadius(radius);
+		//console.log("00000:" + position.coords);
+		$("#location_btn").addClass("active");
+				
+	}
+	
+	function onError(error) { 
+		// your callback here
+		//alert(JSON.stringify(error));
+	}
 </script>
+</head>
 
-
-
-
-
-
-
-
-
-
-
-
-
+<body onload="init();">
 	<div id="favorites_btn" class="top_left_smcms_btn" ></div>
 	<div id="wifi_btn" class="top_left_smcms_btn" ></div>
 	<div id="location_btn" class="top_left_smcms_btn" ></div>
@@ -65,97 +122,15 @@
 
 
 
-<script src="include/maps/js/leaflet-src.js"></script>
-<script src="include/maps/js/leaflet-search.js"></script>
-<script src="include/maps/js/leaflet-routing-machine.min.js"></script> 
-<script src="include/maps/js/Control.Geocoder.js"></script>
+<script src="maps/js/leaflet-src.js"></script>
+<script src="maps/js/leaflet-search.js"></script>
+<script src="maps/js/leaflet-routing-machine.min.js"></script> 
+<script src="maps/js/Control.Geocoder.js"></script>
 
-<script src="include/maps/js/fuse.min.js"></script>
-<script src="include/maps/js/points.json"></script>
-
-<script>
-
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
+<script src="maps/js/fuse.min.js"></script>
+<script src="maps/js/points.json"></script>
 
 <script>
-$("#2386983701").bind('panelload', function() {
-	alert("start");
-	
-	
-	
-	
-	
-	
-	
-	
-var my_location_gps;
-function getParameterByName(name) {
-	name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-	var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-		results = regex.exec(location.search);
-	return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
-
-
-	
-	
-	
-radius = 0;
-my_location_marker = L.marker([36.2879,59.6157], {icon: user_location_icon,zIndexOffset: 999}).addTo(map);
-my_location_circle = L.circle([36.2879,59.6157], radius).addTo(map);
-	
-	
-(function(){
-	console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start getCurrentPosition()');
-	navigator.geolocation.getCurrentPosition(onSuccess, onError);
-	//console.log("11");
-	setTimeout(arguments.callee, 10000);
-})();
-	
-function onSuccess(position) {
-	console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start onSuccess()');
-	//alert("longitude : " + position.coords.longitude);
-	//alert("latitude  : " + position.coords.latitude );
-
-	//user_location_icon	= new icon_style_user_location({iconUrl: 'maps/map-icon/user_location.png',iconRetinaUrl: 'maps/map-icon/user_location@2x.png',});
-	radius = (position.coords.accuracy / 2) * 1;
-	//my_location_marker = L.marker([position.coords.latitude,position.coords.longitude], {icon: user_location_icon}).addTo(map).bindPopup("شما در شعاع " + radius + " متری این نقطه هستید");//.openPopup();
-	//my_location_circle = L.circle([position.coords.latitude,position.coords.longitude], radius).addTo(map);
-	my_location_marker.setLatLng([position.coords.latitude,position.coords.longitude]);
-	my_location_marker.bindPopup("بعدك عن هذه النقطة لا يتجاوز " + radius + " متراً");
-	my_location_circle.setLatLng([position.coords.latitude,position.coords.longitude]);
-	my_location_circle.setRadius(radius);
-	//console.log("00000:" + position.coords);
-	$("#location_btn").addClass("active");
-
-}
-
-function onError(error) { 
-	// your callback here
-	//alert(JSON.stringify(error));
-}
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
 	var categories = {
 		101 : {desc: "الاماكن المقدسة", icon:"zearati"},/////////////
 		102 : {desc: "الأماكن المفضلة ", icon:"fav"},
@@ -646,22 +621,12 @@ function onError(error) {
 		$("#add_to_favorites").removeClass("disabled");
 	}
 	//console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    fihish()');
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-});
-$("#2386983701").bind('panelunload', function() {
-	//alert("end");
-});
 </script>
+<style>
+
+
+</style>
+
+
+</body>
+</html>
