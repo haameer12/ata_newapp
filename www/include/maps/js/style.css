@@ -1,3 +1,7 @@
+*{
+	font-size:12px;
+	font-family:'Droid Arabic Kufi',"Iranian_Sans",Tahoma !important;
+}
 body {
   background: white none repeat scroll 0 0;
   color: #285585;
