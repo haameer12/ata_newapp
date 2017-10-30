@@ -1,5 +1,23 @@
+<style>
+span.backButtonForMap{
+    background-image: url(img/back.png);
+    width: 50px;
+    height: 43px;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size:30px;
+    /* float: left; */
+    vertical-align: -webkit-baseline-middle;
+    position: absolute;
+	top:15px;
+	left:15px;
+}
+</style>
 <iframe style="border:none;position:absolute;top:0;left:0;width:100%;height:100%" src="include/dalil_alzaer_map.html?lat=32.6073&long=44.0115"></iframe>
-
+<a href="#" onclick="$.afui.goBack();return false;">
+	<span class="backButtonForMap"></span>
+</a>
 <script>
 $("#408364579").bind('panelload', function() {
 	//alert("start");

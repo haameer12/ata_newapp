@@ -371,7 +371,7 @@ input[type=checkbox].leaflet-control-layers-selector {
 	border-radius: 0;
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
 	float: none;
-	margin: 15px 15px 0;
+	margin: 15px 15px 0 15px;
 	display: block;
 	height: 43px;
 }
@@ -424,6 +424,7 @@ input[type=checkbox].leaflet-control-layers-selector {
     width: 100%;
 	border-bottom:1px solid #e8e0d8;
 	margin-top: 0;
+	direction: rtl;
 }
 .leaflet-top.leaflet-left .leaflet-control.leaflet-control-search .search-button {
     display: none !important;
