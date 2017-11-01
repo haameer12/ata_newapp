@@ -90,7 +90,7 @@ function register_notification_home() {
 			}
 			if(data.additionalData.noty_sound > 0 && data.additionalData.noty_sound < 8){
 				// if the notification contains a soundname, play it.
-				var my_media = new Media("/android_asset/www/sound/" +noty_sound);
+				var my_media = new Media("sound/" +noty_sound);
 				my_media.play();
 			}
 			
