@@ -5,7 +5,7 @@ function register_notification_home() {
 	}
 	else
 	{
-		var push = PushNotification.init({
+		/*var push = PushNotification.init({
 			android: {
 				senderID: "527730931439"
 			},
@@ -15,7 +15,22 @@ function register_notification_home() {
 				sound: "true"
 			},
 			windows: {}
+		});*/
+		
+		
+		var push = PushNotification.init({
+			android: {},
+			browser: {
+				pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+			},
+			ios: {
+				alert: "true",
+				badge: true,
+				sound: 'false'
+			},
+			windows: {}
 		});
+		
 
 		push.on('registration', function(data) {
 			// data.registrationId
@@ -126,6 +141,12 @@ function register_notification_home() {
 			// e.message
 			// alert("push error = " + e.message);
 		});
+		
+		
+		
+
+		
+		
 	}
 
 }

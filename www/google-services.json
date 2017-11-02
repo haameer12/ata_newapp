@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "527730931439",
+    "firebase_url": "https://imam-ali-network.firebaseio.com",
+    "project_id": "imam-ali-network",
+    "storage_bucket": "imam-ali-network.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:527730931439:android:2ebafb2220e05e54",
+        "android_client_info": {
+          "package_name": "iq.imamali.net"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "527730931439-a017oufd7u3b26uq7bkfkvkusgp2bjk5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmyOYxCFn2-bkth1DGZwTV_B3sg-H8dlY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
