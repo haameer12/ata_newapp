@@ -96,7 +96,7 @@
 	
 	<preference name="android-build-tool" value="gradle" />
 	<plugin name="phonegap-plugin-push" spec="~1.9.1" source="npm">
-		<param name="SENDER_ID" value="527730931439" />
+		<param name="SENDER_ID" value="1069136326484" />
 	</plugin>
 	
 	

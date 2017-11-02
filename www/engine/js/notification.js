@@ -20,7 +20,7 @@ function register_notification_home() {
 		
 		var push = PushNotification.init({
 			android: {
-				senderID: "527730931439"
+				senderID: "1069136326484"
 			},
 			browser: {
 				pushServiceURL: 'http://push.api.phonegap.com/v1/push'
