@@ -47,8 +47,10 @@
     <!-- Plugins -->
 
     <!-- Core plugins -->
-	
-	<plugin spec="https://github.com/jrortiz8585/plugin-beacon.git" source="git" />
+    
+    
+    
+    <plugin spec="https://github.com/fechanique/cordova-plugin-fcm" source="git" />
 	
 	<plugin name="cordova-plugin-whitelist" source="npm" />
 	<!--<plugin spec="https://github.com/apache/cordova-plugin-battery-status.git" source="git" />-->
