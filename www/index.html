@@ -302,7 +302,12 @@
 
 	function onDeviceReady(){
 		
-		window.alert(window.location.pathname);
+		
+		
+		var my_media = new Media("http://imamali.net/files/voice/lihalz6lu.mp3", function(){});
+		my_media.play();
+		
+		
 		
 		AndroidFullScreen.immersiveMode(function(){/*successFunction*/}, function(){/*errorFunction*/});
 		setInterval(function(){
