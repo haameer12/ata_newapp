@@ -302,6 +302,8 @@
 
 	function onDeviceReady(){
 		
+		window.alert(window.location.pathname);
+		
 		AndroidFullScreen.immersiveMode(function(){/*successFunction*/}, function(){/*errorFunction*/});
 		setInterval(function(){
 			statusbarTransparent.enable();
