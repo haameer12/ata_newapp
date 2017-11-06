@@ -631,8 +631,8 @@ $("#4170422590").bind('panelload', function() {
 				);
 			}
 
-			console.log("window.localStorage.getItem('download_address'):" + window.localStorage.getItem('download_address'));
-			console.log("window.localStorage.getItem('downloaded_files'):" + window.localStorage.getItem('downloaded_files'));
+			window.alert("window.localStorage.getItem('download_address'):" + window.localStorage.getItem('download_address'));
+			window.alert("window.localStorage.getItem('downloaded_files'):" + window.localStorage.getItem('downloaded_files'));
 /////END DOWNLOAD////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -643,8 +643,8 @@ $("#4170422590").bind('panelload', function() {
 /////////////////////////////////////////////////////////////////////////////////////////
 /////START DOWNLOAD//////////////////////////////////////////////////////////////////////
 		function play_or_download(URL,Extension) {
-			console.log("play_or_download URL: " + URL);
-			console.log("play_or_download Extension: " + Extension);
+			window.alert("play_or_download URL: " + URL);
+			window.alert("play_or_download Extension: " + Extension);
 
 			if (device.platform == 'iOS')
 			{
@@ -653,10 +653,10 @@ $("#4170422590").bind('panelload', function() {
 			}
 			
 			downloadPath = window.localStorage.getItem('download_address') + $.md5(URL) + "." + Extension;
-			console.log("play_or_download : " + downloadPath);
+			window.alert("play_or_download : " + downloadPath);
 			if(temp_element.attr("play_type")=="offline")
 			{
-					console.log("play_or_download : play offline");
+					window.alert("play_or_download : play offline");
 					
 					playAudio_new(URL,false);
 			}
@@ -664,7 +664,7 @@ $("#4170422590").bind('panelload', function() {
 			{
 				if(check_download(URL))
 				{
-					console.log("play_or_download : check_download");
+					window.alert("play_or_download : check_download");
 					
 					playAudio_new(downloadPath,true);
 					//var media = new Media(downloadPath, null, function(e) { alert(JSON.stringify(e));});
@@ -672,17 +672,17 @@ $("#4170422590").bind('panelload', function() {
 				}
 				else
 				{
-					console.log("play_or_download : start_download");
+					window.alert("play_or_download : start_download");
 					start_download(URL,Extension);
 				}
 			}
 		}
 
 		function start_download(URL,Extension) {
-			console.log("start_download check internet");
+			window.alert("start_download check internet");
 			networkState = navigator.connection.type;
 			if (networkState == Connection.NONE) {
-				console.log("start_download : NO internet");
+				window.alert("start_download : NO internet");
 				navigator.notification.alert(
 					'يجب عليك الاتصال بالانترنت',  // message
 					temp_function,         // callback
@@ -691,10 +691,10 @@ $("#4170422590").bind('panelload', function() {
 				);
 			}
 			else{
-				console.log("start_download : we have internet");
+				window.alert("start_download : we have internet");
 
-				console.log("start_download URL: " + URL);
-				console.log("start_download Extension: " + Extension);
+				window.alert("start_download URL: " + URL);
+				window.alert("start_download Extension: " + Extension);
 				
 				var FileTransfer_OBJ = new FileTransfer();
 				var uri = encodeURI(URL + "?" + Math.random());
@@ -708,7 +708,7 @@ $("#4170422590").bind('panelload', function() {
 				$('.progress-bar-parent').css("display","block");
 				
 				downloadPath = window.localStorage.getItem('download_address') + $.md5(URL) + "." + Extension;
-				console.log("start_download : " + downloadPath);
+				window.alert("start_download : " + downloadPath);
 				
 				FileTransfer_OBJ.onprogress = function(progressEvent) {
 					if (progressEvent.lengthComputable) {
@@ -727,7 +727,7 @@ $("#4170422590").bind('panelload', function() {
 					function(entry) {	
 						$('#status').html("");
 						$('.progress-bar-parent').find('span').css('width','2%');
-						console.log("start_download : done");
+						window.alert("start_download : done");
 						temp_array = JSON.parse(window.localStorage.getItem('downloaded_files'));
 						temp_array.push($.md5(URL));
 						window.localStorage.setItem('downloaded_files',JSON.stringify(temp_array));	
@@ -763,17 +763,17 @@ $("#4170422590").bind('panelload', function() {
 		}
 		
 		function check_download(URL) {
-			console.log("check_download URL: " + URL);
+			window.alert("check_download URL: " + URL);
 			var temp_array = JSON.parse(window.localStorage.getItem('downloaded_files'));
-			console.log("check_download Extension: " + window.localStorage.getItem('downloaded_files'));
+			window.alert("check_download Extension: " + window.localStorage.getItem('downloaded_files'));
 			if($.inArray($.md5(URL),temp_array) != -1)
 			{
-				console.log("check_download true");
+				window.alert("check_download true");
 				return true;
 			}
 			else
 			{
-				console.log("check_download false");
+				window.alert("check_download false");
 				return false;
 			}
 		}
@@ -916,7 +916,7 @@ $("#4170422590").bind('panelload', function() {
 
 				}, function(error){ // error callback
 					//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
-					console.log("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
+					window.alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
 				});
 			}
 
@@ -930,13 +930,13 @@ $("#4170422590").bind('panelload', function() {
 				if ( device.platform == 'Android' && is_from_web==false ){//Android,iOS,win7=WinCE,win8=Win32NT
 					file = "/android_asset/www/" + file;
 				}
-				console.log("2");
+				window.alert("2");
 				if (audio) {
-					console.log("3");
+					window.alert("3");
 					audio.stop();
 					//audio.release();
 				}
-				console.log("4");
+				window.alert("4");
 
 				$("#smgroup_audio_player").show();
 				play_btn.css("display","none");
@@ -945,7 +945,7 @@ $("#4170422590").bind('panelload', function() {
 				slider_Timer.prop("disabled",false);
 
 				audio = new Media(file, function(){ // success callback
-					console.log("playAudio():Audio Success");
+					window.alert("playAudio():Audio Success");
 					play_btn.css("display","block");
 					play2_btn.css("display","none");
 					pause_btn.css("display","none");
@@ -954,7 +954,7 @@ $("#4170422590").bind('panelload', function() {
 					stopAudio();
 				}, function(error){ // error callback
 					//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
-					console.log("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
+					window.alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
 				});
 				//alert("3");
 				// get audio duration
