@@ -85,13 +85,13 @@
 	
 	<!--<plugin name="cordova-plugin-firebase" spec="0.1.24" />-->
 	
-	<platform name="android">
+	<!--<platform name="android">
 	  <resource-file src="google-services.json" target="google-services.json" />
 	</platform>
 
 	<platform name="ios">
 	  <resource-file src="GoogleService-Info.plist" />
-	</platform>
+	</platform>-->
 
 	
 	<preference name="android-build-tool" value="gradle" />
