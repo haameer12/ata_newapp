@@ -430,7 +430,7 @@ div#audioPosition {
   box-sizing: border-box;
   padding: 0 13px 0px 90px;
   position: absolute;
-  top: 29px;
+  top: 35px;
   width: 100%;
   z-index: 999980;
 }
@@ -572,7 +572,7 @@ outline:none
 					
 
 					
-<!--
+
 					
 					
 						
@@ -678,7 +678,7 @@ outline:none
 
 
 
-						-->
+						
 							
 							
 						</div>
@@ -740,7 +740,7 @@ setTimeout(function(){
 			
 			$('.play_it').each( function(i) {
 				//$(this).css("display","none");
-				alert("each");
+				//alert("each");
 				var temp_array = JSON.parse(window.localStorage.getItem('downloaded_files'));
 				if($.inArray($.md5($(this).attr('online')),temp_array) != -1){
 					$(this).removeClass("need_download").addClass("downloaded");
@@ -750,7 +750,7 @@ setTimeout(function(){
 			$('.play_it').click( function(i) {
 				temp_element = $(this);
 				//alert($(this).attr('online'));
-				alert("click");
+				//alert("click");
 				//play_or_download('http://imamali.net/app-json/audio/aminalah.mp3','mp3');
 				play_or_download($(this).attr('online'),"mp3");
 			});
@@ -768,14 +768,14 @@ setTimeout(function(){
 					function(fs) {
 						window.localStorage.setItem('download_address',fs.root.toURL());
 					}, function(e) {
-						alert('failed to get fs');
-						alert(JSON.stringify(e));
+						//alert('failed to get fs');
+						//alert(JSON.stringify(e));
 					}
 				);
 			}
 
-			alert("window.localStorage.getItem('download_address'):" + window.localStorage.getItem('download_address'));
-			alert("window.localStorage.getItem('downloaded_files'):" + window.localStorage.getItem('downloaded_files'));
+			//alert("window.localStorage.getItem('download_address'):" + window.localStorage.getItem('download_address'));
+			//alert("window.localStorage.getItem('downloaded_files'):" + window.localStorage.getItem('downloaded_files'));
 /////END DOWNLOAD////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -794,8 +794,8 @@ setTimeout(function(){
 /////////////////////////////////////////////////////////////////////////////////////////
 /////START DOWNLOAD//////////////////////////////////////////////////////////////////////
 		function play_or_download(URL,Extension) {
-			alert("play_or_download URL: " + URL);
-			alert("play_or_download Extension: " + Extension);
+			//alert("play_or_download URL: " + URL);
+			//alert("play_or_download Extension: " + Extension);
 
 			if (device.platform == 'iOS')
 			{
@@ -804,10 +804,10 @@ setTimeout(function(){
 			}
 			
 			downloadPath = window.localStorage.getItem('download_address') + $.md5(URL) + "." + Extension;
-			alert("play_or_download : " + downloadPath);
+			//alert("play_or_download : " + downloadPath);
 			if(temp_element.attr("play_type")=="offline")
 			{
-					alert("play_or_download : play offline");
+					//alert("play_or_download : play offline");
 					
 					playAudio_new(URL,false);
 			}
@@ -815,7 +815,7 @@ setTimeout(function(){
 			{
 				if(check_download(URL))
 				{
-					alert("play_or_download : check_download");
+					//alert("play_or_download : check_download");
 					
 					playAudio_new(downloadPath,true);
 					//var media = new Media(downloadPath, null, function(e) { alert(JSON.stringify(e));});
@@ -823,17 +823,17 @@ setTimeout(function(){
 				}
 				else
 				{
-					alert("play_or_download : start_download");
+					//alert("play_or_download : start_download");
 					start_download(URL,Extension);
 				}
 			}
 		}
 
 		function start_download(URL,Extension) {
-			alert("start_download check internet");
+			//alert("start_download check internet");
 			networkState = navigator.connection.type;
 			if (networkState == Connection.NONE) {
-				alert("start_download : NO internet");
+				//alert("start_download : NO internet");
 				navigator.notification.alert(
 					'يجب عليك الاتصال بالانترنت',  // message
 					temp_function,         // callback
@@ -842,10 +842,10 @@ setTimeout(function(){
 				);
 			}
 			else{
-				alert("start_download : we have internet");
+				//alert("start_download : we have internet");
 
-				alert("start_download URL: " + URL);
-				alert("start_download Extension: " + Extension);
+				//alert("start_download URL: " + URL);
+				//alert("start_download Extension: " + Extension);
 				
 				var FileTransfer_OBJ = new FileTransfer();
 				var uri = encodeURI(URL + "?" + Math.random());
@@ -859,7 +859,7 @@ setTimeout(function(){
 				$('.progress-bar-parent').css("display","block");
 				
 				downloadPath = window.localStorage.getItem('download_address') + $.md5(URL) + "." + Extension;
-				alert("start_download : " + downloadPath);
+				//alert("start_download : " + downloadPath);
 				
 				FileTransfer_OBJ.onprogress = function(progressEvent) {
 					if (progressEvent.lengthComputable) {
@@ -878,7 +878,7 @@ setTimeout(function(){
 					function(entry) {	
 						$('#status').html("");
 						$('.progress-bar-parent').find('span').css('width','2%');
-						alert("start_download : done");
+						//alert("start_download : done");
 						temp_array = JSON.parse(window.localStorage.getItem('downloaded_files'));
 						temp_array.push($.md5(URL));
 						window.localStorage.setItem('downloaded_files',JSON.stringify(temp_array));	
@@ -914,17 +914,17 @@ setTimeout(function(){
 		}
 		
 		function check_download(URL) {
-			alert("check_download URL: " + URL);
+			//alert("check_download URL: " + URL);
 			var temp_array = JSON.parse(window.localStorage.getItem('downloaded_files'));
-			alert("check_download Extension: " + window.localStorage.getItem('downloaded_files'));
+			//alert("check_download Extension: " + window.localStorage.getItem('downloaded_files'));
 			if($.inArray($.md5(URL),temp_array) != -1)
 			{
-				alert("check_download true");
+				//alert("check_download true");
 				return true;
 			}
 			else
 			{
-				alert("check_download false");
+				//alert("check_download false");
 				return false;
 			}
 		}
@@ -958,8 +958,8 @@ setTimeout(function(){
 				</div>
 				<div class="audio_btn">
 					<input type="button" id="play" value="" class="play_it need_download" online="http://imamali.net/app-json/audio/jamee.mp3" /><!--play_type="offline"-->
-					<input type="button" id="play2" value="play2" />
-					<input type="button" id="pause" value="pause" />
+					<input type="button" id="play2" value="" />
+					<input type="button" id="pause" value="" />
 					<input type="button" id="stop" value="Stop" />
 				</div>
 		</div>
@@ -1071,7 +1071,7 @@ setTimeout(function(){
 
 		}, function(error){ // error callback
 			//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
-			alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
+			//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
 		});
 	}
 
@@ -1085,13 +1085,13 @@ setTimeout(function(){
 		if ( device.platform == 'Android' && is_from_web==false ){//Android,iOS,win7=WinCE,win8=Win32NT
 			file = "/android_asset/www/" + file;
 		}
-		alert("2");
+		//alert("2");
 		if (audio) {
-			alert("3");
+			//alert("3");
 			audio.stop();
 			//audio.release();
 		}
-		alert("4");
+		//alert("4");
 		
 		$("#smgroup_audio_player").show();
 		play_btn.css("display","none");
@@ -1100,7 +1100,7 @@ setTimeout(function(){
 		slider_Timer.prop("disabled",false);
 		
 		audio = new Media(file, function(){ // success callback
-			alert("playAudio():Audio Success");
+			//alert("playAudio():Audio Success");
 			play_btn.css("display","block");
 			play2_btn.css("display","none");
 			pause_btn.css("display","none");
@@ -1109,7 +1109,7 @@ setTimeout(function(){
 			stopAudio();
 		}, function(error){ // error callback
 			//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
-			alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
+			//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
 		});
 		//alert("3");
 		// get audio duration
@@ -1141,7 +1141,7 @@ setTimeout(function(){
 							setAudioPosition(position);
 						}
 					}, function(e) { // get position error
-						alert("Error getting pos=" + e);
+						//alert("Error getting pos=" + e);
 						//setAudioPosition(duration);
 					}
 				);

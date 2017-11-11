@@ -48,55 +48,62 @@
     
     
     
-    <!--
-    <plugin spec="https://github.com/apache/cordova-plugin-console.git#0c434e4" />
-	<plugin spec="https://github.com/mesmotronic/cordova-plugin-fullscreen.git#2a60962" />
-	<plugin spec="https://github.com/fiscal-cliff/phonegap-plugin-brightness.git#29324ed" />
-	<plugin spec="https://github.com/phonegap/phonegap-plugin-contentsync#9353e0a" />
-	<plugin spec="https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git#25e24b2" />
-	<plugin spec="https://github.com/Paldom/UniqueDeviceID.git#43db5bb" />
-	<plugin spec="https://github.com/ekuwang/cordova-plugin-statusbar.git#1313e42" />
-	<plugin name="cordova-plugin-device" spec="1.1.6" />
-	<plugin name="cordova-plugin-dialogs" spec="1.3.3" />
-	<plugin name="cordova-plugin-file" spec="4.3.3" />
-	<plugin name="cordova-plugin-file-transfer" spec="1.6.3" />
-	<plugin name="cordova-plugin-geolocation" spec="2.4.3" />
-	<plugin name="cordova-plugin-inappbrowser" spec="1.7.1" />
-	<plugin name="cordova-plugin-media" spec="3.0.1" />
-	<plugin name="cordova-plugin-network-information" spec="1.3.3" />
-	<plugin name="cordova-plugin-splashscreen" spec="4.0.3" />
-	<plugin name="cordova-plugin-statusbar" spec="2.2.3" />
-	<plugin name="cordova-plugin-whitelist" spec="1.3.2" />
-	<plugin name="phonegap-plugin-push" spec="1.9.4" />
-    -->
+
     
     
-    <plugin spec="https://github.com/apache/cordova-plugin-console.git#0c434e4" />
-	<plugin spec="https://github.com/mesmotronic/cordova-plugin-fullscreen.git#2a60962" />
-	<plugin spec="https://github.com/fiscal-cliff/phonegap-plugin-brightness.git#29324ed" />
-	<plugin spec="https://github.com/phonegap/phonegap-plugin-contentsync#9353e0a" />
-	<plugin spec="https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git#25e24b2" />
-	<plugin spec="https://github.com/Paldom/UniqueDeviceID.git#43db5bb" />
-	<plugin spec="https://github.com/ekuwang/cordova-plugin-statusbar.git#1313e42" />
-	<plugin name="cordova-plugin-device" spec="1.1.6" />
-	<plugin name="cordova-plugin-dialogs" spec="1.3.3" />
-	<plugin name="cordova-plugin-file" spec="4.3.3" />
-	<plugin name="cordova-plugin-file-transfer" spec="1.6.3" />
-	<plugin name="cordova-plugin-geolocation" spec="2.4.3" />
-	<plugin name="cordova-plugin-inappbrowser" spec="1.7.1" />
-	<plugin name="cordova-plugin-media" spec="3.0.1" />
-	<plugin name="cordova-plugin-network-information" spec="1.3.3" />
-	<plugin name="cordova-plugin-splashscreen" spec="4.0.3" />
-	<plugin name="cordova-plugin-statusbar" spec="2.2.3" />
-	<plugin name="cordova-plugin-whitelist" spec="1.3.2" />
-	
+    
     
 
     <!-- Core plugins -->
 	
+	<plugin name="cordova-plugin-whitelist" spec="1.3.2" />
+	<!--<plugin spec="https://github.com/apache/cordova-plugin-battery-status.git" source="git" />-->
+    <!--<plugin spec="https://github.com/apache/cordova-plugin-media-capture.git" source="git" />-->
+	<plugin spec="https://github.com/apache/cordova-plugin-console.git#0c434e4" />
+	<plugin name="cordova-plugin-device" spec="1.1.6" />
+	<!--<plugin spec="https://github.com/apache/cordova-plugin-device-motion.git" source="git" />-->
+    <!--<plugin spec="https://github.com/apache/cordova-plugin-device-orientation.git" source="git" />-->
+	<plugin name="cordova-plugin-dialogs" spec="1.3.3" />
+	<plugin name="cordova-plugin-file" spec="4.3.3" />
+    <plugin name="cordova-plugin-file-transfer" spec="1.6.3" />
+    <!--<plugin spec="https://github.com/fastrde/cordova-plugin-fastrde-downloader.git" source="git" />-->
+	<plugin name="cordova-plugin-geolocation" spec="2.4.3" />
+	<!--<plugin spec="https://github.com/apache/cordova-plugin-globalization.git" source="git" />-->
+	<plugin name="cordova-plugin-inappbrowser" spec="1.7.1" />
+	<plugin name="cordova-plugin-media" spec="3.0.1" />
+	<plugin name="cordova-plugin-network-information" spec="1.3.3" />
+	<plugin name="cordova-plugin-splashscreen" spec="4.0.3" />
+	<!--<plugin spec="https://github.com/apache/cordova-plugin-vibration.git" source="git" />-->
 	
+	<plugin spec="https://github.com/mesmotronic/cordova-plugin-fullscreen.git#2a60962" />
+	
+    <!-- Third party plugins -->
+    <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->
+	<plugin spec="https://github.com/fiscal-cliff/phonegap-plugin-brightness.git#29324ed" />
+	<!-- <plugin spec="https://github.com/MobileChromeApps/cordova-plugin-zip.git" source="git" /> -->
+	<!-- <plugin name="com.downloadwink.phonegap.contentsync"	source="pgb" />-->	
+	<plugin spec="https://github.com/phonegap/phonegap-plugin-contentsync#9353e0a" />
+	
+    <!-- 
+        <gap:plugin name="com.phonegap.plugins.barcodescanner" />
+		<gap:plugin name="com.kumbe.phonegap.zoom.zoomcontrol" version="0.1.5" />
+    -->	
+	<!-- <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />-->
+	<plugin spec="https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git#25e24b2" />
+	
+	<!--<plugin name="cordova-plugin-firebase" spec="0.1.24" />-->
+	
+	<!--<platform name="android">
+	  <resource-file src="google-services.json" target="google-services.json" />
+	</platform>
+
+	<platform name="ios">
+	  <resource-file src="GoogleService-Info.plist" />
+	</platform>-->
+
 	
 	<preference name="android-build-tool" value="gradle" />
+	<!--<plugin name="phonegap-plugin-push" spec="1.9.4" />-->
 	<plugin name="phonegap-plugin-push" spec="~1.9.1" source="npm">
 		<param name="SENDER_ID" value="1069136326484" />
 	</plugin>
@@ -108,7 +115,9 @@
 	<!--<plugin spec="https://github.com/phonegap-build/PushPlugin.git" source="git" />-->
 	<!--<plugin spec="https://github.com/phonegap/phonegap-plugin-push.git" source="git" />-->
 	
-	
+	<plugin spec="https://github.com/Paldom/UniqueDeviceID.git#43db5bb" />
+	<plugin name="cordova-plugin-statusbar" spec="2.2.3" />
+	<plugin spec="https://github.com/ekuwang/cordova-plugin-statusbar.git#1313e42" />
 	<gap:config-file platform="ios" parent="UIStatusBarHidden">
 		<true/>
 	</gap:config-file>
