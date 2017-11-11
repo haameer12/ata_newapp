@@ -59,14 +59,16 @@
 .progress-bar-parent {
 	/*background-color: rgba(2, 2, 2, 0.8);*/
 	/*display: none;*/
-	height: 40%;
+	height: 100%;
 	left: 0;
 	position: fixed;
 	top: 0;
 	width: 100%;
 	z-index: 50;
 	
-	
+	background-color: rgba(223, 244, 249, 0.95);
+	display: none;
+	z-index: 50300;
 }
 .progress-bar {
 	position:absolute;
@@ -156,7 +158,7 @@
 .progress-bar #descripion .first::before {
     display: inline-block;
     content: "000000";
-    background-image: url('../images/tahmil.png');
+    background-image: url('img/tahmil.png');
     width: 5vw;
     height: 6vw;
     overflow: hidden;
@@ -440,7 +442,7 @@ input#play {
     margin: auto;
     width: 70.3px;
     height: 51.6px;
-    background-image: url(../images/play.png);
+    background-image: url(img/play.png);
     background-size: 100%;
     background-color: transparent;
     border: 0;
@@ -456,7 +458,7 @@ input#play2 {
     margin: auto;
     width: 70.3px;
     height: 51.6px;
-    background-image: url(../images/play.png);
+    background-image: url(img/play.png);
     background-size: 100%;
     background-color: transparent;
     border: 0;
@@ -472,7 +474,7 @@ input#pause {
     margin: auto;
     width: 70.3px;
     height: 51.6px;
-    background-image: url(../images/pause.png);
+    background-image: url(img/pause.png);
     background-size: 100%;
     background-color: transparent;
     border: 0;
@@ -955,7 +957,7 @@ setTimeout(function(){
 					<input type="range" name="slider" id="slider" disabled="disabled" value="0" min="0" max="60" style="padding:0;margin:0;" />
 				</div>
 				<div class="audio_btn">
-					<input type="button" id="play" value="play" class="play_it need_download" online="http://imamali.net/app-json/audio/jamee.mp3" /><!--play_type="offline"-->
+					<input type="button" id="play" value="" class="play_it need_download" online="http://imamali.net/app-json/audio/jamee.mp3" /><!--play_type="offline"-->
 					<input type="button" id="play2" value="play2" />
 					<input type="button" id="pause" value="pause" />
 					<input type="button" id="stop" value="Stop" />
