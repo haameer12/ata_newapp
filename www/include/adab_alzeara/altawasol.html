@@ -117,9 +117,9 @@ setTimeout(function(){
 	var networkState = navigator.connection.type;
 
 	/////START DOWNLOAD//////////////////////////////////////////////////////////////////////
-	init_audio("alsabah", null);
+	init_audio("altawasol", null);
 
-	$('#alsabah .play_it').each( function(i) {
+	$('#altawasol .play_it').each( function(i) {
 		//$(this).css("display","none");
 		//alert("each");
 		var temp_array = JSON.parse(window.localStorage.getItem('downloaded_files'));
@@ -128,12 +128,12 @@ setTimeout(function(){
 		}
 
 	});
-	$('#alsabah .play_it').click( function(i) {
+	$('#altawasol .play_it').click( function(i) {
 		temp_element = $(this);
 		//alert($(this).attr('online'));
 		//alert("click");
-		//play_or_download('alsabah','http://imamali.net/app-json/audio/aminalah.mp3','mp3');
-		play_or_download("alsabah",$(this).attr('online'),"mp3");
+		//play_or_download('altawasol','http://imamali.net/app-json/audio/aminalah.mp3','mp3');
+		play_or_download("altawasol",$(this).attr('online'),"mp3");
 	});
 
 
@@ -302,7 +302,7 @@ function check_download(MediaItemID,URL) {
 		}, 600);
 	}
 </script>
-<div id="alsabah">
+<div id="altawasol">
 	<div class="smgroup_audio_player" >
 			<span class="audioTimer" >00:00</span>&nbsp 
 			<span class="durationTimer" >--:--</span>
@@ -323,16 +323,16 @@ function check_download(MediaItemID,URL) {
 			<div class="descripion">
 				<div class="first">التحمیل</div>
 			</div>
-			<div class="abort_box"><input type="button" id="abort" value="إلغاء" /></div>
+			<div class="abort_box"><input type="button" class="abort" value="إلغاء" /></div>
 		</div>
 	</div>
 </div>
 <script>
-//init_audio("alsabah", "audio/roze/0.mp3");
+//init_audio("altawasol", "audio/roze/0.mp3");
 
-audio_Timer = $("#alsabah .audioTimer");
-duration_Timer = $("#alsabah .durationTimer");
-slider_Timer = $("#alsabah .slider");
+audio_Timer = $("#altawasol .audioTimer");
+duration_Timer = $("#altawasol .durationTimer");
+slider_Timer = $("#altawasol .slider");
 
 audio = null;
 audioTimer = null;
