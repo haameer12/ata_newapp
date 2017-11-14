@@ -374,15 +374,15 @@ function init_audio(MediaItemID,my_file){
 		$("#"+MediaItemID +" .pause").css("display","none");
 
 		pausePos = slider_Timer.val();
-		formatTime(pausePos,$("#alsabah .audioTimer"));
+		formatTime(pausePos,$("#"+MediaItemID +" .audioTimer"));
 		pauseAudio(MediaItemID);
-		formatTime(pausePos,$("#alsabah .audioTimer"));
+		formatTime(pausePos,$("#"+MediaItemID +" .audioTimer"));
 		audio.seekTo(pausePos*1000);
 
 		setTimeout(function(){
 			pausePos = temp_pausePos;
 			audio.seekTo(pausePos*1000);
-			formatTime(pausePos,$("#alsabah .audioTimer"));
+			formatTime(pausePos,$("#"+MediaItemID +" .audioTimer"));
 			slider_Timer.val(pausePos);
 		}, 800);
 	});
@@ -468,7 +468,7 @@ function playAudio(MediaItemID,file,is_from_web){
 
 	// set slider data
 	if( duration > 0 ){
-		formatTime(duration,$("#alsabah .durationTimer"));
+		formatTime(duration,$("#"+MediaItemID +" .durationTimer"));
 		slider_Timer.attr( "max", Math.round(duration) );
 		//slider_Timer.slider("refresh");
 		slider_Timer.val(0);
@@ -498,7 +498,7 @@ function playAudio(MediaItemID,file,is_from_web){
 			if(!duration_show){
 				duration = audio.getDuration();
 				if( duration > 0 ){
-					formatTime(duration,$("#alsabah .durationTimer"));
+					formatTime(duration,$("#"+MediaItemID +" .durationTimer"));
 					slider_Timer.attr( "max", Math.round(duration) );
 					//slider_Timer.slider("refresh");
 					duration_show = true;
@@ -532,7 +532,7 @@ function stopAudio(MediaItemID) {
 	clearInterval(audioTimer);
 	audioTimer = null;
 	pausePos = 0;
-	formatTime(0,$("#alsabah .audioTimer"));
+	formatTime(0,$("#"+MediaItemID +" .audioTimer"));
 }
 
 function setAudioPosition(MediaItemID,position) {
@@ -542,7 +542,7 @@ function setAudioPosition(MediaItemID,position) {
 	pausePos = position;
 	position = Math.round(position);
 	slider_Timer.val(position);
-	formatTime(position,$("#alsabah .audioTimer"));
+	formatTime(position,$("#"+MediaItemID +" .audioTimer"));
 	//slider_Timer.slider("refresh");
 	//slider_Timer.val(0);
 }
