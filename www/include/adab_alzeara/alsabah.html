@@ -233,11 +233,11 @@ function start_download(MediaItemID,URL,Extension) {
 		FileTransfer_OBJ.onprogress = function(progressEvent) {
 			if (progressEvent.lengthComputable) {
 				var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
-				$('#'+MediaItemID +' #status').html(perc + "%");
+				$('#'+MediaItemID +' .status').html(perc + "%");
 				$('#'+MediaItemID +' .progress-bar-percent').css('width',perc + "%");
 				//progress_bar_element.css('width',perc);
 			} else {
-				$('#'+MediaItemID +' #status').html($('#'+MediaItemID +' #status').html() + ".");
+				$('#'+MediaItemID +' .status').html($('#'+MediaItemID +' .status').html() + ".");
 				//progress_bar_element.css('width',progress_bar_element.width()+1);
 				$('#'+MediaItemID +' .progress-bar-percent').css('width',$('#'+MediaItemID +' .progress-bar-parent').find('span').width()+1);
 			}
@@ -245,7 +245,7 @@ function start_download(MediaItemID,URL,Extension) {
 
 		FileTransfer_OBJ.download(uri, downloadPath, 
 			function(entry) {	
-				$('#'+MediaItemID +' #status').html("");
+				$('#'+MediaItemID +' .status').html("");
 				$('#'+MediaItemID +' .progress-bar-parent').find('span').css('width','2%');
 				//alert("start_download : done");
 				temp_array = JSON.parse(window.localStorage.getItem('downloaded_files'));
@@ -254,7 +254,7 @@ function start_download(MediaItemID,URL,Extension) {
 
 				temp_element.removeClass("need_download");
 				$('#'+MediaItemID +' .progress-bar-parent').css("display","none");
-				$('#'+MediaItemID +' #play').trigger("click");
+				$('#'+MediaItemID +' .play').trigger("click");
 			}, 
 			function(error) {
 				//alert('Crap something went wrong...');	
@@ -267,7 +267,7 @@ function start_download(MediaItemID,URL,Extension) {
 			true
 		);
 
-		$('#'+MediaItemID +' #abort').click( function(i) {
+		$('#'+MediaItemID +' .abort').click( function(i) {
 			FileTransfer_OBJ.abort();
 			$('#'+MediaItemID +' .progress-bar-parent').find('span').css('width','2%');
 			$('#'+MediaItemID +' .progress-bar-percent').css('width',"");
@@ -297,8 +297,8 @@ function check_download(MediaItemID,URL) {
 
 <script>
 	function playAudio_new(MediaItemID,filename,is_from_web) {
-		$('#'+MediaItemID +' #durationTimer').html("--:--");
-		$('#'+MediaItemID +' #audioTimer').html("00:00");
+		$('#'+MediaItemID +' .durationTimer').html("--:--");
+		$('#'+MediaItemID +' .audioTimer').html("00:00");
 
 		audio.stop();
 		setTimeout(function(){
@@ -307,36 +307,36 @@ function check_download(MediaItemID,URL) {
 	}
 </script>
 <div id="alsabah">
-	<div id="smgroup_audio_player" >
-			<span id="audioTimer" >00:00</span>&nbsp 
-			<span id="durationTimer" >--:--</span>
-			<div id="audioPosition" >
-				<input type="range" name="slider" id="slider" disabled="disabled" value="0" min="0" max="60" style="padding:0;margin:0;" />
+	<div class="smgroup_audio_player" >
+			<span class="audioTimer" >00:00</span>&nbsp 
+			<span class="durationTimer" >--:--</span>
+			<div class="audioPosition" >
+				<input type="range" name="slider" class="slider" disabled="disabled" value="0" min="0" max="60" style="padding:0;margin:0;" />
 			</div>
 			<div class="audio_btn">
-				<input type="button" id="play" value="" class="play_it need_download" online="http://imamali.net/app-json/audio/sabah.mp3" /><!--play_type="offline"-->
-				<input type="button" id="play2" value="" />
-				<input type="button" id="pause" value="" />
-				<input type="button" id="stop" value="Stop" />
+				<input type="button" id="" value="" class="play play_it need_download" online="http://imamali.net/app-json/audio/sabah.mp3" /><!--play_type="offline"-->
+				<input type="button" class="play2" value="" />
+				<input type="button" class="pause" value="" />
+				<input type="button" class="stop" value="Stop" />
 			</div>
 	</div>
 	<div class="progress-bar-parent">
 		<div class="progress-bar green glow">
-			<div id="status"></div>
+			<div class="status"></div>
 			<span class="progress-bar-percent" style="width: 1%"></span>
-			<div id="descripion">
+			<div class="descripion">
 				<div class="first">التحمیل</div>
 			</div>
-			<div id="abort_box"><input type="button" id="abort" value="إلغاء" /></div>
+			<div class="abort_box"><input type="button" class="abort" value="إلغاء" /></div>
 		</div>
 	</div>
 </div>
 <script>
 //init_audio("alsabah", "audio/roze/0.mp3");
 
-audio_Timer = $("#alsabah #audioTimer");
-duration_Timer = $("#alsabah #durationTimer");
-slider_Timer = $("#alsabah #slider");
+audio_Timer = $("#alsabah .audioTimer");
+duration_Timer = $("#alsabah .durationTimer");
+slider_Timer = $("#alsabah .slider");
 
 audio = null;
 audioTimer = null;
@@ -354,11 +354,11 @@ function init_audio(MediaItemID,my_file){
 	}
 	*/
 	// Phonegap is loaded and can be used
-	play_btn = $("#"+MediaItemID +" #play");
-	play2_btn = $("#"+MediaItemID +" #play2");
-	pause_btn = $("#"+MediaItemID +" #pause");
-	stop_btn = $("#"+MediaItemID +" #stop");
-	slider_Timer = $("#"+MediaItemID +" #slider");
+	play_btn = $("#"+MediaItemID +" .play");
+	play2_btn = $("#"+MediaItemID +" .play2");
+	pause_btn = $("#"+MediaItemID +" .pause");
+	stop_btn = $("#"+MediaItemID +" .stop");
+	slider_Timer = $("#"+MediaItemID +" .slider");
 	slider_range = slider_Timer;
 /*
 	play_btn.click(function(e){
@@ -444,7 +444,7 @@ function playAudio(MediaItemID,file,is_from_web){
 	}
 	//alert("4");
 
-	$('#'+MediaItemID +' #smgroup_audio_player').show();
+	$('#'+MediaItemID +' .smgroup_audio_player').show();
 	play_btn.css("display","none");
 	play2_btn.css("display","none");
 	pause_btn.css("display","block");
@@ -564,5 +564,3 @@ function formatTime(seconds,Timer) {
 	Timer.html(minutes + ":" + seconds);
 };
 </script>
-		
-		
