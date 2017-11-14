@@ -142,8 +142,8 @@
 */
 	max-width:auto;
 }
-.progress-bar-parent .progress-bar #status{color:#ffffff;min-height:19px;direction:rtl;}
-.progress-bar-parent .progress-bar #abort{
+.progress-bar-parent .progress-bar .status{color:#ffffff;min-height:19px;direction:rtl;}
+.progress-bar-parent .progress-bar .abort{
 	color:#fff;
 	/*-moz-box-shadow: 0 5px 5px rgba(255, 255, 255, .7) inset, 0 -5px 5px rgba(255, 255, 255, .7) inset;
 	-webkit-box-shadow: 0 5px 5px rgba(255, 255, 255, .7) inset, 0 -5px 5px rgba(255, 255, 255, .7) inset;
@@ -168,7 +168,7 @@
 	margin-top: -30px;
 	
 }
-.progress-bar-parent .progress-bar #abort_box {
+.progress-bar-parent .progress-bar .abort_box {
     width: 100%;
     text-align: center;
     position: fixed;
@@ -176,7 +176,7 @@
     left: 0;
     right: 0;
 }
-.progress-bar-parent .progress-bar #descripion {
+.progress-bar-parent .progress-bar .descripion {
     direction: rtl;
     background-repeat: no-repeat;
     background-size: contain;
@@ -186,10 +186,10 @@
     color: #167bb0;
 	text-align:center;
 }
-.progress-bar-parent .progress-bar #descripion .hajm{color:#f9b233;display:inline-block;font-size: 5vw;direction:ltr;}
-.progress-bar-parent .progress-bar #descripion .hajm div{display:inline-block;width: 0.7vw;}
-.progress-bar-parent .progress-bar #descripion .first{display:inline;font-size: 5vw;}
-.progress-bar-parent .progress-bar #descripion .first::before {
+.progress-bar-parent .progress-bar .descripion .hajm{color:#f9b233;display:inline-block;font-size: 5vw;direction:ltr;}
+.progress-bar-parent .progress-bar .descripion .hajm div{display:inline-block;width: 0.7vw;}
+.progress-bar-parent .progress-bar .descripion .first{display:inline;font-size: 5vw;}
+.progress-bar-parent .progress-bar .descripion .first::before {
     display: inline-block;
     content: "000000";
     background-image: url('img/tahmil.png');
@@ -204,7 +204,7 @@
     top: 1.2vw;
     right: -5vw;
 }
-.progress-bar-parent .progress-bar #status {
+.progress-bar-parent .progress-bar .status {
     color: #ffffff;
     min-height: 19px;
     direction: rtl;
@@ -342,10 +342,10 @@
 
 	
 /*//START AUDIO/////////////////////////////////////////////////////////////////////////////////////*/
-#smgroup_audio_player{
+.smgroup_audio_player{
 	z-index:999;
 }
-#smgroup_audio_player,#smgroup_audio_player *,#smgroup_audio_player span{
+.smgroup_audio_player,#smgroup_audio_player *,#smgroup_audio_player span{
 	direction:ltr !important;
 }
 #play2 {
