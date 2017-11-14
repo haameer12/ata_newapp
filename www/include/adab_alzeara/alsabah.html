@@ -334,8 +334,7 @@ function check_download(MediaItemID,URL) {
 <script>
 //init_audio("alsabah", "audio/roze/0.mp3");
 
-audio_Timer = $("#alsabah .audioTimer");
-duration_Timer = $("#alsabah .durationTimer");
+
 slider_Timer = $("#alsabah .slider");
 
 audio = null;
@@ -375,15 +374,15 @@ function init_audio(MediaItemID,my_file){
 		$("#"+MediaItemID +" .pause").css("display","none");
 
 		pausePos = slider_Timer.val();
-		formatTime(pausePos,audio_Timer);
+		formatTime(pausePos,$("#alsabah .audioTimer"));
 		pauseAudio(MediaItemID);
-		formatTime(pausePos,audio_Timer);
+		formatTime(pausePos,$("#alsabah .audioTimer"));
 		audio.seekTo(pausePos*1000);
 
 		setTimeout(function(){
 			pausePos = temp_pausePos;
 			audio.seekTo(pausePos*1000);
-			formatTime(pausePos,audio_Timer);
+			formatTime(pausePos,$("#alsabah .audioTimer"));
 			slider_Timer.val(pausePos);
 		}, 800);
 	});
@@ -467,7 +466,7 @@ function playAudio(MediaItemID,file,is_from_web){
 
 	// set slider data
 	if( duration > 0 ){
-		formatTime(duration,duration_Timer);
+		formatTime(duration,$("#alsabah .durationTimer"));
 		slider_Timer.attr( "max", Math.round(duration) );
 		//slider_Timer.slider("refresh");
 		slider_Timer.val(0);
@@ -497,7 +496,7 @@ function playAudio(MediaItemID,file,is_from_web){
 			if(!duration_show){
 				duration = audio.getDuration();
 				if( duration > 0 ){
-					formatTime(duration,duration_Timer);
+					formatTime(duration,$("#alsabah .durationTimer"));
 					slider_Timer.attr( "max", Math.round(duration) );
 					//slider_Timer.slider("refresh");
 					duration_show = true;
@@ -531,14 +530,14 @@ function stopAudio(MediaItemID) {
 	clearInterval(audioTimer);
 	audioTimer = null;
 	pausePos = 0;
-	formatTime(0,audio_Timer);
+	formatTime(0,$("#alsabah .audioTimer"));
 }
 
 function setAudioPosition(MediaItemID,position) {
 	pausePos = position;
 	position = Math.round(position);
 	slider_Timer.val(position);
-	formatTime(position,audio_Timer);
+	formatTime(position,$("#alsabah .audioTimer"));
 	//slider_Timer.slider("refresh");
 	//slider_Timer.val(0);
 }
