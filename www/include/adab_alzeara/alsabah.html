@@ -334,9 +334,8 @@ function check_download(MediaItemID,URL) {
 <script>
 //init_audio("alsabah", "audio/roze/0.mp3");
 
-audio_Timer = $("#alsabah .audioTimer");
-duration_Timer = $("#alsabah .durationTimer");
-slider_Timer = $("#alsabah .slider");
+
+
 
 audio = null;
 audioTimer = null;
@@ -345,71 +344,69 @@ pausePos = 0;
 function init_audio(MediaItemID,my_file){
 	/*
 	if (audio) {
-		play_btn.css("display","block");
-		play2_btn.css("display","none");
-		pause_btn.css("display","none");
+		$("#"+MediaItemID +" .play").css("display","block");
+		$("#"+MediaItemID +" .play2").css("display","none");
+		$("#"+MediaItemID +" .pause").css("display","none");
 
-		slider_Timer.val(0);
+		$("#"+MediaItemID +" .slider").val(0);
 		stopAudio(MediaItemID);
 	}
 	*/
 	// Phonegap is loaded and can be used
-	play_btn = $("#"+MediaItemID +" .play");
-	play2_btn = $("#"+MediaItemID +" .play2");
-	pause_btn = $("#"+MediaItemID +" .pause");
-	stop_btn = $("#"+MediaItemID +" .stop");
-	slider_Timer = $("#"+MediaItemID +" .slider");
-	slider_range = slider_Timer;
+	
+	
+	$("#"+MediaItemID +" .slider") = $("#"+MediaItemID +" .slider");
+	slider_range = $("#"+MediaItemID +" .slider");
 /*
-	play_btn.click(function(e){
+	$("#"+MediaItemID +" .play").click(function(e){
 		e.preventDefault();
-		play_btn.css("display","none");
-		pause_btn.css("display","block");
-		slider_Timer.prop("disabled",false);
+		$("#"+MediaItemID +" .play").css("display","none");
+		$("#"+MediaItemID +" .pause").css("display","block");
+		$("#"+MediaItemID +" .slider").prop("disabled",false);
 		playAudio(MediaItemID,my_file);
 	});
 */
-	slider_Timer.on("change", function(){
-		//play_btn.prop("disabled",false);
-		//play2_btn.prop("disabled",false);
-		//pause_btn.prop("disabled",true);
-		play2_btn.css("display","block");
-		pause_btn.css("display","none");
+	$("#"+MediaItemID +" .slider").on("change", function(){
+		//$("#"+MediaItemID +" .play").prop("disabled",false);
+		//$("#"+MediaItemID +" .play2").prop("disabled",false);
+		//$("#"+MediaItemID +" .pause").prop("disabled",true);
+		$("#"+MediaItemID +" .play2").css("display","block");
+		$("#"+MediaItemID +" .pause").css("display","none");
 
-		pausePos = slider_Timer.val();
-		formatTime(pausePos,audio_Timer);
+		pausePos = $("#"+MediaItemID +" .slider").val();
+		formatTime(pausePos,$("#"+MediaItemID +" .audioTimer"));
 		pauseAudio(MediaItemID);
-		formatTime(pausePos,audio_Timer);
+		formatTime(pausePos,$("#"+MediaItemID +" .audioTimer"));
 		audio.seekTo(pausePos*1000);
 
 		setTimeout(function(){
 			pausePos = temp_pausePos;
 			audio.seekTo(pausePos*1000);
-			formatTime(pausePos,audio_Timer);
-			slider_Timer.val(pausePos);
+			formatTime(pausePos,$("#"+MediaItemID +" .audioTimer"));
+			$("#"+MediaItemID +" .slider").val(pausePos);
 		}, 800);
 	});
 
-	pause_btn.click(function(){	
-		play2_btn.css("display","block");
-		pause_btn.css("display","none");
+	$("#"+MediaItemID +" .pause").click(function(){	
+		$("#"+MediaItemID +" .play2").css("display","block");
+		$("#"+MediaItemID +" .pause").css("display","none");
 
 		pauseAudio(MediaItemID);
 	});
 
-	play2_btn.click(function(){	
-		pause_btn.css("display","block");
-		play2_btn.css("display","none");		
+	$("#"+MediaItemID +" .play2").click(function(){	
+		$("#"+MediaItemID +" .pause").css("display","block");
+		$("#"+MediaItemID +" .play2").css("display","none");		
 
 		PausePlayAudio(MediaItemID);
 	});
 
-	stop_btn.click(function(){
-		play_btn.css("display","block");
-		play2_btn.css("display","none");
-		pause_btn.css("display","none");
+	$("#"+MediaItemID +" .stop").click(function(){
+		$("#"+MediaItemID +" .play").css("display","block");
+		$("#"+MediaItemID +" .play2").css("display","none");
+		$("#"+MediaItemID +" .pause").css("display","none");
 
-		slider_Timer.val(0);
+		$("#"+MediaItemID +" .slider").val(0);
 		stopAudio(MediaItemID);
 	});
 
@@ -445,18 +442,18 @@ function playAudio(MediaItemID,file,is_from_web){
 	//alert("4");
 
 	$('#'+MediaItemID +' .smgroup_audio_player').show();
-	play_btn.css("display","none");
-	play2_btn.css("display","none");
-	pause_btn.css("display","block");
-	slider_Timer.prop("disabled",false);
+	$("#"+MediaItemID +" .play").css("display","none");
+	$("#"+MediaItemID +" .play2").css("display","none");
+	$("#"+MediaItemID +" .pause").css("display","block");
+	$("#"+MediaItemID +" .slider").prop("disabled",false);
 
 	audio = new Media(file, function(){ // success callback
 		//alert("playAudio():Audio Success");
-		play_btn.css("display","block");
-		play2_btn.css("display","none");
-		pause_btn.css("display","none");
+		$("#"+MediaItemID +" .play").css("display","block");
+		$("#"+MediaItemID +" .play2").css("display","none");
+		$("#"+MediaItemID +" .pause").css("display","none");
 
-		slider_Timer.val(0);
+		$("#"+MediaItemID +" .slider").val(0);
 		stopAudio(MediaItemID);
 	}, function(error){ // error callback
 		//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
@@ -469,10 +466,10 @@ function playAudio(MediaItemID,file,is_from_web){
 
 	// set slider data
 	if( duration > 0 ){
-		formatTime(duration,duration_Timer);
-		slider_Timer.attr( "max", Math.round(duration) );
-		//slider_Timer.slider("refresh");
-		slider_Timer.val(0);
+		formatTime(duration,$("#"+MediaItemID +" .durationTimer"));
+		$("#"+MediaItemID +" .slider").attr( "max", Math.round(duration) );
+		//$("#"+MediaItemID +" .slider").slider("refresh");
+		$("#"+MediaItemID +" .slider").val(0);
 		duration_show = true;
 	}
 
@@ -499,9 +496,9 @@ function playAudio(MediaItemID,file,is_from_web){
 			if(!duration_show){
 				duration = audio.getDuration();
 				if( duration > 0 ){
-					formatTime(duration,duration_Timer);
-					slider_Timer.attr( "max", Math.round(duration) );
-					//slider_Timer.slider("refresh");
+					formatTime(duration,$("#"+MediaItemID +" .durationTimer"));
+					$("#"+MediaItemID +" .slider").attr( "max", Math.round(duration) );
+					//$("#"+MediaItemID +" .slider").slider("refresh");
 					duration_show = true;
 				}
 			}
@@ -533,16 +530,16 @@ function stopAudio(MediaItemID) {
 	clearInterval(audioTimer);
 	audioTimer = null;
 	pausePos = 0;
-	formatTime(0,audio_Timer);
+	formatTime(0,$("#"+MediaItemID +" .audioTimer"));
 }
 
 function setAudioPosition(MediaItemID,position) {
 	pausePos = position;
 	position = Math.round(position);
-	slider_Timer.val(position);
-	formatTime(position,audio_Timer);
-	//slider_Timer.slider("refresh");
-	//slider_Timer.val(0);
+	$("#"+MediaItemID +" .slider").val(position);
+	formatTime(position,$("#"+MediaItemID +" .audioTimer"));
+	//$("#"+MediaItemID +" .slider").slider("refresh");
+	//$("#"+MediaItemID +" .slider").val(0);
 }
 
 function formatTime(seconds,Timer) {
