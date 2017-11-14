@@ -335,7 +335,7 @@ function check_download(MediaItemID,URL) {
 //init_audio("alsabah", "audio/roze/0.mp3");
 
 
-slider_Timer = $("#alsabah .slider");
+//slider_Timer = $("#alsabah .slider");
 
 audio = null;
 audioTimer = null;
@@ -426,6 +426,8 @@ function init_audio(MediaItemID,my_file){
 
 function playAudio(MediaItemID,file,is_from_web){
 	//alert(file);
+	
+	slider_Timer = $("#"+MediaItemID +" .slider");
 
 	if (is_from_web==false){//Android,iOS,win7=WinCE,win8=Win32NT
 		file = file.replace("http://imamali.net/app-json/", "");
@@ -534,6 +536,9 @@ function stopAudio(MediaItemID) {
 }
 
 function setAudioPosition(MediaItemID,position) {
+	
+	slider_Timer = $("#"+MediaItemID +" .slider");
+	
 	pausePos = position;
 	position = Math.round(position);
 	slider_Timer.val(position);
