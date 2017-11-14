@@ -68,7 +68,7 @@
 							<p><span style="color:#B22222">ثمّ اسجد وقل:</span></p>
 
 							<p>اِلـهي قَلْبي مَحْجُوبٌ، وَنَفْسي مَعْيُوبٌ، وَعَقْلي مَغْلُوبٌ، وَهَوائي غالِبٌ، وَطاعَتي قَليلٌ، وَمَعْصِيَتي كَثيرٌ، وَلِساني مُقِرٌّ بِالذُّنُوبِ فَكَيْفَ حيلَتي يا سَتّارَ الْعُيُوبِ وَيا عَلاّمَ الْغُيُوبِ وَيا كاشِفَ الْكُرُوبِ، اِغْفِرْ ذُنُوبي كُلَّها بِحُرْمَةِ مُحَمَّد وَآلِ مُحَمَّد يا غَفّارُ يا غَفّارُ يا غَفّارُ بِرَحْمَتِكَ يا اَرْحَمَ الرّاحِمينَ.</p>
-
+							<br /><br /><br /><br /><br />
 
 
 							
@@ -346,8 +346,8 @@ function init_audio(MediaItemID,my_file){
 	/*
 	if (audio) {
 		$("#"+MediaItemID +" .play").css("display","block");
-		play2_btn.css("display","none");
-		pause_btn.css("display","none");
+		$("#"+MediaItemID +" .play2").css("display","none");
+		$("#"+MediaItemID +" .pause").css("display","none");
 
 		slider_Timer.val(0);
 		stopAudio(MediaItemID);
@@ -355,26 +355,24 @@ function init_audio(MediaItemID,my_file){
 	*/
 	// Phonegap is loaded and can be used
 	
-	play2_btn = $("#"+MediaItemID +" .play2");
-	pause_btn = $("#"+MediaItemID +" .pause");
-	stop_btn = $("#"+MediaItemID +" .stop");
+
 	slider_Timer = $("#"+MediaItemID +" .slider");
 	slider_range = slider_Timer;
 /*
 	$("#"+MediaItemID +" .play").click(function(e){
 		e.preventDefault();
 		$("#"+MediaItemID +" .play").css("display","none");
-		pause_btn.css("display","block");
+		$("#"+MediaItemID +" .pause").css("display","block");
 		slider_Timer.prop("disabled",false);
 		playAudio(MediaItemID,my_file);
 	});
 */
 	slider_Timer.on("change", function(){
 		//$("#"+MediaItemID +" .play").prop("disabled",false);
-		//play2_btn.prop("disabled",false);
-		//pause_btn.prop("disabled",true);
-		play2_btn.css("display","block");
-		pause_btn.css("display","none");
+		//$("#"+MediaItemID +" .play2").prop("disabled",false);
+		//$("#"+MediaItemID +" .pause").prop("disabled",true);
+		$("#"+MediaItemID +" .play2").css("display","block");
+		$("#"+MediaItemID +" .pause").css("display","none");
 
 		pausePos = slider_Timer.val();
 		formatTime(pausePos,audio_Timer);
@@ -390,24 +388,24 @@ function init_audio(MediaItemID,my_file){
 		}, 800);
 	});
 
-	pause_btn.click(function(){	
-		play2_btn.css("display","block");
-		pause_btn.css("display","none");
+	$("#"+MediaItemID +" .pause").click(function(){	
+		$("#"+MediaItemID +" .play2").css("display","block");
+		$("#"+MediaItemID +" .pause").css("display","none");
 
 		pauseAudio(MediaItemID);
 	});
 
-	play2_btn.click(function(){	
-		pause_btn.css("display","block");
-		play2_btn.css("display","none");		
+	$("#"+MediaItemID +" .play2").click(function(){	
+		$("#"+MediaItemID +" .pause").css("display","block");
+		$("#"+MediaItemID +" .play2").css("display","none");		
 
 		PausePlayAudio(MediaItemID);
 	});
 
-	stop_btn.click(function(){
+	$("#"+MediaItemID +" .stop").click(function(){
 		$("#"+MediaItemID +" .play").css("display","block");
-		play2_btn.css("display","none");
-		pause_btn.css("display","none");
+		$("#"+MediaItemID +" .play2").css("display","none");
+		$("#"+MediaItemID +" .pause").css("display","none");
 
 		slider_Timer.val(0);
 		stopAudio(MediaItemID);
@@ -446,15 +444,15 @@ function playAudio(MediaItemID,file,is_from_web){
 
 	$('#'+MediaItemID +' .smgroup_audio_player').show();
 	$("#"+MediaItemID +" .play").css("display","none");
-	play2_btn.css("display","none");
-	pause_btn.css("display","block");
+	$("#"+MediaItemID +" .play2").css("display","none");
+	$("#"+MediaItemID +" .pause").css("display","block");
 	slider_Timer.prop("disabled",false);
 
 	audio = new Media(file, function(){ // success callback
 		//alert("playAudio():Audio Success");
 		$("#"+MediaItemID +" .play").css("display","block");
-		play2_btn.css("display","none");
-		pause_btn.css("display","none");
+		$("#"+MediaItemID +" .play2").css("display","none");
+		$("#"+MediaItemID +" .pause").css("display","none");
 
 		slider_Timer.val(0);
 		stopAudio(MediaItemID);
