@@ -99,208 +99,55 @@
 
 </div>
 
-
-
-
-
-
-
 <script>
-var temp_element;
-var progress_bar_element;
-function temp_function() {
-	// do something
-}
+	setTimeout(function(){
 
-setTimeout(function(){
+		var networkState = navigator.connection.type;
 
-	var networkState = navigator.connection.type;
+		/////START DOWNLOAD//////////////////////////////////////////////////////////////////////
+		init_audio("altawasol", null);
 
-	/////START DOWNLOAD//////////////////////////////////////////////////////////////////////
-	init_audio("altawasol", null);
-
-	$('#altawasol .play_it').each( function(i) {
-		//$(this).css("display","none");
-		//alert("each");
-		var temp_array = JSON.parse(window.localStorage.getItem('downloaded_files'));
-		if($.inArray($.md5($(this).attr('online')),temp_array) != -1){
-			$(this).removeClass("need_download").addClass("downloaded");
-		}
-
-	});
-	$('#altawasol .play_it').click( function(i) {
-		temp_element = $(this);
-		//alert($(this).attr('online'));
-		//alert("click");
-		//play_or_download('altawasol','http://imamali.net/app-json/audio/aminalah.mp3','mp3');
-		play_or_download("altawasol",$(this).attr('online'),"mp3");
-	});
-
-
-
-	if(window.localStorage.getItem('downloaded_files') == null){
-		window.localStorage.setItem('downloaded_files',JSON.stringify(["786","110"]));	
-	}
-
-
-	if(window.localStorage.getItem('download_address') == null){
-
-		window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, 
-			function(fs) {
-				window.localStorage.setItem('download_address',fs.root.toURL());
-			}, function(e) {
-				//alert('failed to get fs');
-				//alert(JSON.stringify(e));
+		$('#altawasol .play_it').each( function(i) {
+			//$(this).css("display","none");
+			//alert("each");
+			var temp_array = JSON.parse(window.localStorage.getItem('downloaded_files'));
+			if($.inArray($.md5($(this).attr('online')),temp_array) != -1){
+				$(this).removeClass("need_download").addClass("downloaded");
 			}
-		);
-	}
 
-	//alert("window.localStorage.getItem('download_address'):" + window.localStorage.getItem('download_address'));
-	//alert("window.localStorage.getItem('downloaded_files'):" + window.localStorage.getItem('downloaded_files'));
-	/////END DOWNLOAD////////////////////////////////////////////////////////////////////////
-	
-}, 3000);
-	
-	
-/////START DOWNLOAD//////////////////////////////////////////////////////////////////////
-function play_or_download(MediaItemID,URL,Extension) {
-	//alert("play_or_download URL: " + URL);
-	//alert("play_or_download Extension: " + Extension);
-
-	if (device.platform == 'iOS')
-	{
-		downloadPath = "cdvfile://localhost/persistent/";
-		window.localStorage.setItem('download_address',downloadPath);
-	}
-
-	downloadPath = window.localStorage.getItem('download_address') + $.md5(URL) + "." + Extension;
-	//alert("play_or_download : " + downloadPath);
-	if(temp_element.attr("play_type")=="offline")
-	{
-			//alert("play_or_download : play offline");
-
-			playAudio_new(MediaItemID,URL,false);
-	}
-	else
-	{
-		if(check_download(MediaItemID,URL))
-		{
-			//alert("play_or_download : check_download");
-
-			playAudio_new(MediaItemID,downloadPath,true);
-			//var media = new Media(downloadPath, null, function(e) { alert(JSON.stringify(e));});
-			//media.play();
-		}
-		else
-		{
-			//alert("play_or_download : start_download");
-			start_download(MediaItemID,URL,Extension);
-		}
-	}
-}
-
-function start_download(MediaItemID,URL,Extension) {
-	//alert("start_download check internet");
-	networkState = navigator.connection.type;
-	if (networkState == Connection.NONE) {
-		//alert("start_download : NO internet");
-		notify('يجب عليك الاتصال بالانترنت', 'warning', 4000, 'bottom', 'Up', 'Down');
-	}
-	else{
-		//alert("start_download : we have internet");
-
-		//alert("start_download URL: " + URL);
-		//alert("start_download Extension: " + Extension);
-
-		var FileTransfer_OBJ = new FileTransfer();
-		var uri = encodeURI(URL + "?" + Math.random());
-
-		if (device.platform == 'iOS')
-		{
-			downloadPath = "cdvfile://localhost/persistent/";
-			window.localStorage.setItem('download_address',downloadPath);
-		}
-
-		$('#'+MediaItemID +' .progress-bar-parent').css("display","block");
-
-		downloadPath = window.localStorage.getItem('download_address') + $.md5(URL) + "." + Extension;
-		//alert("start_download : " + downloadPath);
-
-		FileTransfer_OBJ.onprogress = function(progressEvent) {
-			if (progressEvent.lengthComputable) {
-				var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
-				$('#'+MediaItemID +' .status').html(perc + "%");
-				$('#'+MediaItemID +' .progress-bar-percent').css('width',perc + "%");
-				//progress_bar_element.css('width',perc);
-			} else {
-				$('#'+MediaItemID +' .status').html($('#'+MediaItemID +' .status').html() + ".");
-				//progress_bar_element.css('width',progress_bar_element.width()+1);
-				$('#'+MediaItemID +' .progress-bar-percent').css('width',$('#'+MediaItemID +' .progress-bar-parent').find('span').width()+1);
-			}
-		};
-
-		FileTransfer_OBJ.download(uri, downloadPath, 
-			function(entry) {	
-				$('#'+MediaItemID +' .status').html("");
-				$('#'+MediaItemID +' .progress-bar-parent').find('span').css('width','2%');
-				//alert("start_download : done");
-				temp_array = JSON.parse(window.localStorage.getItem('downloaded_files'));
-				temp_array.push($.md5(URL));
-				window.localStorage.setItem('downloaded_files',JSON.stringify(temp_array));	
-
-				temp_element.removeClass("need_download");
-				$('#'+MediaItemID +' .progress-bar-parent').css("display","none");
-				$('#'+MediaItemID +' .play').trigger("click");
-			}, 
-			function(error) {
-				//alert('Crap something went wrong...');	
-				//alert(JSON.stringify(error));
-				notify('فشل في تحميل الملف', 'error', 4000, 'bottom', 'Up', 'Down');
-				$('#'+MediaItemID +' .progress-bar-parent').find('span').css('width','2%');
-				$('#'+MediaItemID +' .progress-bar-percent').css('width',"");
-				$('#'+MediaItemID +' .progress-bar-parent').css("display","none");
-			},
-			true
-		);
-
-		$('#'+MediaItemID +' .abort').click( function(i) {
-			FileTransfer_OBJ.abort();
-			$('#'+MediaItemID +' .progress-bar-parent').find('span').css('width','2%');
-			$('#'+MediaItemID +' .progress-bar-percent').css('width',"");
-			$('#'+MediaItemID +' .progress-bar-parent').css("display","none");
+		});
+		$('#altawasol .play_it').click( function(i) {
+			mediaData["altawasol"].temp_element = $(this);
+			//alert($(this).attr('online'));
+			//alert("click");
+			//play_or_download('altawasol','http://imamali.net/app-json/audio/aminalah.mp3','mp3');
+			play_or_download("altawasol",$(this).attr('online'),"mp3");
 		});
 
-	}
-}
 
-function check_download(MediaItemID,URL) {
-	//alert("check_download URL: " + URL);
-	var temp_array = JSON.parse(window.localStorage.getItem('downloaded_files'));
-	//alert("check_download Extension: " + window.localStorage.getItem('downloaded_files'));
-	if($.inArray($.md5(URL),temp_array) != -1)
-	{
-		//alert("check_download true");
-		return true;
-	}
-	else
-	{
-		//alert("check_download false");
-		return false;
-	}
-}
-/////END DOWNLOAD////////////////////////////////////////////////////////////////////////
-</script>
 
-<script>
-	function playAudio_new(MediaItemID,filename,is_from_web) {
-		$('#'+MediaItemID +' .durationTimer').html("--:--");
-		$('#'+MediaItemID +' .audioTimer').html("00:00");
+		if(window.localStorage.getItem('downloaded_files') == null){
+			window.localStorage.setItem('downloaded_files',JSON.stringify(["786","110"]));	
+		}
 
-		audio.stop();
-		setTimeout(function(){
-			playAudio(MediaItemID,filename,is_from_web);
-		}, 600);
-	}
+
+		if(window.localStorage.getItem('download_address') == null){
+
+			window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, 
+				function(fs) {
+					window.localStorage.setItem('download_address',fs.root.toURL());
+				}, function(e) {
+					//alert('failed to get fs');
+					//alert(JSON.stringify(e));
+				}
+			);
+		}
+
+		//alert("window.localStorage.getItem('download_address'):" + window.localStorage.getItem('download_address'));
+		//alert("window.localStorage.getItem('downloaded_files'):" + window.localStorage.getItem('downloaded_files'));
+		/////END DOWNLOAD////////////////////////////////////////////////////////////////////////
+
+	}, 3000);
 </script>
 <div id="altawasol">
 	<div class="smgroup_audio_player" >
@@ -327,238 +174,3 @@ function check_download(MediaItemID,URL) {
 		</div>
 	</div>
 </div>
-<script>
-//init_audio("altawasol", "audio/roze/0.mp3");
-
-audio_Timer = $("#altawasol .audioTimer");
-duration_Timer = $("#altawasol .durationTimer");
-slider_Timer = $("#altawasol .slider");
-
-audio = null;
-audioTimer = null;
-pausePos = 0;
-
-function init_audio(MediaItemID,my_file){
-	/*
-	if (audio) {
-		play_btn.css("display","block");
-		play2_btn.css("display","none");
-		pause_btn.css("display","none");
-
-		slider_Timer.val(0);
-		stopAudio(MediaItemID);
-	}
-	*/
-	// Phonegap is loaded and can be used
-	play_btn = $("#"+MediaItemID +" .play");
-	play2_btn = $("#"+MediaItemID +" .play2");
-	pause_btn = $("#"+MediaItemID +" .pause");
-	stop_btn = $("#"+MediaItemID +" .stop");
-	slider_Timer = $("#"+MediaItemID +" .slider");
-	slider_range = slider_Timer;
-/*
-	play_btn.click(function(e){
-		e.preventDefault();
-		play_btn.css("display","none");
-		pause_btn.css("display","block");
-		slider_Timer.prop("disabled",false);
-		playAudio(MediaItemID,my_file);
-	});
-*/
-	slider_Timer.on("change", function(){
-		//play_btn.prop("disabled",false);
-		//play2_btn.prop("disabled",false);
-		//pause_btn.prop("disabled",true);
-		play2_btn.css("display","block");
-		pause_btn.css("display","none");
-
-		pausePos = slider_Timer.val();
-		formatTime(pausePos,audio_Timer);
-		pauseAudio(MediaItemID);
-		formatTime(pausePos,audio_Timer);
-		audio.seekTo(pausePos*1000);
-
-		setTimeout(function(){
-			pausePos = temp_pausePos;
-			audio.seekTo(pausePos*1000);
-			formatTime(pausePos,audio_Timer);
-			slider_Timer.val(pausePos);
-		}, 800);
-	});
-
-	pause_btn.click(function(){	
-		play2_btn.css("display","block");
-		pause_btn.css("display","none");
-
-		pauseAudio(MediaItemID);
-	});
-
-	play2_btn.click(function(){	
-		pause_btn.css("display","block");
-		play2_btn.css("display","none");		
-
-		PausePlayAudio(MediaItemID);
-	});
-
-	stop_btn.click(function(){
-		play_btn.css("display","block");
-		play2_btn.css("display","none");
-		pause_btn.css("display","none");
-
-		slider_Timer.val(0);
-		stopAudio(MediaItemID);
-	});
-
-
-	file = "audio/besmella.mp3";
-	if ( device.platform == 'Android' ){//Android,iOS,win7=WinCE,win8=Win32NT
-		file = "/android_asset/www/" + file;
-	}
-	audio = new Media(file, function(){ // success callback
-
-	}, function(error){ // error callback
-		//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
-		//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
-	});
-}
-
-
-function playAudio(MediaItemID,file,is_from_web){
-	//alert(file);
-
-	if (is_from_web==false){//Android,iOS,win7=WinCE,win8=Win32NT
-		file = file.replace("http://imamali.net/app-json/", "");
-	}
-	if ( device.platform == 'Android' && is_from_web==false ){//Android,iOS,win7=WinCE,win8=Win32NT
-		file = "/android_asset/www/" + file;
-	}
-	//alert("2");
-	if (audio) {
-		//alert("3");
-		audio.stop();
-		//audio.release();
-	}
-	//alert("4");
-
-	$('#'+MediaItemID +' .smgroup_audio_player').show();
-	play_btn.css("display","none");
-	play2_btn.css("display","none");
-	pause_btn.css("display","block");
-	slider_Timer.prop("disabled",false);
-
-	audio = new Media(file, function(){ // success callback
-		//alert("playAudio():Audio Success");
-		play_btn.css("display","block");
-		play2_btn.css("display","none");
-		pause_btn.css("display","none");
-
-		slider_Timer.val(0);
-		stopAudio(MediaItemID);
-	}, function(error){ // error callback
-		//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
-		//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
-	});
-	//alert("3");
-	// get audio duration
-	var duration = audio.getDuration();
-	var duration_show = false;
-
-	// set slider data
-	if( duration > 0 ){
-		formatTime(duration,duration_Timer);
-		slider_Timer.attr( "max", Math.round(duration) );
-		//slider_Timer.slider("refresh");
-		slider_Timer.val(0);
-		duration_show = true;
-	}
-
-
-	// play audio
-	audio.play({ playAudioWhenScreenIsLocked : true });
-
-	audio.seekTo(0);
-
-	// update audio position every second
-	if (audioTimer == null) {
-		audioTimer = setInterval(function() {
-			// get audio position
-			audio.getCurrentPosition(
-				function(position) { // get position success
-					if (position > -1) {
-						setAudioPosition(MediaItemID,position);
-					}
-				}, function(e) { // get position error
-					//alert("Error getting pos=" + e);
-					//setAudioPosition(MediaItemID,duration);
-				}
-			);
-			if(!duration_show){
-				duration = audio.getDuration();
-				if( duration > 0 ){
-					formatTime(duration,duration_Timer);
-					slider_Timer.attr( "max", Math.round(duration) );
-					//slider_Timer.slider("refresh");
-					duration_show = true;
-				}
-			}
-		}, 1000);
-	}
-}
-
-
-
-function pauseAudio(MediaItemID) {
-	if (audio) {
-		audio.pause();
-	}
-}
-
-function PausePlayAudio(MediaItemID) {
-	if (audio) {
-		audio.pause();
-		audio.seekTo(pausePos*1000);
-		audio.play();
-	}
-}
-
-function stopAudio(MediaItemID) {
-	if (audio) {
-		audio.stop();
-		audio.release();
-	}
-	clearInterval(audioTimer);
-	audioTimer = null;
-	pausePos = 0;
-	formatTime(0,audio_Timer);
-}
-
-function setAudioPosition(MediaItemID,position) {
-	pausePos = position;
-	position = Math.round(position);
-	slider_Timer.val(position);
-	formatTime(position,audio_Timer);
-	//slider_Timer.slider("refresh");
-	//slider_Timer.val(0);
-}
-
-function formatTime(seconds,Timer) {
-	if (seconds <= 0)
-	{
-		Timer.html("00:00");
-		return;
-	}	
-	var minutes = Math.floor(seconds / 60);
-
-	if (minutes < 10)
-		minutes = "0" + minutes;
-
-	seconds = seconds % 60;
-	if (seconds < 10)
-		seconds = "0" + seconds;
-	seconds = Math.round(seconds);
-
-	Timer.html(minutes + ":" + seconds);
-};
-</script>
-		
-		
