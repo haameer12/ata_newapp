@@ -611,14 +611,6 @@ outline:none
 
 </div>
 <script>
-$("#adab_alzeara").bind('panelload', function() {
-	//alert("adab_alzeara start");
-	$("#adab_alzeara_content_page .nano").nanoScroller({ alwaysVisible: true });
-	
-	
-	
-	
-	
 	
 	
 	
@@ -1012,7 +1004,6 @@ function formatTime(seconds,Timer) {
 	Timer.html(minutes + ":" + seconds);
 };
 	
-
 	
 	
 	
@@ -1022,6 +1013,16 @@ function formatTime(seconds,Timer) {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+$("#adab_alzeara").bind('panelload', function() {
+	//alert("adab_alzeara start");
+	$("#adab_alzeara_content_page .nano").nanoScroller({ alwaysVisible: true });
 	
 });
 $("#adab_alzeara").bind('panelunload', function() {
