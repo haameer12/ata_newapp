@@ -267,7 +267,7 @@ function check_download(MediaItemID,URL) {
 		$('#'+MediaItemID +' .durationTimer').html("--:--");
 		$('#'+MediaItemID +' .audioTimer').html("00:00");
 
-		audio.stop();
+		mediaData[MediaItemID].audio.stop();
 		setTimeout(function(){
 			playAudio(MediaItemID,filename,is_from_web);
 		}, 600);
@@ -304,13 +304,26 @@ function check_download(MediaItemID,URL) {
 
 //slider_Timer = $("#alahad .slider");
 
-audio = null;
-audioTimer = null;
-pausePos = 0;
+
+
+
+var mediaData = {
+	alsabah : {
+		audio : null,
+		audioTimer : null,
+		pausePos : 0
+	},
+	alahad : {
+		audio : null,
+		audioTimer : null,
+		pausePos : 0
+	}
+}
+
 
 function init_audio(MediaItemID,my_file){
 	/*
-	if (audio) {
+	if (mediaData[MediaItemID].audio) {
 		$("#"+MediaItemID +" .play").css("display","block");
 		$("#"+MediaItemID +" .play2").css("display","none");
 		$("#"+MediaItemID +" .pause").css("display","none");
@@ -340,17 +353,17 @@ function init_audio(MediaItemID,my_file){
 		$("#"+MediaItemID +" .play2").css("display","block");
 		$("#"+MediaItemID +" .pause").css("display","none");
 
-		pausePos = slider_Timer.val();
-		formatTime(pausePos,$("#"+MediaItemID +" .audioTimer"));
+		mediaData[MediaItemID].pausePos = slider_Timer.val();
+		formatTime(mediaData[MediaItemID].pausePos,$("#"+MediaItemID +" .audioTimer"));
 		pauseAudio(MediaItemID);
-		formatTime(pausePos,$("#"+MediaItemID +" .audioTimer"));
-		audio.seekTo(pausePos*1000);
+		formatTime(mediaData[MediaItemID].pausePos,$("#"+MediaItemID +" .audioTimer"));
+		mediaData[MediaItemID].audio.seekTo(mediaData[MediaItemID].pausePos*1000);
 
 		setTimeout(function(){
-			pausePos = temp_pausePos;
-			audio.seekTo(pausePos*1000);
-			formatTime(pausePos,$("#"+MediaItemID +" .audioTimer"));
-			slider_Timer.val(pausePos);
+			mediaData[MediaItemID].pausePos = temp_pausePos;
+			mediaData[MediaItemID].audio.seekTo(mediaData[MediaItemID].pausePos*1000);
+			formatTime(mediaData[MediaItemID].pausePos,$("#"+MediaItemID +" .audioTimer"));
+			slider_Timer.val(mediaData[MediaItemID].pausePos);
 		}, 800);
 	});
 
@@ -382,7 +395,7 @@ function init_audio(MediaItemID,my_file){
 	if ( device.platform == 'Android' ){//Android,iOS,win7=WinCE,win8=Win32NT
 		file = "/android_asset/www/" + file;
 	}
-	audio = new Media(file, function(){ // success callback
+	mediaData[MediaItemID].audio = new Media(file, function(){ // success callback
 
 	}, function(error){ // error callback
 		//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
@@ -403,10 +416,10 @@ function playAudio(MediaItemID,file,is_from_web){
 		file = "/android_asset/www/" + file;
 	}
 	//alert("2");
-	if (audio) {
+	if (mediaData[MediaItemID].audio) {
 		//alert("3");
-		audio.stop();
-		//audio.release();
+		mediaData[MediaItemID].audio.stop();
+		//mediaData[MediaItemID].audio.release();
 	}
 	//alert("4");
 
@@ -416,7 +429,7 @@ function playAudio(MediaItemID,file,is_from_web){
 	$("#"+MediaItemID +" .pause").css("display","block");
 	slider_Timer.prop("disabled",false);
 
-	audio = new Media(file, function(){ // success callback
+	mediaData[MediaItemID].audio = new Media(file, function(){ // success callback
 		//alert("playAudio():Audio Success");
 		$("#"+MediaItemID +" .play").css("display","block");
 		$("#"+MediaItemID +" .play2").css("display","none");
@@ -430,7 +443,7 @@ function playAudio(MediaItemID,file,is_from_web){
 	});
 	//alert("3");
 	// get audio duration
-	var duration = audio.getDuration();
+	var duration = mediaData[MediaItemID].audio.getDuration();
 	var duration_show = false;
 
 	// set slider data
@@ -444,15 +457,15 @@ function playAudio(MediaItemID,file,is_from_web){
 
 
 	// play audio
-	audio.play({ playAudioWhenScreenIsLocked : true });
+	mediaData[MediaItemID].audio.play({ playAudioWhenScreenIsLocked : true });
 
-	audio.seekTo(0);
+	mediaData[MediaItemID].audio.seekTo(0);
 
 	// update audio position every second
-	if (audioTimer == null) {
-		audioTimer = setInterval(function() {
+	if (mediaData[MediaItemID].audioTimer == null) {
+		mediaData[MediaItemID].audioTimer = setInterval(function() {
 			// get audio position
-			audio.getCurrentPosition(
+			mediaData[MediaItemID].audio.getCurrentPosition(
 				function(position) { // get position success
 					if (position > -1) {
 						setAudioPosition(MediaItemID,position);
@@ -463,7 +476,7 @@ function playAudio(MediaItemID,file,is_from_web){
 				}
 			);
 			if(!duration_show){
-				duration = audio.getDuration();
+				duration = mediaData[MediaItemID].audio.getDuration();
 				if( duration > 0 ){
 					formatTime(duration,$("#"+MediaItemID +" .durationTimer"));
 					slider_Timer.attr( "max", Math.round(duration) );
@@ -478,27 +491,27 @@ function playAudio(MediaItemID,file,is_from_web){
 
 
 function pauseAudio(MediaItemID) {
-	if (audio) {
-		audio.pause();
+	if (mediaData[MediaItemID].audio) {
+		mediaData[MediaItemID].audio.pause();
 	}
 }
 
 function PausePlayAudio(MediaItemID) {
-	if (audio) {
-		audio.pause();
-		audio.seekTo(pausePos*1000);
-		audio.play();
+	if (mediaData[MediaItemID].audio) {
+		mediaData[MediaItemID].audio.pause();
+		mediaData[MediaItemID].audio.seekTo(mediaData[MediaItemID].pausePos*1000);
+		mediaData[MediaItemID].audio.play();
 	}
 }
 
 function stopAudio(MediaItemID) {
-	if (audio) {
-		audio.stop();
-		audio.release();
+	if (mediaData[MediaItemID].audio) {
+		mediaData[MediaItemID].audio.stop();
+		mediaData[MediaItemID].audio.release();
 	}
-	clearInterval(audioTimer);
-	audioTimer = null;
-	pausePos = 0;
+	clearInterval(mediaData[MediaItemID].audioTimer);
+	mediaData[MediaItemID].audioTimer = null;
+	mediaData[MediaItemID].pausePos = 0;
 	formatTime(0,$("#"+MediaItemID +" .audioTimer"));
 }
 
@@ -506,7 +519,7 @@ function setAudioPosition(MediaItemID,position) {
 	
 	slider_Timer = $("#"+MediaItemID +" .slider");
 	
-	pausePos = position;
+	mediaData[MediaItemID].pausePos = position;
 	position = Math.round(position);
 	slider_Timer.val(position);
 	formatTime(position,$("#"+MediaItemID +" .audioTimer"));
