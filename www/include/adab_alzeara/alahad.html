@@ -77,11 +77,31 @@
 
 
 <script>
-var temp_element;
-var progress_bar_element;
+
+	
 function temp_function() {
 	// do something
 }
+	
+	
+var mediaData = {
+	alsabah : {
+		temp_element : null,
+		progress_bar_element : null,
+		audio : null,
+		audioTimer : null,
+		pausePos : 0
+	},
+	alahad : {
+		temp_element : null,
+		progress_bar_element : null,
+		audio : null,
+		audioTimer : null,
+		pausePos : 0
+	}
+}
+	
+
 
 setTimeout(function(){
 
@@ -100,7 +120,7 @@ setTimeout(function(){
 
 	});
 	$('#alahad .play_it').click( function(i) {
-		temp_element = $(this);
+		mediaData["alahad"].temp_element = $(this);
 		//alert($(this).attr('online'));
 		//alert("click");
 		//play_or_download('alahad','http://imamali.net/app-json/audio/aminalah.mp3','mp3');
@@ -146,7 +166,7 @@ function play_or_download(MediaItemID,URL,Extension) {
 
 	downloadPath = window.localStorage.getItem('download_address') + $.md5(URL) + "." + Extension;
 	//alert("play_or_download : " + downloadPath);
-	if(temp_element.attr("play_type")=="offline")
+	if(mediaData[MediaItemID].temp_element.attr("play_type")=="offline")
 	{
 			//alert("play_or_download : play offline");
 
@@ -202,10 +222,10 @@ function start_download(MediaItemID,URL,Extension) {
 				var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
 				$('#'+MediaItemID +' .status').html(perc + "%");
 				$('#'+MediaItemID +' .progress-bar-percent').css('width',perc + "%");
-				//progress_bar_element.css('width',perc);
+				//mediaData[MediaItemID].progress_bar_element.css('width',perc);
 			} else {
 				$('#'+MediaItemID +' .status').html($('#'+MediaItemID +' .status').html() + ".");
-				//progress_bar_element.css('width',progress_bar_element.width()+1);
+				//mediaData[MediaItemID].progress_bar_element.css('width',mediaData[MediaItemID].progress_bar_element.width()+1);
 				$('#'+MediaItemID +' .progress-bar-percent').css('width',$('#'+MediaItemID +' .progress-bar-parent').find('span').width()+1);
 			}
 		};
@@ -219,7 +239,7 @@ function start_download(MediaItemID,URL,Extension) {
 				temp_array.push($.md5(URL));
 				window.localStorage.setItem('downloaded_files',JSON.stringify(temp_array));	
 
-				temp_element.removeClass("need_download");
+				mediaData[MediaItemID].temp_element.removeClass("need_download");
 				$('#'+MediaItemID +' .progress-bar-parent').css("display","none");
 				$('#'+MediaItemID +' .play').trigger("click");
 			}, 
@@ -307,7 +327,7 @@ function check_download(MediaItemID,URL) {
 
 
 
-var mediaData = {
+/*var mediaData = {
 	alsabah : {
 		audio : null,
 		audioTimer : null,
@@ -318,7 +338,7 @@ var mediaData = {
 		audioTimer : null,
 		pausePos : 0
 	}
-}
+}*/
 
 
 function init_audio(MediaItemID,my_file){
