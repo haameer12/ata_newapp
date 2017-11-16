@@ -686,16 +686,6 @@ function temp_function() {
 function play_or_download(MediaItemID,URL,Extension) {
 	//alert("play_or_download URL: " + URL);
 	//alert("play_or_download Extension: " + Extension);
-	
-	
-	
-	if(currentMediaPlayed){
-		pauseAudio(currentMediaPlayed);
-	}
-	currentMediaPlayed = MediaItemID;
-	
-	
-	
 
 	if (device.platform == 'iOS')
 	{
@@ -918,6 +908,16 @@ function init_audio(MediaItemID,my_file){
 
 function playAudio(MediaItemID,file,is_from_web){
 	//alert(file);
+	
+	
+	
+	
+	if(currentMediaPlayed){
+		pauseAudio(currentMediaPlayed);
+	}
+	currentMediaPlayed = MediaItemID;
+	
+	
 	
 	
 
