@@ -1009,6 +1009,16 @@ function pauseAudio(MediaItemID) {
 }
 
 function PausePlayAudio(MediaItemID) {
+	
+	
+	if(currentMediaPlayed){
+		pauseAudio(currentMediaPlayed);
+		$("#"+currentMediaPlayed +" .play2").css("display","block");
+		$("#"+currentMediaPlayed +" .pause").css("display","none");
+	}
+	currentMediaPlayed = MediaItemID;
+	
+	
 	if (mediaData[MediaItemID].audio) {
 		mediaData[MediaItemID].audio.pause();
 		mediaData[MediaItemID].audio.seekTo(mediaData[MediaItemID].pausePos*1000);
