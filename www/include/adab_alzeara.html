@@ -611,6 +611,7 @@ outline:none
 
 </div>
 <script>
+var currentMediaPlayed = null;
 var mediaData = {
 	aljamea : {
 		temp_element : null,
@@ -685,6 +686,16 @@ function temp_function() {
 function play_or_download(MediaItemID,URL,Extension) {
 	//alert("play_or_download URL: " + URL);
 	//alert("play_or_download Extension: " + Extension);
+	
+	
+	
+	if(currentMediaPlayed){
+		pauseAudio(currentMediaPlayed);
+	}
+	currentMediaPlayed = MediaItemID;
+	
+	
+	
 
 	if (device.platform == 'iOS')
 	{
