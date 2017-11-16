@@ -914,6 +914,8 @@ function playAudio(MediaItemID,file,is_from_web){
 	
 	if(currentMediaPlayed){
 		pauseAudio(currentMediaPlayed);
+		$("#"+MediaItemID +" .play2").css("display","block");
+		$("#"+MediaItemID +" .pause").css("display","none");
 	}
 	currentMediaPlayed = MediaItemID;
 	
