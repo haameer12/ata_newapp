@@ -810,15 +810,15 @@ function check_download(MediaItemID,URL) {
 /////END DOWNLOAD////////////////////////////////////////////////////////////////////////
 
 function playAudio_new(MediaItemID,filename,is_from_web) {
-		$('#'+MediaItemID +' .durationTimer').html("--:--");
-		$('#'+MediaItemID +' .audioTimer').html("00:00");
+	$('#'+MediaItemID +' .durationTimer').html("--:--");
+	$('#'+MediaItemID +' .audioTimer').html("00:00");
 
-		mediaData[MediaItemID].audio.stop();
-		setTimeout(function(){
-			playAudio(MediaItemID,filename,is_from_web);
-		}, 600);
-	}
-	
+	mediaData[MediaItemID].audio.stop();
+	setTimeout(function(){
+		playAudio(MediaItemID,filename,is_from_web);
+	}, 600);
+}
+
 	
 //-------------------------
 
@@ -830,32 +830,31 @@ function init_audio(MediaItemID,my_file){
 		$("#"+MediaItemID +" .play2").css("display","none");
 		$("#"+MediaItemID +" .pause").css("display","none");
 
-		slider_Timer.val(0);
+		$("#"+MediaItemID +" .slider").val(0);
 		stopAudio(MediaItemID);
 	}
 	*/
 	// Phonegap is loaded and can be used
 	
 
-	slider_Timer = $("#"+MediaItemID +" .slider");
-	slider_range = slider_Timer;
+	slider_range = $("#"+MediaItemID +" .slider");
 /*
 	$("#"+MediaItemID +" .play").click(function(e){
 		e.preventDefault();
 		$("#"+MediaItemID +" .play").css("display","none");
 		$("#"+MediaItemID +" .pause").css("display","block");
-		slider_Timer.prop("disabled",false);
+		$("#"+MediaItemID +" .slider").prop("disabled",false);
 		playAudio(MediaItemID,my_file);
 	});
 */
-	slider_Timer.on("change", function(){
+	$("#"+MediaItemID +" .slider").on("change", function(){
 		//$("#"+MediaItemID +" .play").prop("disabled",false);
 		//$("#"+MediaItemID +" .play2").prop("disabled",false);
 		//$("#"+MediaItemID +" .pause").prop("disabled",true);
 		$("#"+MediaItemID +" .play2").css("display","block");
 		$("#"+MediaItemID +" .pause").css("display","none");
 
-		mediaData[MediaItemID].pausePos = slider_Timer.val();
+		mediaData[MediaItemID].pausePos = $("#"+MediaItemID +" .slider").val();
 		formatTime(mediaData[MediaItemID].pausePos,$("#"+MediaItemID +" .audioTimer"));
 		pauseAudio(MediaItemID);
 		formatTime(mediaData[MediaItemID].pausePos,$("#"+MediaItemID +" .audioTimer"));
@@ -865,7 +864,7 @@ function init_audio(MediaItemID,my_file){
 			mediaData[MediaItemID].pausePos = temp_pausePos;
 			mediaData[MediaItemID].audio.seekTo(mediaData[MediaItemID].pausePos*1000);
 			formatTime(mediaData[MediaItemID].pausePos,$("#"+MediaItemID +" .audioTimer"));
-			slider_Timer.val(mediaData[MediaItemID].pausePos);
+			$("#"+MediaItemID +" .slider").val(mediaData[MediaItemID].pausePos);
 		}, 800);
 	});
 
@@ -888,7 +887,7 @@ function init_audio(MediaItemID,my_file){
 		$("#"+MediaItemID +" .play2").css("display","none");
 		$("#"+MediaItemID +" .pause").css("display","none");
 
-		slider_Timer.val(0);
+		$("#"+MediaItemID +" .slider").val(0);
 		stopAudio(MediaItemID);
 	});
 
@@ -909,7 +908,7 @@ function init_audio(MediaItemID,my_file){
 function playAudio(MediaItemID,file,is_from_web){
 	//alert(file);
 	
-	slider_Timer = $("#"+MediaItemID +" .slider");
+	
 
 	if (is_from_web==false){//Android,iOS,win7=WinCE,win8=Win32NT
 		file = file.replace("http://imamali.net/app-json/", "");
@@ -929,7 +928,7 @@ function playAudio(MediaItemID,file,is_from_web){
 	$("#"+MediaItemID +" .play").css("display","none");
 	$("#"+MediaItemID +" .play2").css("display","none");
 	$("#"+MediaItemID +" .pause").css("display","block");
-	slider_Timer.prop("disabled",false);
+	$("#"+MediaItemID +" .slider").prop("disabled",false);
 
 	mediaData[MediaItemID].audio = new Media(file, function(){ // success callback
 		//alert("playAudio():Audio Success");
@@ -937,7 +936,7 @@ function playAudio(MediaItemID,file,is_from_web){
 		$("#"+MediaItemID +" .play2").css("display","none");
 		$("#"+MediaItemID +" .pause").css("display","none");
 
-		slider_Timer.val(0);
+		$("#"+MediaItemID +" .slider").val(0);
 		stopAudio(MediaItemID);
 	}, function(error){ // error callback
 		//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
@@ -951,9 +950,9 @@ function playAudio(MediaItemID,file,is_from_web){
 	// set slider data
 	if( duration > 0 ){
 		formatTime(duration,$("#"+MediaItemID +" .durationTimer"));
-		slider_Timer.attr( "max", Math.round(duration) );
-		//slider_Timer.slider("refresh");
-		slider_Timer.val(0);
+		$("#"+MediaItemID +" .slider").attr( "max", Math.round(duration) );
+		//$("#"+MediaItemID +" .slider").slider("refresh");
+		$("#"+MediaItemID +" .slider").val(0);
 		duration_show = true;
 	}
 
@@ -981,15 +980,14 @@ function playAudio(MediaItemID,file,is_from_web){
 				duration = mediaData[MediaItemID].audio.getDuration();
 				if( duration > 0 ){
 					formatTime(duration,$("#"+MediaItemID +" .durationTimer"));
-					slider_Timer.attr( "max", Math.round(duration) );
-					//slider_Timer.slider("refresh");
+					$("#"+MediaItemID +" .slider").attr( "max", Math.round(duration) );
+					//$("#"+MediaItemID +" .slider").slider("refresh");
 					duration_show = true;
 				}
 			}
 		}, 1000);
 	}
 }
-
 
 function pauseAudio(MediaItemID) {
 	if (mediaData[MediaItemID].audio) {
@@ -1018,17 +1016,15 @@ function stopAudio(MediaItemID) {
 
 function setAudioPosition(MediaItemID,position) {
 	
-	slider_Timer = $("#"+MediaItemID +" .slider");
-	
 	mediaData[MediaItemID].pausePos = position;
 	position = Math.round(position);
-	slider_Timer.val(position);
+	$("#"+MediaItemID +" .slider").val(position);
 	formatTime(position,$("#"+MediaItemID +" .audioTimer"));
-	//slider_Timer.slider("refresh");
-	//slider_Timer.val(0);
+	//$("#"+MediaItemID +" .slider").slider("refresh");
+	//$("#"+MediaItemID +" .slider").val(0);
 }
 
-function formatTime(seconds,Timer) {
+function formatTime(seconds,Timer){
 	if (seconds <= 0)
 	{
 		Timer.html("00:00");
