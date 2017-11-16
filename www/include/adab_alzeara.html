@@ -877,6 +877,18 @@ function init_audio(MediaItemID,my_file){
 	});
 
 	$("#"+MediaItemID +" .play2").click(function(){	
+		
+		
+		
+		if(currentMediaPlayed){
+			pauseAudio(currentMediaPlayed);
+			$("#"+currentMediaPlayed +" .play2").css("display","block");
+			$("#"+currentMediaPlayed +" .pause").css("display","none");
+		}
+		currentMediaPlayed = MediaItemID;
+
+		
+		
 		$("#"+MediaItemID +" .pause").css("display","block");
 		$("#"+MediaItemID +" .play2").css("display","none");		
 
@@ -1009,15 +1021,6 @@ function pauseAudio(MediaItemID) {
 }
 
 function PausePlayAudio(MediaItemID) {
-	
-	
-	if(currentMediaPlayed){
-		pauseAudio(currentMediaPlayed);
-		$("#"+currentMediaPlayed +" .play2").css("display","block");
-		$("#"+currentMediaPlayed +" .pause").css("display","none");
-	}
-	currentMediaPlayed = MediaItemID;
-	
 	
 	if (mediaData[MediaItemID].audio) {
 		mediaData[MediaItemID].audio.pause();
