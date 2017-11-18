@@ -1,1 +1,33 @@
 <iframe style="border:none;position:absolute;top:0;left:0;width:100%;height:100%" src="include/vtour/vtour-online.html"></iframe>
+<style>
+#shkb_header_da {
+	background-image: url("img/vtour-demo/day-back.png");
+	background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 1vh;
+    height: 17vw;
+    left: 0;
+    position: absolute;
+    width: 19vw;
+    z-index: 999;
+}
+#shkb_btn1_da{
+	position:absolute;
+	left:0;
+	top:0;
+	height:100%;
+	width:100%;
+	display:block;
+	z-index:999;
+}
+@media screen and (orientation : landscape){
+	#shkb_header_da {
+	  height: 17vh;
+	  width: 19vh;
+	}
+}
+</style>
+<div id="shkb_header_da" style="" >
+	<a id="shkb_btn1_da" href="#" onclick="$.afui.goBack();return false;" data-transition="slide"></a>
+</div>
