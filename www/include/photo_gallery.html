@@ -220,10 +220,10 @@ $("#photo_gallery_main").bind('panelload', function() {
 					if(i == 1){$("#app-photo-gallery-pic-list ul").attr("lastGalleryId", value['id']);}
 										
 					$("#app-photo-gallery-pic-list ul").append('<li fileName="' +value['file_name'] +'" itemID="' +value['id'] +'"><span> \
-						<img src="http://imamali.net/rpic.php?i=files/images/' +value['file_name'] +'&w=500&h=333" style="display: none;" /> \
+						<img src="http://imamali.net/rpic.php?i=files/' +value['file_name'] +'&w=500&h=333" style="display: none;" /> \
 						<div class="gallery_img_tools"> \
 							<span class="middle_holder"></span> \
-							<a href="#" onClick="DownloadFile(\'http://imamali.net/files/images/' +value['file_name'] +'\', \'Download\', \'Imam Ali Holy shrine - ' +value['file_name'] +'\',\'gallery_img_download_loading' +value['id'] +'\');return false;"><i class="fa fa-download" aria-hidden="true"></i></a> \
+							<a href="#" onClick="DownloadFile(\'http://imamali.net/files/' +value['file_name'] +'\', \'Download\', \'Imam Ali Holy shrine - ' +value['file_name'] +'\',\'gallery_img_download_loading' +value['id'] +'\');return false;"><i class="fa fa-download" aria-hidden="true"></i></a> \
 							<a href="#" class="photoGallerySocialSharing"><i class="fa fa-share-alt" aria-hidden="true"></i></a> \
 						</div> \
 						<div class="gallery_img_download_loading" id="gallery_img_download_loading' +value['id'] +'"></div> \
