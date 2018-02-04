@@ -2,13 +2,13 @@
 <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "iq.imamali.net"
-        version   = "3.0.4" >
+        version   = "3.0.5" >
 		
 		
 		
     <name>شبكة الامام علي</name>
     <description>شبكة الامام علي</description>
-    <author href="http://smgroup.ir" email="info@smgroup.ir">Sorush Mehr Rezvan</author>
+    <author href="http://www.magicwd.co" email="info@magicwd.co">Magic Web Development</author>
     <!--
 		ir.smgroup.saveimage
         If you do not want any permissions to be added to your app, add the
