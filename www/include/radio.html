@@ -1,3 +1,4 @@
+<script src="engine/third-party/hls.js"></script>
 <style>
 .hm_radio_bg{
     background-image: url('img/radio_bg.png');
@@ -23,12 +24,12 @@
 
 	<div>
 		<div class="inside_page_title" style="background-image:url(img/radio_title.png);">
+			<span class="inside_page_loading"></span>
 			<a href="#" onclick="$.afui.goBack();return false;">
 				<span class="inside_page_back"></span>
 			</a>
 		</div>
-		<div class="inside_page_content">
-
+		<div class="inside_page_content" id="radio_page">
 
 
 
@@ -42,7 +43,13 @@
 			<div class="hm_radio_bg2">
 				<div class="hm_radio_bg"></div>
 			</div>
-		
+
+			<div id="HU-container-radio" style="display:none;"></div>
+			 <div class="HU-pulse_marker">
+				<div id="HU-pulse_rays" class=""></div>
+			</div>
+
+
 		
 		
 		
@@ -60,79 +67,64 @@
 
 </div>
 <script>
-$("#radio").bind('panelload', function() {
-	//alert("radio start");
-
-	
-	if($("#radio").attr("isFirst") == "0"){
-
-		setTimeout(function(){
-			//file = "/android_asset/www/sound.mp3";
-			file = "http://37.236.145.99/radio.mp3";
-			//file = "http://109.205.117.206/radio.mp3";
-			/*
-			if ( device.platform == 'Android' ){//Android,iOS,win7=WinCE,win8=Win32NT
-				file = "/android_asset/www/" + file;
+function chk(m) {
+	if(Hls.isSupported()) {
+		var video = document.getElementById('video');
+		var hls = new Hls();
+		hls.loadSource('http://92.222.213.211:1935/2LRP3b2D131ce5WtxaOQ/radio/playlist.m3u8');
+		hls.attachMedia(video);
+		hls.on(Hls.Events.MANIFEST_PARSED, function () {
+			if (m == "p") {
+				video.play();
 			}
-			*/
-			radioObject = new Media(
-				file,
-				function(){ // success callback
-					//console.log("playing");
-				},
-				function(error){ // error callback
-					//console.log("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
-					if(error.code==0){
-						//alert("لا يمكن تشغيل الإذاعة حالاً، هناك مشكلة");
-						//window.alert("code: "    + error.code    + " | " + "message: " + error.message);
-					}
-					//alert("code: "    + error.code    + "\n" + "message: " + error.message + "\n");
-				}
-			);
-			//audio.play({ playAudioWhenScreenIsLocked : true });
-			//audio.seekTo(0);
-		}, 50);
-
-		function play_my_radio(){
-			//console.log("audio.play()");
-			//window.alert("play");
-			radioObject.play({ playAudioWhenScreenIsLocked : true });
-		}
-
-		function stop_my_radio(){
-			//console.log("audio.pause()");
-			//window.alert("stop");
-			radioObject.pause();
-		}
-
-
-
-
-
-
-		$(".hm_radio_bg").unbind();
-		$(".hm_radio_bg").bind("tap", function(){
-			//$(this).toggleClass("playing");
-			if($(this).hasClass("playing")){
-				stop_my_radio();
-				$(this).css('background-image','url("img/radio_bg.png")');
-				$(this).removeClass("playing");
-			}else{
-				play_my_radio();
-				$(this).css('background-image','url("img/radio_bg_stop.png")');
-				$(this).addClass("playing");
+			else {
+				video.pause();
 			}
 		});
-		
-		$("#radio").attr("isFirst", "1");
+	}
+}
+
+$(".hm_radio_bg").bind("tap", function(){
+
+	if($('#HU-pulse_rays').hasClass("HU-pulse_rays")) {
+		chk("s");
+		document.getElementById("video").pause();
+		$('#HU-pulse_rays').removeClass("HU-pulse_rays");
+		$('.hm_radio_bg').css("background-image", "url(img/radio_bg.png)");
+		$("#radio_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+		$('#HU-container-radio').html('');
 
 	}else{
-		
-		//window.alert("not first");
-	
+
+		$('#HU-container-radio').html('<video id="video" src="http://92.222.213.211:1935/2LRP3b2D131ce5WtxaOQ/radio/playlist.m3u8" controls>\
+			Your browser does not support the audio element.\
+		</video>');
+		chk("p");
+		$('#HU-pulse_rays').addClass("HU-pulse_rays");
+		$('.hm_radio_bg').css("background-image", "url(img/radio_bg_wait.png)");
+		$("#radio_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "1");
+		document.getElementById("video").onloadeddata = function(){
+			if($('#HU-pulse_rays').hasClass("HU-pulse_rays")){
+				$('.hm_radio_bg').css("background-image", "url(img/radio_bg_stop.png)");
+				$("#radio_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+				$('#video')[0].play();
+			}
+		}
+
 	}
 	
+});
 	
+	
+	
+	
+	
+	
+	
+	
+	
+$("#radio").bind('panelload', function() {
+
 });
 	
 	
