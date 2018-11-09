@@ -179,8 +179,8 @@
     
     
     
- <!--   <platform name="android">
-        <icon density="ldpi" src="www/img/splash/icon/android/drawable-ldpi-icon.png" />
+   <platform name="android">
+         <!--<icon density="ldpi" src="www/img/splash/icon/android/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="www/img/splash/icon/android/drawable-mdpi-icon.png" />
         <icon density="hdpi" src="www/img/splash/icon/android/drawable-hdpi-icon.png" />
         <icon density="xhdpi" src="www/img/splash/icon/android/drawable-xhdpi-icon.png" />
@@ -197,8 +197,8 @@
         <splash density="port-hdpi" src="www/img/splash/screen/android/drawable-port-hdpi-screen.png" />
         <splash density="port-xhdpi" src="www/img/splash/screen/android/drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="www/img/splash/screen/android/drawable-port-xxhdpi-screen.png" />
-        <splash density="port-xxxhdpi" src="www/img/splash/screen/android/drawable-port-xxxhdpi-screen.png" />
-    </platform>-->
+        <splash density="port-xxxhdpi" src="www/img/splash/screen/android/drawable-port-xxxhdpi-screen.png" />-->
+    </platform>
 	
 	
 	<!--<icon src="www/img/splash/icon/android/drawable-ldpi-icon.png" platform="android" qualifier="ldpi" />
