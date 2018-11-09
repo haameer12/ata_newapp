@@ -18,7 +18,7 @@
     <preference name="permissions"                value="none"/>
 
     <!-- Customize your app and platform with the preference element. -->
-	<preference name='phonegap-version'			  value='cli-7.1.0' />
+	<preference name='phonegap-version'			  value='cli-6.5.0' />
     <preference name="orientation"                value="default" />        <!-- portrait all: default means both landscape and portrait are enabled -->
     <preference name="target-device"              value="universal" />      <!-- all: possible values handset, tablet, or universal -->
     <!--<preference name="fullscreen"                 value="true" />-->           <!-- all: hides the status bar at the top of the screen -->
@@ -182,7 +182,7 @@
     <platform name="android">
         <icon density="ldpi" src="www/img/splash/icon/android/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="www/img/splash/icon/android/drawable-mdpi-icon.png" />
-        <!--<icon density="hdpi" src="www/img/splash/icon/android/drawable-hdpi-icon.png" />-->
+        <icon density="hdpi" src="www/img/splash/icon/android/drawable-hdpi-icon.png" />
         <icon density="xhdpi" src="www/img/splash/icon/android/drawable-xhdpi-icon.png" />
         <icon density="xxhdpi" src="www/img/splash/icon/android/drawable-xxhdpi-icon.png" />
         <icon density="xxxhdpi" src="www/img/splash/icon/android/drawable-xxxhdpi-icon.png" />
