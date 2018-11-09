@@ -201,13 +201,13 @@
     </platform>
 	
 	
-	<!--<icon src="www/img/splash/icon/android/drawable-ldpi-icon.png" platform="android" qualifier="ldpi" />
+	<icon src="www/img/splash/icon/android/drawable-ldpi-icon.png" platform="android" qualifier="ldpi" />
 	<icon src="www/img/splash/icon/android/drawable-mdpi-icon.png" platform="android" qualifier="mdpi" />
 	<icon src="www/img/splash/icon/android/drawable-hdpi-icon.png" platform="android" qualifier="hdpi" />
 	<icon src="www/img/splash/icon/android/drawable-xhdpi-icon.png" platform="android" qualifier="xhdpi" />
 	<icon src="www/img/splash/icon/android/drawable-xxhdpi-icon.png" platform="android" qualifier="xxhdpi" />
 	<icon src="www/img/splash/icon/android/drawable-xxhdpi-icon.png" platform="android" qualifier="xxxhdpi" />
-	<icon src="fr-xxhdpi.png" platform="android" qualifier="fr-xxhdpi" />-->
+	<!--<icon src="fr-xxhdpi.png" platform="android" qualifier="fr-xxhdpi" />-->
 	
 	
     <platform name="ios">
