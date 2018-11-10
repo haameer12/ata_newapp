@@ -180,13 +180,13 @@
     
     
    <platform name="android">
-         <!--<icon density="ldpi" src="www/img/splash/icon/android/drawable-ldpi-icon.png" />
-        <icon density="mdpi" src="www/img/splash/icon/android/drawable-mdpi-icon.png" />
-        <icon density="hdpi" src="www/img/splash/icon/android/drawable-hdpi-icon.png" />
-        <icon density="xhdpi" src="www/img/splash/icon/android/drawable-xhdpi-icon.png" />
-        <icon density="xxhdpi" src="www/img/splash/icon/android/drawable-xxhdpi-icon.png" />
-        <icon density="xxxhdpi" src="www/img/splash/icon/android/drawable-xxxhdpi-icon.png" />
-        <splash density="land-ldpi" src="www/img/splash/screen/android/drawable-land-ldpi-screen.png" />
+        <icon density="ldpi" src="img/splash/icon/android/drawable-ldpi-icon.png" />
+        <icon density="mdpi" src="img/splash/icon/android/drawable-mdpi-icon.png" />
+        <icon density="hdpi" src="img/splash/icon/android/drawable-hdpi-icon.png" />
+        <icon density="xhdpi" src="img/splash/icon/android/drawable-xhdpi-icon.png" />
+        <icon density="xxhdpi" src="img/splash/icon/android/drawable-xxhdpi-icon.png" />
+        <icon density="xxxhdpi" src="img/splash/icon/android/drawable-xxxhdpi-icon.png" />
+         <!--<splash density="land-ldpi" src="www/img/splash/screen/android/drawable-land-ldpi-screen.png" />
         <splash density="land-mdpi" src="www/img/splash/screen/android/drawable-land-mdpi-screen.png" />
         <splash density="land-hdpi" src="www/img/splash/screen/android/drawable-land-hdpi-screen.png" />
         <splash density="land-xhdpi" src="www/img/splash/screen/android/drawable-land-xhdpi-screen.png" />
@@ -200,14 +200,14 @@
         <splash density="port-xxxhdpi" src="www/img/splash/screen/android/drawable-port-xxxhdpi-screen.png" />-->
     </platform>
 	
-	
+	<!--<icon src="img/splash/icon/android/drawable-xxhdpi-icon.png" platform="android" />
 	<icon src="img/splash/icon/android/drawable-ldpi-icon.png" platform="android" qualifier="ldpi" />
 	<icon src="img/splash/icon/android/drawable-mdpi-icon.png" platform="android" qualifier="mdpi" />
 	<icon src="img/splash/icon/android/drawable-hdpi-icon.png" platform="android" qualifier="hdpi" />
 	<icon src="img/splash/icon/android/drawable-xhdpi-icon.png" platform="android" qualifier="xhdpi" />
 	<icon src="img/splash/icon/android/drawable-xxhdpi-icon.png" platform="android" qualifier="xxhdpi" />
 	<icon src="img/splash/icon/android/drawable-xxhdpi-icon.png" platform="android" qualifier="xxxhdpi" />
-	<!--<icon src="fr-xxhdpi.png" platform="android" qualifier="fr-xxhdpi" />-->
+	<icon src="fr-xxhdpi.png" platform="android" qualifier="fr-xxhdpi" />-->
 	
 	
     <platform name="ios">
